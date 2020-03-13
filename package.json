@@ -1,0 +1,19 @@
+{
+  "name": "pae",
+  "version": "1.0.0",
+  "description": "proyecto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeDong/PAE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgeDong/PAE/issues"
+  },
+  "homepage": "https://github.com/JorgeDong/PAE#readme"
+}
