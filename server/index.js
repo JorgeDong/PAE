@@ -11,6 +11,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
 
+
+
 // Routes
 app.use('/api/employees', require('./routes/employee.routes'));
 
