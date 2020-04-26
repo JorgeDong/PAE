@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
@@ -59,12 +60,23 @@ router.post('/register', (req, res) => {
 });
 
 // LOGIN
-router.post('/login', (req, res, next) => {
+/*router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
         failureRedirect: '/api/login'
     })(req, res, next);
+});*/
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if(user){
+            let token = jwt.sign({ name: user.name }, 'aqui no se que poner', {expiresIn:'1h'});
+            res.render('dashboard', {token: token});
+        } else {
+            res.status(401).send(info);
+        }
+    })(req, res, next);
 });
+
 
 // LOGOUT
 router.get('/logout', (req, res) => {
