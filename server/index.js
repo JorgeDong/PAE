@@ -12,8 +12,13 @@ app.set('view engine', 'ejs');  // No hagan caso a esto, es solo para mis prueba
 // Body-Parser
 app.use(express.urlencoded( {extended:false} ));
 
+app.use(express.json());
+
 // Using my ROUTES from routes/routes.js
 app.use('/', require('./routes/routes'));
 app.use('/api', require('./routes/user.route'));
+
+app.use('/api/categoria', require('./routes/categorias.routes'));
+
 
 app.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
