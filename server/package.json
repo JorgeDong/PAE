@@ -1,16 +1,28 @@
 {
-  "name": "server",
+  "name": "basic-passport",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
-    "mongoose": "^5.9.10"
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
+    "handlebars": "^4.7.6",
+    "mongoose": "^5.9.10",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

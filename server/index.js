@@ -1,24 +1,19 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const layout = require('express-ejs-layouts');
+const db = require('./config/mongodb.connection');
 
-const { mongoose } = require('./db/db');
+const PORT = process.env.PORT || 3000;
 
-// Settings
-app.set('port', process.env.PORT || 3000);
+// EJS
+app.use(layout);
+app.set('view engine', 'ejs');  // No hagan caso a esto, es solo para mis pruebas
 
-// Middlewares
-app.use(cors({origin: 'http://localhost:4200'}));
-app.use(express.json());
+// Body-Parser
+app.use(express.urlencoded( {extended:false} ));
 
-// Routes
-app.use('/api/employees', require('./routes/example.routes'));
+// Using my ROUTES from routes/routes.js
+app.use('/', require('./routes/routes'));
+app.use('/api', require('./routes/user.route'));
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-});
-
-// starting the server
-app.listen(app.get('port'), () => {
-    console.log(`server on port ${app.get('port')}`);
-});
+app.listen(PORT, console.log(`Server runnign at port: ${PORT}`));

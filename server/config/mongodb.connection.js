@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost/mean-crud';
+const URI = 'mongodb+srv://admin:admin@pae-u17vu.mongodb.net/proyecto?retryWrites=true&w=majority';
 
-mongoose.connect(URI)
-    .then(db => console.log('db is connected'))
+mongoose.connect(URI, { useNewUrlParser: true })
+    .then(db => console.log('MongoDB is connected'))
     .catch(err => console.error(err));
 
 module.exports = mongoose;
