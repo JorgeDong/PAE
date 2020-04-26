@@ -69,7 +69,7 @@ comentarioCtrl.editComentario = async (req, res, next) => {
     res.json({status: 'Comentario Updated'});
 };
 
-comentarioCtrl.deleteCategoria = async (req, res, next) => {
+comentarioCtrl.deleteComentario = async (req, res, next) => {
     await Comentario.findByIdAndRemove(req.params.id);
     res.json({status: 'Comentario Deleted'});
 };

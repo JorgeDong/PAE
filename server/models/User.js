@@ -1,21 +1,21 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const UserSchema = new moongoose.Schema({
+const UserSchema = new mongoose.Schema({
     id: {
         type: Number,
-        required: False
+        required: false
     },
     name: {
         type: String,
-        required: True
+        required: true
     },
     email: {
         type: String,
-        required: True
+        required: true
     },
     password: {
         type: String,
-        required: True
+        required: true
     },
     date: {
         type: Date,

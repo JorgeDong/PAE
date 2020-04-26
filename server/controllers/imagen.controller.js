@@ -1,7 +1,7 @@
 const Imagen = require('../models/Imagen');
 
 
-const ImagenCtrl = {};
+const imagenCtrl = {};
 
 imagenCtrl.getLastImagen = async (req, res, next) => {
     const imagen = await Imagen.findOne({}, {}, { sort: { '_id' : -1 } });

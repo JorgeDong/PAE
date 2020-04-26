@@ -4,13 +4,19 @@ const Categoria = require('../models/Categoria');
 const categoriaCtrl = {};
 
 categoriaCtrl.getLastCategoria = async (req, res, next) => {
-    const categoria = await Categoria.findOne({}, {}, { sort: { '_id' : -1 } });
-    res.json(categoria);
+    const categoria = await Categoria.findOne({}, {}, { sort: { '_id' : -1 },async function(err, post) {
+            if(post == null){
+                 res.status(404).json({status: 'No existe'});
+            }else{
+                 res.status(200).json(post);
+            }
+        } 
+    });
 };
 
 categoriaCtrl.getCategorias = async (req, res, next) => {
     const categorias = await Categoria.find();
-    res.json(categorias);
+    res.status(200).json(categorias);
 };
 
 categoriaCtrl.createCategoria = async (req, res, next) => {
@@ -23,7 +29,7 @@ categoriaCtrl.createCategoria = async (req, res, next) => {
                 fecha: new Date()
             });
             await categoria.save();
-            res.json({status: 'Categoria created',categoria: categoria});
+            res.status(200).json({status: 'Categoria created',categoria: categoria});
         }else{
             console.log(post);
             let lastCategoria = post.idCategoria;
@@ -37,7 +43,7 @@ categoriaCtrl.createCategoria = async (req, res, next) => {
                  fecha: new Date()
              });
          await categoria.save();
-         res.json({status: 'Categoria created',categoria: categoria});
+         res.status(200).json({status: 'Categoria created',categoria: categoria});
         }
     });
 
@@ -46,7 +52,7 @@ categoriaCtrl.createCategoria = async (req, res, next) => {
 categoriaCtrl.getCategoria = async (req, res, next) => {
     const { id } = req.params;
     const categoria = await Categoria.findById(id);
-    res.json(categoria);
+    res.status(200).json(categoria);
 };
 
 categoriaCtrl.editCategoria = async (req, res, next) => {
@@ -60,12 +66,12 @@ categoriaCtrl.editCategoria = async (req, res, next) => {
     };
 
     await Categoria.findByIdAndUpdate(id, {$set: categoria}, {new: true});
-    res.json({status: 'Categoria Updated'});
+    res.status(200).json({status: 'Categoria Updated'});
 };
 
 categoriaCtrl.deleteCategoria = async (req, res, next) => {
     await Categoria.findByIdAndRemove(req.params.id);
-    res.json({status: 'Categoria Deleted'});
+    res.status(200).json({status: 'Categoria Deleted'});
 };
 
 module.exports = categoriaCtrl;

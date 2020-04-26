@@ -8,7 +8,7 @@ creditoCtrl.getLastCredito = async (req, res, next) => {
     res.json(credito);
 };
 
-creditoCtrl.getCredito = async (req, res, next) => {
+creditoCtrl.getCreditos = async (req, res, next) => {
     const creditos = await Credito.find();
     res.json(creditos);
 };
