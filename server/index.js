@@ -30,6 +30,7 @@ app.use('/api/comentario', require('./routes/comentario.routes'));
 app.use('/api/credito', require('./routes/credito.routes'));
 
 //require('./tests/categoria.test')(app);
+//require('./tests/credito.test')(app);
 
 
 http.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
