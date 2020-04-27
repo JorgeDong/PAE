@@ -5,12 +5,12 @@
                     <h5 class="card-title">Producto #5512524</h5>
                   </div>
                   <div class="card-body">
-                    <form>
+                    <form #nuevoProducto="ngForm" (ngSubmit)="uploadImage(nuevoProducto)" >
                       <div class="row">
                         <div class="col-md-5 pr-1">
                           <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control"  placeholder="" value="">
+                            <input type="text" class="form-control"  ngModel name="" placeholder="" value="">
                           </div>
                         </div>
                         <div class="col-md-3 px-1">
@@ -77,10 +77,35 @@
                         </div>
                       </div>
                       <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="btn btn-primary btn-round" >Subir Imagen 1</label>
+                              <input ngModel (change)="obtenerImage($event,1)" type="file" name="image" id="">
+                            </div>
+                            <img src="{{src}}" alt="" width="200" height="200">
+                          </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="btn btn-primary btn-round" >Subir Imagen 2</label>
+                            <input ngModel (change)="obtenerImage($event,2)" type="file" name="image1" id="">
+                          </div>
+                          <img src="{{src1}}" alt="" width="200" height="200">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="btn btn-primary btn-round" >Subir Imagen 3</label>
+                              <input ngModel (change)="obtenerImage($event,3)" type="file" name="image2" id="">
+                            </div>
+                            <img src="{{src2}}" alt="" width="200" height="200">
+                          </div>
+                      </div>
+
+                      <div class="row">
                         <div class="update ml-auto mr-auto">
                           <button type="submit" class="btn btn-primary btn-round">Subastar Producto</button>
                         </div>
                       </div>
+
                     </form>
                   </div>
                 </div>

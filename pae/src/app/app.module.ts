@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +17,10 @@ import { NavbarDashboardComponent } from './components/dashboard/navbar-dashboar
 import { FooterDashboardComponent } from './components/dashboard/footer-dashboard/footer-dashboard.component';
 import { PanelDashboardComponent } from './components/dashboard/panel-dashboard/panel-dashboard.component';
 import { NuevoProductoDashboardComponent } from './components/dashboard/nuevo-producto-dashboard/nuevo-producto-dashboard.component';
+import { environment } from 'src/environments/environment';
+import { LiveAuctionComponent } from './components/liveAuction/live-auction.component';
+
+const config: SocketIoConfig = { url: environment.url, options: {}}
 
 @NgModule({
   declarations: [
@@ -25,12 +33,16 @@ import { NuevoProductoDashboardComponent } from './components/dashboard/nuevo-pr
     NavbarDashboardComponent,
     FooterDashboardComponent,
     PanelDashboardComponent,
-    NuevoProductoDashboardComponent
+    NuevoProductoDashboardComponent,
+    LiveAuctionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    SocketIoModule.forRoot(config),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

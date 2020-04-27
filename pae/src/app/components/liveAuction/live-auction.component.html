@@ -1,0 +1,13 @@
+<p>live-auction works!</p>
+
+<div>
+    <p class="my-0" *ngFor="let item of listaMensajes"> {{msg}} </p>
+</div>
+
+<div class="form-group">
+  <label for=""> Enviar </label>
+  <input type="text"
+    class="form-control" [(ngModel)]="msg" aria-describedby="helpId" placeholder="">
+</div>
+
+<a name="" id="" class="btn btn-primary" (click)="enviarMensaje()" role="button"> Enviar </a>

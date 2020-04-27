@@ -6,7 +6,7 @@ const ImagenSchema = new Schema({
     idProducto_fk: { type: Number, required: true},
     //idMongoProducto_fk: { type: Number, required: true},
     url: { type: String, required: true},
-    descripcion: { type: String, required: true },
+    descripcion: { type: String, required: false },
     fecha: { type: Date, required: true }
 });
 
