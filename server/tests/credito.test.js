@@ -3,7 +3,7 @@ const request = require('supertest');
 module.exports = function(app) {
 
     request(app)
-    .get('/api/categoria')
+    .get('/api/credito')
     .expect('Content-Type', /json/)
     .expect(200)
     .end(function(err, res) {
@@ -14,7 +14,7 @@ module.exports = function(app) {
     });
 
     request(app)
-    .get('/api/categoria/last')
+    .get('/api/credito/last')
     .expect('Content-Type', /json/)
     .expect(200)
     .end(function(err, res) {
