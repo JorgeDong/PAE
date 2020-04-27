@@ -12,6 +12,7 @@ import { SidebarDashboardComponent } from './components/dashboard/sidebar-dashbo
 import { NavbarDashboardComponent } from './components/dashboard/navbar-dashboard/navbar-dashboard.component';
 import { FooterDashboardComponent } from './components/dashboard/footer-dashboard/footer-dashboard.component';
 import { PanelDashboardComponent } from './components/dashboard/panel-dashboard/panel-dashboard.component';
+import { NuevoProductoDashboardComponent } from './components/dashboard/nuevo-producto-dashboard/nuevo-producto-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PanelDashboardComponent } from './components/dashboard/panel-dashboard/
     SidebarDashboardComponent,
     NavbarDashboardComponent,
     FooterDashboardComponent,
-    PanelDashboardComponent
+    PanelDashboardComponent,
+    NuevoProductoDashboardComponent
   ],
   imports: [
     BrowserModule,

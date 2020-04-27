@@ -28,7 +28,7 @@ app.use('/api/puja', require('./routes/puja.routes'));
 app.use('/api/comentario', require('./routes/comentario.routes'));
 app.use('/api/credito', require('./routes/credito.routes'));
 
-require('./tests/categoria.test')(app);
+//require('./tests/categoria.test')(app);
 
 
 app.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
