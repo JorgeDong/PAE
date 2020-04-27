@@ -31,6 +31,7 @@ app.use('/api/credito', require('./routes/credito.routes'));
 
 //require('./tests/categoria.test')(app);
 //require('./tests/credito.test')(app);
+//require('./tests/producto.test')(app);
 
 
 http.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
