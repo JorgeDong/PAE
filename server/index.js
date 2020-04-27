@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const layout = require('express-ejs-layouts');
 const db = require('./config/mongodb.connection');
 const passport = require('passport');
 
@@ -15,20 +14,13 @@ io.on('connection', function(socket) {
     const chat = require('./socket/chat')(socket, io);
 })
 
-
-// EJS
-app.use(layout);
-app.set('view engine', 'ejs');  // No hagan caso a esto, es solo para mis pruebas
-
 // Body-Parser
 app.use(express.urlencoded( {extended:false} ));
 
 app.use(express.json());
 
 // Using my ROUTES from routes/routes.js
-app.use('/', require('./routes/routes'));
-app.use('/api', require('./routes/user.route'));
-
+app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/categoria', require('./routes/categorias.routes'));
 app.use('/api/imagen', require('./routes/imagen.routes'));
 app.use('/api/producto', require('./routes/producto.routes'));
