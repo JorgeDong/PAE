@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "pae"
+  "defaultProject": "pae",
+  "cli": {
+    "analytics": "71028e0f-0f43-4fb2-aec3-0b894093ca2f"
+  }
 }

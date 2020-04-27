@@ -5,6 +5,6 @@ exports = module.exports = function(socket, io) {
     });
 
     setInterval(()=>{
-        io.emit('chat', "Un saludo a la Cristina a las " + (new Date()).toUTCString());
-    }, 1000);
+        io.emit('chat', "Prueba de socket funcionando " + (new Date()).toUTCString());
+    }, 10000);
 }
