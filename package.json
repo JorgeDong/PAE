@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JorgeDong/PAE/issues"
   },
-  "homepage": "https://github.com/JorgeDong/PAE#readme"
+  "homepage": "https://github.com/JorgeDong/PAE#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
 }

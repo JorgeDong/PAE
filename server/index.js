@@ -7,6 +7,15 @@ const passport = require('passport');
 const PORT = process.env.PORT || 3000;
 require('./config/passport')(passport);     // Passport config
 
+//Socket IO Config
+const http = require('http').Server(app);
+const io   = require('socket.io')(http);
+
+io.on('connection', function(socket) {
+    const chat = require('./socket/chat')(socket, io);
+})
+
+
 // EJS
 app.use(layout);
 app.set('view engine', 'ejs');  // No hagan caso a esto, es solo para mis pruebas
@@ -31,4 +40,4 @@ app.use('/api/credito', require('./routes/credito.routes'));
 require('./tests/categoria.test')(app);
 
 
-app.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
+http.listen(PORT, console.log(`Server runnign at port: ${PORT}`));
