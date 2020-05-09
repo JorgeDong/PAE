@@ -19,6 +19,9 @@ import { PanelDashboardComponent } from './components/dashboard/panel-dashboard/
 import { NuevoProductoDashboardComponent } from './components/dashboard/nuevo-producto-dashboard/nuevo-producto-dashboard.component';
 import { environment } from 'src/environments/environment';
 import { LiveAuctionComponent } from './components/liveAuction/live-auction.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const config: SocketIoConfig = { url: environment.url, options: {}}
 
@@ -34,7 +37,10 @@ const config: SocketIoConfig = { url: environment.url, options: {}}
     FooterDashboardComponent,
     PanelDashboardComponent,
     NuevoProductoDashboardComponent,
-    LiveAuctionComponent
+    LiveAuctionComponent,
+    LoginComponent,
+    RegistrationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

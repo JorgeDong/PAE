@@ -1,0 +1,39 @@
+<div class="main-container" >
+    <form class="form-signin">
+        <img class="mb-4" src="https://i.ya-webdesign.com/images/profile-image-png-14.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+        <label for="inputEmail" class="sr-only">Correo</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="correo@ejemplo.com" required autofocus>
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="*****" required>
+        <hr>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+<a type="button" data-toggle="modal" data-target="#recoveryModal" style="color:dodgerblue">¿Olvidaste tu contraseña?</a>
+</div>
+
+<!-- Recover Password Modal -->
+<div class="modal fade" id="recoveryModal" tabindex="-1" role="dialog" aria-labelledby="recoveryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">  <!-- HEADER-->
+                <h5 class="modal-title" id="recoveryModalLabel">Recuperar Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">    <!-- BODY -->
+                <form action="pages/recovery.html">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </form>
+            </div>
+            <div class="modal-footer">  <!-- FOOTER -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
