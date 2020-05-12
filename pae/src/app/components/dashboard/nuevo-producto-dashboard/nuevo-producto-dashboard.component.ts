@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ProductoService } from '../../../services/producto/producto.service';
+import { Producto } from '../../../models/Producto';
+
 
 @Component({
   selector: 'app-nuevo-producto-dashboard',
@@ -16,11 +19,20 @@ export class NuevoProductoDashboardComponent implements OnInit {
   src1;
   src2;
 
+  idActual;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private productoService: ProductoService 
   ) { }
 
   ngOnInit(): void {
+    // Obtener el utlimo id unico de todos losproductos
+    this.productoService.ultimoProducto().subscribe(res =>{
+      console.log(res);
+      this.idActual = res.idProducto;
+      this.idActual ++;
+    });
   }
 
 
@@ -34,7 +46,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
       reader.readAsDataURL(this.image);
       let formData = new FormData();
       formData.append("image",this.image);
-      formData.append("idProducto_fk","1");
+      formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
     this.http.post('http://localhost:3000/api/imagen',formData)
@@ -49,7 +61,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
       reader.readAsDataURL(this.image1);
       let formData = new FormData();
       formData.append("image",this.image1);
-      formData.append("idProducto_fk","1");
+      formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
     this.http.post('http://localhost:3000/api/imagen',formData)
@@ -63,7 +75,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
       reader.readAsDataURL(this.image2);
       let formData = new FormData();
       formData.append("image",this.image2);
-      formData.append("idProducto_fk","1");
+      formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
     this.http.post('http://localhost:3000/api/imagen',formData)
@@ -90,6 +102,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
 
 
   uploadImage(form: NgForm){
+    console.log(form.value);
 
     let formData = new FormData();
     formData.append("image",this.image);
@@ -97,6 +110,20 @@ export class NuevoProductoDashboardComponent implements OnInit {
     formData.append("image2",this.image2);
     formData.append("desc",form.value.desc);
     console.log(formData);
+
+    let nuevoProducto = new Producto(this.idActual,
+                                1,
+                                2,
+                                form.value.nombre,
+                                form.value.marca,
+                                form.value.accesorios,
+                                form.value.descripcion,
+                                form.value.estado,
+                                "valor"                                
+                              );
+    this.productoService.subirProducto(nuevoProducto).subscribe(res => {
+      console.log(res)
+    });
     //this.http.post('http://localhost:3000/upload',formData)
     //.subscribe((res)=> console.log(res));
   }

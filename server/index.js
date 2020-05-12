@@ -2,9 +2,16 @@ const express = require('express');
 const app = express();
 const db = require('./config/mongodb.connection');
 const passport = require('passport');
+const cors = require('cors');
+
+
 
 const PORT = process.env.PORT || 3000;
 require('./config/passport')(passport);     // Passport config
+
+
+
+app.use(cors());
 
 //Socket IO Config
 const http = require('http').Server(app);
