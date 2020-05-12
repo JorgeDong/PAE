@@ -7,14 +7,23 @@ import { NuevoProductoDashboardComponent   } from './components/dashboard/nuevo-
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SubastaDetalleComponent } from './components/subasta-detalle/subasta-detalle.component';
+import { BuscarSubastaComponent } from './components/buscar-subasta/buscar-subasta.component';
+import { EditarProductoDashboardComponent } from './components/dashboard/editar-producto-dashboard/editar-producto-dashboard.component';
+import { ComentariosUsuariosComponent } from './components/comentarios-usuarios/comentarios-usuarios.component';
 
 const routes: Routes = [
   { path: 'home' , component: HomeComponent},
+  { path: 'subasta-detalle/:id' , component: SubastaDetalleComponent},
+  { path: 'subasta-buscar' , component: BuscarSubastaComponent},
+  { path: 'comentarios' , component: ComentariosUsuariosComponent},
   { path: '' , redirectTo: '/home', pathMatch: 'full'},
   { path: 'dashboard' , component: DashboardComponent,
     children: [
       {path:'', component: PanelDashboardComponent},
-      {path:'nuevo-producto', component: NuevoProductoDashboardComponent}]
+      {path:'nuevo-producto', component: NuevoProductoDashboardComponent},
+      {path:'editar-producto', component: EditarProductoDashboardComponent},
+    ]
   },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},

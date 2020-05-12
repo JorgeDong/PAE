@@ -21,6 +21,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
 
   idActual;
 
+  
+
   constructor(
     private http: HttpClient,
     private productoService: ProductoService 
@@ -28,9 +30,12 @@ export class NuevoProductoDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // Obtener el utlimo id unico de todos losproductos
-    this.productoService.ultimoProducto().subscribe(res =>{
+    this.productoService.ultimoProducto().subscribe( (res: any) =>{
       console.log(res);
+       let aux = res as Producto[];
+     //console.log(aux)
       this.idActual = res.idProducto;
+
       this.idActual ++;
     });
   }
@@ -112,8 +117,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
     console.log(formData);
 
     let nuevoProducto = new Producto(this.idActual,
-                                1,
-                                2,
+                                1, // cambiar este categoria
+                                2, // cambiar este es usuario
                                 form.value.nombre,
                                 form.value.marca,
                                 form.value.accesorios,
@@ -124,8 +129,11 @@ export class NuevoProductoDashboardComponent implements OnInit {
     this.productoService.subirProducto(nuevoProducto).subscribe(res => {
       console.log(res)
     });
-    //this.http.post('http://localhost:3000/upload',formData)
-    //.subscribe((res)=> console.log(res));
+
+
+
+
+
   }
 
 

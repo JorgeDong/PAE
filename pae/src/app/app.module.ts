@@ -22,6 +22,12 @@ import { LiveAuctionComponent } from './components/liveAuction/live-auction.comp
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SubastaDetalleComponent } from './components/subasta-detalle/subasta-detalle.component';
+import { BuscarSubastaComponent } from './components/buscar-subasta/buscar-subasta.component';
+import { ComentariosUsuariosComponent } from './components/comentarios-usuarios/comentarios-usuarios.component';
+import { EditarProductoDashboardComponent } from './components/dashboard/editar-producto-dashboard/editar-producto-dashboard.component';
+import { CreditosComponent } from './components/dashboard/creditos/creditos.component';
+import { SubastaComponent } from './components/subasta/subasta.component';
 
 const config: SocketIoConfig = { url: environment.url, options: {}}
 
@@ -40,7 +46,13 @@ const config: SocketIoConfig = { url: environment.url, options: {}}
     LiveAuctionComponent,
     LoginComponent,
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    SubastaDetalleComponent,
+    BuscarSubastaComponent,
+    ComentariosUsuariosComponent,
+    EditarProductoDashboardComponent,
+    CreditosComponent,
+    SubastaComponent
   ],
   imports: [
     BrowserModule,
