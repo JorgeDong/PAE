@@ -83,4 +83,12 @@ subastaCtrl.deleteSubasta = async (req, res, next) => {
     res.json({status: 'Subasta Deleted'});
 };
 
+
+// subastaCtrl.obtenerTodo = async (req, res, next) => {
+//     //res.json({status: 'Subasta Deleted'});
+//     Subasta.find(null, function (err, docs) {
+//         console.log(docs)
+//     });
+// };
+
 module.exports = subastaCtrl;

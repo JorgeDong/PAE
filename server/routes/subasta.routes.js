@@ -10,4 +10,6 @@ router.get('/:id', subastaCtrl.getSubasta);
 router.put('/:id', subastaCtrl.editSubasta);
 router.delete('/:id', subastaCtrl.deleteSubasta);
 
+// router.get('/todo/', subastaCtrl.obtenerTodo);
+
 module.exports = router;

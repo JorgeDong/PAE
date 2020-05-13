@@ -37,4 +37,6 @@ router.put('/:id', imagenCtrl.editImagen);
 router.delete('/:id', imagenCtrl.deleteImagen);
 router.get('/download/:image', imagenCtrl.downloadImagen); 
 
+router.get('/producto/:id', imagenCtrl.imagenesIdProducto); 
+
 module.exports = router;

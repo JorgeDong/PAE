@@ -21,6 +21,7 @@ pujaCtrl.createPuja = async (req, res, next) => {
                 idSubasta_fk: req.body.idSubasta_fk,
                 idUsuario_fk: req.body.idUsuario_fk,
                 CantidadPuja: req.body.CantidadPuja,
+                Usuario: req.body.Usuario,
                 fechaAlta: new Date()
             });
             await puja.save();
@@ -32,6 +33,7 @@ pujaCtrl.createPuja = async (req, res, next) => {
                 idPuja: lastPuja,
                 idSubasta_fk: req.body.idSubasta_fk,
                 idUsuario_fk: req.body.idUsuario_fk,
+                Usuario: req.body.Usuario,
                 CantidadPuja: req.body.CantidadPuja,
                 fechaAlta: new Date()
             });
@@ -55,6 +57,7 @@ pujaCtrl.editPuja = async (req, res, next) => {
         idPuja: req.body.idPuja,
         idSubasta_fk: req.body.idSubasta_fk,
         idUsuario_fk: req.body.idUsuario_fk,
+        Usuario: req.body.Usuario,
         CantidadPuja: req.body.CantidadPuja,
         fechaAlta: new Date()
     };
@@ -68,4 +71,8 @@ pujaCtrl.deletePuja = async (req, res, next) => {
     res.json({status: 'Puja Deleted'});
 };
 
+pujaCtrl.getPujasPorIdProducto = async (req, res, next) => {
+    const pujas = await Puja.find({ idSubasta_fk: req.params.id });
+    res.json(pujas);
+};
 module.exports = pujaCtrl;

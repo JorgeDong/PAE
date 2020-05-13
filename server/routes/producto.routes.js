@@ -9,5 +9,7 @@ router.post('/', productoCtrl.createProducto);
 router.get('/:id', productoCtrl.getProducto);
 router.put('/:id', productoCtrl.editProducto);
 router.delete('/:id', productoCtrl.deleteProducto);
+router.get('/search/:id', productoCtrl.findByID);
+router.get('/imagenes/:id', productoCtrl.findImagenesByID);
 
 module.exports = router;

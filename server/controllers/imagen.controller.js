@@ -80,4 +80,9 @@ imagenCtrl.downloadImagen = async (req, res, next) => {
     res.sendFile(path.join(__dirname, '../repo/' + req.params.image)); 
 };
 
+imagenCtrl.imagenesIdProducto = async (req, res, next) => {
+    const imagenes = await Imagen.find({ idProducto_fk: req.params.id });
+    res.json(imagenes);
+};
+
 module.exports = imagenCtrl;

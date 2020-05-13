@@ -9,5 +9,6 @@ router.post('/', pujaCtrl.createPuja);
 router.get('/:id', pujaCtrl.getPuja);
 router.put('/:id', pujaCtrl.editPuja);
 router.delete('/:id', pujaCtrl.deletePuja);
+router.get('/producto/:id', pujaCtrl.getPujasPorIdProducto);
 
 module.exports = router;
