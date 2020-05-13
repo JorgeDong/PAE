@@ -64,5 +64,9 @@ export class UserService {
       })
     )
   }
+
+  getUserbyID(id){
+    return this.http.get('http://localhost:3000/api/users/readById/'+id);
+  }
   
 }

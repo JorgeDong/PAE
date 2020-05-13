@@ -23,7 +23,8 @@ comentarioCtrl.createComentario = async (req, res, next) => {
                 idPuja_fk: req.body.idPuja_fk,
                 Comentario: req.body.Comentario,
                 tipo: req.body.tipo,
-                fechaAlta: new Date()
+                fechaAlta: new Date(),
+                nombreUsuarioEmisor: req.body.nombreUsuarioEmisor,
             });
             await comentario.save();
             res.json({status: 'Comentario created',comentario: comentario});
@@ -37,7 +38,8 @@ comentarioCtrl.createComentario = async (req, res, next) => {
                 idPuja_fk: req.body.idPuja_fk,
                 Comentario: req.body.Comentario,
                 tipo: req.body.tipo,
-                fechaAlta: new Date()
+                fechaAlta: new Date(),
+                nombreUsuarioEmisor: req.body.nombreUsuarioEmisor,
             });
             await comentario.save();
             res.json({status: 'Comentario created',comentario: comentario});
@@ -62,7 +64,8 @@ comentarioCtrl.editComentario = async (req, res, next) => {
         idPuja_fk: req.body.idPuja_fk,
         Comentario: req.body.Comentario,
         tipo: req.body.tipo,
-        fechaAlta: new Date()
+        fechaAlta: new Date(),
+        nombreUsuarioEmisor: req.body.nombreUsuarioEmisor,
     };
 
     await Comentario.findByIdAndUpdate(id, {$set: comentario}, {new: true});
@@ -72,6 +75,12 @@ comentarioCtrl.editComentario = async (req, res, next) => {
 comentarioCtrl.deleteComentario = async (req, res, next) => {
     await Comentario.findByIdAndRemove(req.params.id);
     res.json({status: 'Comentario Deleted'});
+};
+
+
+comentarioCtrl.getComentarioUsuario = async (req, res, next) => {
+    const comentarios = await Comentario.find({ idUsuarioOrigen_fk: req.params.id });
+    res.json(comentarios);
 };
 
 module.exports = comentarioCtrl;

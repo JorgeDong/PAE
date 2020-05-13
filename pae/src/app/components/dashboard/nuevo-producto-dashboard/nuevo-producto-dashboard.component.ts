@@ -5,7 +5,9 @@ import { ProductoService } from '../../../services/producto/producto.service';
 import { SubastaService } from '../../../services/subasta/subasta.service';
 import { Producto } from '../../../models/Producto';
 import { Subasta } from '../../../models/Subasta';
+import { User } from '../../../models/User';
 import { CanActivate, Router } from '@angular/router';
+import { UserService } from '../../../services/user/user.service'
 
 
 @Component({
@@ -25,15 +27,26 @@ export class NuevoProductoDashboardComponent implements OnInit {
   idActual;
 
   urlImg;
-
+  user: User;
   
 
   constructor(
     private http: HttpClient,
     private productoService: ProductoService,
     private subastaService: SubastaService,
+    private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+    this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(
+      (data) => {
+        this.user = data;
+        console.log(this.user)
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+   }
 
   ngOnInit(): void {
     // Obtener el utlimo id unico de todos losproductos
@@ -132,7 +145,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
     let nuevoProducto = new Producto(
                                 //this.idActual,
                                 1, // cambiar este categoria
-                                2, // cambiar este es usuario
+                                this.user.id, // cambiar este es usuario
                                 form.value.nombre,
                                 form.value.marca,
                                 form.value.accesorios,
