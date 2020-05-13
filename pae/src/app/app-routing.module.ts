@@ -29,7 +29,8 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
-  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
+  //{ path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
+  { path: 'profile', component: ProfileComponent},
   { path: 'live', component: LiveAuctionComponent}
 //{path: '**' , component: NotFoundComponent }
 ];
