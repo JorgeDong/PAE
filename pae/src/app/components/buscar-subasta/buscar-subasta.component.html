@@ -170,24 +170,24 @@
                 <div class="shop-product-content tab-content">
                     <div id="grid-5-col2" class="tab-pane fade active show">
                         <div class="row">
-                            <div class="col-md-12 col-lg-12 col-xl-6">
+                            <div class="col-md-12 col-lg-12 col-xl-6" *ngFor="let producto of productos" >
                                 <div class="single-product single-product-list product-list-right-pr mb-40">
                                     <div class="product-img list-img-width">
-                                        <a href="#"><img src="./assets/paper/assets/img/tv1.jpg" alt=""></a>
+                                        <a href="#"><img src="{{ruta}}/download/{{producto.Url}}" alt=""></a>
                                         <div class="product-action">
                                             <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-content-list">
                                         <div class="product-list-info">
-                                            <h4><a href="#">Pantalla Samsung 42 pulgadas 4k</a></h4>
-                                            <span><strong>Puja Actual:</strong>$120.00</span>
-                                            <strong>Tiempo Restante: </strong><span>18h 01m 10s</span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing el sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+                                            <h4><a href="#">{{ producto.nombre }}</a></h4>
+                                            <span><strong>Puja Inicial:</strong>$ {{ producto.PujaInicial }}</span>
+                                            <strong>Fecha de Cierre: </strong><span>{{ producto.fechaFinal }}</span>
+                                            <p>{{ producto.descripcion }}</p>
                                         </div>
                                         <div class="product-list-cart-wishlist">
                                             <div class="product-list-cart">
-                                                <a class="btn-hover list-btn-style" href="./subasta-detalle.html">ver subasta</a>
+                                                <a class="btn-hover list-btn-style" [routerLink]="['/subasta-detalle/', producto.idProducto]">ver subasta</a>
                                             </div>
                                             <div class="product-list-wishlist">
                                                 <a class="btn-hover list-btn-wishlist" href="#"><i class="ion-ios-heart-outline"></i></a>
@@ -196,35 +196,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="grid-5-col2" class="tab-pane fade active show">
-                                <div class="row">
-                                    <div class="col-md-12 col-lg-12 col-xl-6">
-                                        <div class="single-product single-product-list product-list-right-pr mb-40">
-                                            <div class="product-img list-img-width">
-                                                <a href="#"><img src="./assets/paper/assets/img/tv1.jpg" alt=""></a>
-                                                <div class="product-action">
-                                                    <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="product-content-list">
-                                                <div class="product-list-info">
-                                                    <h4><a href="#">Pantalla Samsung 42 pulgadas 4k</a></h4>
-                                                    <span><strong>Puja Actual:</strong>$120.00</span>
-                                                    <strong>Tiempo Restante: </strong><span>18h 01m 10s</span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing el sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
-                                                </div>
-                                                <div class="product-list-cart-wishlist">
-                                                    <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">ver subasta</a>
-                                                    </div>
-                                                    <div class="product-list-wishlist">
-                                                        <a class="btn-hover list-btn-wishlist" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                             
                         </div>
                     </div>

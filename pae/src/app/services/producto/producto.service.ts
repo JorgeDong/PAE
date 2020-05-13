@@ -8,11 +8,19 @@ import { HttpClient } from '@angular/common/http';
 export class ProductoService {
 
   readonly URL_API = 'http://localhost:3000/api/producto';
+
+  productos = [];
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.obtenerProductos();
+  }
 
   obtenerProductos(){
-    return this.http.get(this.URL_API);
+    return this.http.get(this.URL_API).subscribe((res:any)=>{
+      res.forEach(element => {
+        this.productos.push(element);
+      });
+    });
   }
 
   public ultimoProducto(){
@@ -22,9 +30,11 @@ export class ProductoService {
   subirProducto(producto){
     return this.http.post(this.URL_API, producto);
   }
-<<<<<<< HEAD
+
+  obtenerProductoId(id){
+    console.log('dentro de service produto'+id)
+   return this.http.get(this.URL_API+'/search/'+id);
+  }
 
 
-=======
->>>>>>> a801d4fe7e5758a577f0d4d7a9b7ea2531342909
 }

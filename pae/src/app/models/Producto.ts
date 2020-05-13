@@ -14,7 +14,8 @@ export class Producto {
                     Tiempo,
                     FechaInicio,
                     FechaFinal,
-                    Envio
+                    Envio,
+                    Url
     ) {
        // this.idProducto = idProducto;
         this.idCategoria_fk = idCategoria_fk;
@@ -30,6 +31,7 @@ export class Producto {
         this.FechaInicio  =  FechaInicio;
         this.FechaFinal  = FechaFinal ;
         this.Envio  = Envio;
+        this.Url  = Url;
     }
 
     idProducto: number;
@@ -46,5 +48,5 @@ export class Producto {
     FechaInicio: string;
     FechaFinal:string;
     Envio: string;
-
+    Url: string;
 }

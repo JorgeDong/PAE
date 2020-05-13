@@ -170,14 +170,14 @@
                                             <img src="./assets/neha/assets/img/product-details/l1.jpg" alt="">
                                         </a> -->
                                         <a href="./assets/paper/assets/img/tv1.jpg">
-                                            <img src="./assets/paper/assets/img/tv1.jpg" alt="">
+                                            <img src="{{ruta}}/download/{{primeraImagen.url}}" alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="pro-details2" role="tabpanel">
                                     <div class="easyzoom easyzoom--overlay">
                                         <a href="./assets/paper/assets/img/tv2.jfif">
-                                            <img src="./assets/paper/assets/img/tv2.jfif" alt="">
+                                            <img src="{{ruta}}/download/{{primeraImagen.url}}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -197,25 +197,17 @@
                                 </div>
                             </div>
                             <div class="product-details-small nav mt-12 main-product-details" role=tablist>
-                                <a class="active mr-12" href="#pro-details1" data-toggle="tab" role="tab" aria-selected="true">
-                                    <img src="./assets/paper/assets/img/tv1.jpg" alt="">
+                                <a *ngFor="let imagen of imagenes" class="active mr-12" href="#pro-details1" data-toggle="tab" role="tab" aria-selected="true">
+                                    <img src="{{ruta}}/download/{{imagen.url}}" alt="">
                                 </a>
-                                <a class="mr-12" href="#pro-details2" data-toggle="tab" role="tab" aria-selected="true">
-                                    <img src="./assets/paper/assets/img/tv2.jfif" alt="">
-                                </a>
-                                <a class="mr-12" href="#pro-details3" data-toggle="tab" role="tab" aria-selected="true">
-                                    <img src="./assets/paper/assets/img/tv3.jpg" alt="">
-                                </a>
-                                <a class="mr-12" href="#pro-details4" data-toggle="tab" role="tab" aria-selected="true">
-                                    <img src="./assets/paper/assets/img/tv4.jpg" alt="">
-                                </a>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5 col-12">
                     <div class="product-details-content">
-                        <h3>Pantalla Samsung 42 pulgadas 4k</h3>
+                        <h3>{{productoActual.nombre}}</h3>
                         <div class="rating-number">
                             <div class="quick-view-rating">
                                 <i class="ion-ios-star red-star"></i>
@@ -224,16 +216,17 @@
                                 <i class="ion-android-star-outline"></i>
                                 <i class="ion-android-star-outline"></i>
                             </div>
-                            <div class="quick-view-number">
+                            <!-- <div class="quick-view-number">
                                 <span>Calificación del Vendedor</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="details-price">
                             <strong>Puja Actual: </strong><span>$120.00</span>
                             <br>
-                            <strong>Tiempo Restante: </strong><span>18h 01m 10s</span>
+                            <strong>Fecha de Cierre: </strong><span>{{productoActual.fechaFinal}}</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmol tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim veni quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                        <p>Accesorios: {{productoActual.accesorios}}</p>
+                        <p>Estado: {{productoActual.estadoDelProducto}}</p>
                         <div class="quick-view-select">
                             <div class="select-option-part">
                                 <label>Vendedor:</label>
@@ -260,7 +253,8 @@
                         </div>
                         <div class="quickview-plus-minus">
                             <div class="cart-plus-minus">
-                                <input type="number" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                <!-- <input type="number" value="02" name="qtybutton" class="cart-plus-minus-box"> -->
+                                <input type="number" value="02" name="qtybutton" class="">
                             </div>
                             <div class="quickview-btn-cart">
                                 <a class="btn-hover-black" data-toggle="modal" data-target="#myModal" href="#">Pujar</a>
@@ -269,13 +263,13 @@
                                 <a class="btn-hover" href="#"><i class="ion-ios-heart-outline"></i></a>
                             </div> -->
                         </div>
-                        <div class="product-categories product-cat-tag">
+                        <!-- <div class="product-categories product-cat-tag">
                             <ul>
                                 <li class="categories-title">Categorias :</li>
                                 <li><a href="#">Electronicos</a></li>
                                 <li><a href="#">Tecnología</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- <div class="product-tags product-cat-tag">
                             <ul>
                                 <li class="categories-title">Tags :</li>
@@ -286,7 +280,7 @@
                                 <li><a href="#">jewellery</a></li>
                             </ul>
                         </div> -->
-                        <div class="product-share">
+                        <!-- <div class="product-share">
                             <ul>
                                 <li class="categories-title">Compartir :</li>
                                 <li>
@@ -310,7 +304,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -329,7 +323,7 @@
                 </div>
                 <div class="description-review-text tab-content">
                     <div class="tab-pane active show fade" id="pro-dec" role="tabpanel">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                        <p>{{productoActual.descripcion}}</p>
                     </div>
                     <div class="tab-pane fade" id="pro-review" role="tabpanel">
                         <a href="#">Be the first to write your review!</a>
@@ -417,7 +411,7 @@
                         <div class="quick-view-learg-img">
                             <div class="quick-view-tab-content tab-content">
                                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                    <img src="./assets/neha/assets/img/quick-view/l1.jpg" alt="">
+                                    <img src="./assets/neha/assets/img/quick-view/l.jpg" alt="">
                                 </div>
                                 <div class="tab-pane fade" id="modal2" role="tabpanel">
                                     <img src="./assets/neha/assets/img/quick-view/l2.jpg" alt="">

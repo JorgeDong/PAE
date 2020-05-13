@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SubastaService } from '../../services/subasta/subasta.service';
 import { ProductoService } from '../../services/producto/producto.service';
+import { ImagenService } from '../../services/imagen/imagen.service';
 
 @Component({
   selector: 'app-buscar-subasta',
@@ -9,14 +10,23 @@ import { ProductoService } from '../../services/producto/producto.service';
 })
 export class BuscarSubastaComponent implements OnInit {
 
-  constructor(
-    private subastaService: SubastaService
-  ) {
+  productos = [];
+  ruta;
 
+  constructor(
+    private subastaService: SubastaService,
+    private  productoService: ProductoService,
+    private imagenService: ImagenService
+  ) {
+      this.productos = this.productoService.productos;
+      this.ruta = this.imagenService.URL_API;
    }
 
   ngOnInit(): void {
   }
+
+
+
 
   acomodarObjetos(){
     console.log('entro a acomodar')

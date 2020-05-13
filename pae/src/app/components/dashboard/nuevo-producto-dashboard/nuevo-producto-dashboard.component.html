@@ -52,8 +52,14 @@
                       <div class="row">
                         <div class="col-md-4 pr-1">
                           <div class="form-group">
-                            <label>Fecha Final de Subasta</label>
-                            <input ngModel name="tiempo" type="datetime-local" class="form-control" >
+                            <label>Duración de la Subasta</label>
+                            <!-- <input ngModel name="tiempo" type="datetime-local" class="form-control" > -->
+                            <select id="tiempo" ngModel name="tiempo">
+                              <option value="5">5 días</option>
+                              <option value="10">10 días</option>
+                              <option value="20">20 días</option>
+                              <option value="30">30 días</option>
+                            </select>
                           </div>
                         </div>
                          <div class="col-md-4">
@@ -76,14 +82,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Descripción Subasta</label>
                             <textarea ngModel name="descripcionS" class="form-control textarea">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, sed sequi perspiciatis ullam inventore deserunt magni asperiores officia architecto quis? Necessitatibus commodi sint ratione deleniti quisquam vel eum obcaecati vero!</textarea>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">

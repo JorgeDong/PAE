@@ -24,6 +24,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
 
   idActual;
 
+  urlImg;
+
   
 
   constructor(
@@ -60,7 +62,12 @@ export class NuevoProductoDashboardComponent implements OnInit {
       formData.append("descripcion","Descripcion");
 
     this.http.post('http://localhost:3000/api/imagen',formData)
-    .subscribe((res)=> console.log(res));
+    .subscribe((res:any)=>{
+      console.log('primera imagen')
+      console.log(res.imagen.url);
+      this.urlImg = res.imagen.url;
+      console.log(this.urlImg)
+    });
 
     }else if(id == 2){
       this.image1 = event.target.files[0];
@@ -121,6 +128,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
     formData.append("desc",form.value.desc);
     console.log(formData);
 
+    console.log(this.urlImg)
     let nuevoProducto = new Producto(
                                 //this.idActual,
                                 1, // cambiar este categoria
@@ -135,7 +143,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
                                 form.value.tiempo,
                                 "d",
                                 "f",
-                                form.value.envio                 
+                                form.value.envio,
+                                this.urlImg          
                               );
     // let nuevaSubasta =  new Subasta(
     //   this.idActual,
