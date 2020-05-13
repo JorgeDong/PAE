@@ -18,5 +18,9 @@ export class ComentarioService {
     return this.http.get(this.URL_API+'/usuario/'+id);
   }
 
+  subirComentario(comentario){
+    return this.http.post(this.URL_API, comentario);
+  }
+
 
 }

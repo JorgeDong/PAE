@@ -4,7 +4,8 @@ import { User } from '../../models/User';
 import {UserService} from '../../services/user/user.service'
 import {ComentarioService} from '../../services/comentario/comentario.service'
 import { NgForm } from '@angular/forms';
-
+import { Comentario } from '../../models/Comentario'
+0
 @Component({
   selector: 'app-comentarios-usuarios',
   templateUrl: './comentarios-usuarios.component.html',
@@ -63,15 +64,21 @@ export class ComentariosUsuariosComponent implements OnInit {
   subirComentario(form: NgForm){
 
     console.log(form.value);
-    // let newPuja = new Puja(
-    //   this.productoActual.idProducto,
-    //   this.user.id,
-    //   form.value.CantidadPuja,
-    //   this.user.name
-    // );
+
+    let newComentario = new Comentario(
+      this.user.id,
+      this.usuarioComentarios.id,
+      0,
+      form.value.comentario,
+      "1",
+      this.user.name
+    );
 
     // this.ultimaPuja = form.value.CantidadPuja;
 
+    this.comentarioService.subirComentario(newComentario).subscribe((res:any)=>{
+      this.obtenerPujas(res.comentario.idUsuarioDestino_fk);
+    })
     // this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
     //   console.log(res.puja.idSubasta_fk);
     //   console.log(res.puja.idSubasta_fk);
@@ -85,6 +92,18 @@ export class ComentariosUsuariosComponent implements OnInit {
     // <input type="hidden" id="custId"  ngModel name="Usuario" value="{{user.name}}">
 
 
+  }
+
+  obtenerPujas(id){
+    this.comentarios = [];
+    this.comentarioService.obtenerComentariosPorIdUsuario(id).subscribe((res:any)=>{
+      console.log(res)
+      this.comentarios = res;
+      // res.forEach(element => {
+      //   console.log(element)
+      //   this.pujas.push(element);
+      // });
+    });
   }
 
 }
