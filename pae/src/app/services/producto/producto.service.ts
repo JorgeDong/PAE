@@ -19,5 +19,4 @@ export class ProductoService {
   subirProducto(producto){
     return this.http.post(this.URL_API, producto);
   }
-
 }

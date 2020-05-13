@@ -10,20 +10,27 @@ import { Subscription } from 'rxjs';
 export class LiveAuctionComponent implements OnInit, OnDestroy {
 
   msg = '';
-  listaMensajes = [];
+  listaMensajes: string[] = [];
   mensajesSubscription: Subscription;
 
   constructor(private socketIOService: SocketIoService) { }
+
+  ngOnInit(): void {
+    this.mensajesSubscription = this.socketIOService.getMessage()
+                                    .subscribe((msg: string) => {
+                                      this.listaMensajes.push(msg);
+                                      console.log("Mensaje enviado");
+                                    })
+    }
 
   ngOnDestroy(): void {
     this.mensajesSubscription.unsubscribe();
   }
 
-  ngOnInit(): void {
-    this.mensajesSubscription = this.socketIOService.leerChat().subscribe((msg: string) => this.listaMensajes.push(msg));
+  enviarMensaje() {
+    this.socketIOService.sendMessage(this.msg);
+    this.msg = '';
   }
 
-  enviarMensaje() {
-    this.socketIOService.mandarMensaje(this.msg);
-  }
+
 }
