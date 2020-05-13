@@ -1,6 +1,7 @@
 export class Producto {
 
-        constructor(idProducto,
+        constructor(
+                    //idProducto,
                     idCategoria_fk,
                     idUsuario_fk,
                     nombre,
@@ -8,9 +9,14 @@ export class Producto {
                     accesorios,
                     descripcion,
                     estadoDelProducto,
-                    Valor
+                    Valor,
+                    PujaInicial,
+                    Tiempo,
+                    FechaInicio,
+                    FechaFinal,
+                    Envio
     ) {
-        this.idProducto = idProducto;
+       // this.idProducto = idProducto;
         this.idCategoria_fk = idCategoria_fk;
         this.idUsuario_fk = idUsuario_fk;
         this.nombre = nombre;
@@ -19,6 +25,11 @@ export class Producto {
         this.descripcion = descripcion;
         this.estadoDelProducto = estadoDelProducto;
         this.Valor = Valor;    
+        this.PujaInicial =  PujaInicial;
+        this.Tiempo  = Tiempo;
+        this.FechaInicio  =  FechaInicio;
+        this.FechaFinal  = FechaFinal ;
+        this.Envio  = Envio;
     }
 
     idProducto: number;
@@ -30,5 +41,10 @@ export class Producto {
     descripcion: string;
     estadoDelProducto: string;
     Valor: string;
+    PujaInicial: string;
+    Tiempo: string;
+    FechaInicio: string;
+    FechaFinal:string;
+    Envio: string;
 
 }

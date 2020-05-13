@@ -11,6 +11,9 @@ export class ProductoService {
   
   constructor(private http: HttpClient) { }
 
+  obtenerProductos(){
+    return this.http.get(this.URL_API);
+  }
 
   public ultimoProducto(){
     return this.http.get(this.URL_API + '/last');
@@ -19,5 +22,6 @@ export class ProductoService {
   subirProducto(producto){
     return this.http.post(this.URL_API, producto);
   }
+
 
 }

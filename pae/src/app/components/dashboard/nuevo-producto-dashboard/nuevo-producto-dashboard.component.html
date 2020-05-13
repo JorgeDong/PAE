@@ -52,28 +52,35 @@
                       <div class="row">
                         <div class="col-md-4 pr-1">
                           <div class="form-group">
-                            <label>Tiempo de Subasta</label>
+                            <label>Fecha Final de Subasta</label>
                             <input ngModel name="tiempo" type="datetime-local" class="form-control" >
                           </div>
                         </div>
-                        <!-- <div class="col-md-4 px-1">
+                         <div class="col-md-4">
                           <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" class="form-control" placeholder="Country" value="Australia">
+                            <label>Envio</label>
+                            <select id="cars" ngModel name="envio">
+                              <option value="incluido">inluido</option>
+                              <option value="no incluido">no incluido</option>
+                            </select>
                           </div>
                         </div>
-                        <div class="col-md-4 pl-1">
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
                           <div class="form-group">
-                            <label>Postal Code</label>
-                            <input type="number" class="form-control" placeholder="ZIP Code">
+                            <label>Descripción Producto</label>
+                            <textarea ngModel name="descripcionP" class="form-control textarea">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, sed sequi perspiciatis ullam inventore deserunt magni asperiores officia architecto quis? Necessitatibus commodi sint ratione deleniti quisquam vel eum obcaecati vero!</textarea>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label>Descripción</label>
-                            <textarea ngModel name="descripcion" class="form-control textarea">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, sed sequi perspiciatis ullam inventore deserunt magni asperiores officia architecto quis? Necessitatibus commodi sint ratione deleniti quisquam vel eum obcaecati vero!</textarea>
+                            <label>Descripción Subasta</label>
+                            <textarea ngModel name="descripcionS" class="form-control textarea">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, sed sequi perspiciatis ullam inventore deserunt magni asperiores officia architecto quis? Necessitatibus commodi sint ratione deleniti quisquam vel eum obcaecati vero!</textarea>
                           </div>
                         </div>
                       </div>

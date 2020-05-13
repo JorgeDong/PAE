@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ProductoService } from '../../../services/producto/producto.service';
+import { SubastaService } from '../../../services/subasta/subasta.service';
 import { Producto } from '../../../models/Producto';
+import { Subasta } from '../../../models/Subasta';
+import { CanActivate, Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +28,9 @@ export class NuevoProductoDashboardComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private productoService: ProductoService 
+    private productoService: ProductoService,
+    private subastaService: SubastaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -116,18 +121,40 @@ export class NuevoProductoDashboardComponent implements OnInit {
     formData.append("desc",form.value.desc);
     console.log(formData);
 
-    let nuevoProducto = new Producto(this.idActual,
+    let nuevoProducto = new Producto(
+                                //this.idActual,
                                 1, // cambiar este categoria
                                 2, // cambiar este es usuario
                                 form.value.nombre,
                                 form.value.marca,
                                 form.value.accesorios,
-                                form.value.descripcion,
+                                form.value.descripcionP,
                                 form.value.estado,
-                                "valor"                                
+                                "valor",
+                                form.value.puja,
+                                form.value.tiempo,
+                                "d",
+                                "f",
+                                form.value.envio                 
                               );
+    // let nuevaSubasta =  new Subasta(
+    //   this.idActual,
+    //   1,
+    //   form.value.puja,
+    //   "1",
+    //   "s",
+    //   form.value.tiempo,
+    //   form.value.descripcionS,
+    //   form.value.envio
+    // );
+
+    // this.subastaService.subirSubasta(nuevaSubasta).subscribe(res => {
+    //   console.log(res)
+    // });
+      
     this.productoService.subirProducto(nuevoProducto).subscribe(res => {
       console.log(res)
+      this.router.navigateByUrl('/subasta-detalle/'+this.idActual);
     });
 
 
