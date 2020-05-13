@@ -15,6 +15,7 @@ comentarioCtrl.getComentarios = async (req, res, next) => {
 
 comentarioCtrl.createComentario = async (req, res, next) => {
     Comentario.findOne({}, {}, { sort: { '_id' : -1 } }, async function(err, post) {
+        console.log(req.body)
         if(post == null){
             const comentario = new Comentario({
                 idComentario: 1,
@@ -79,7 +80,7 @@ comentarioCtrl.deleteComentario = async (req, res, next) => {
 
 
 comentarioCtrl.getComentarioUsuario = async (req, res, next) => {
-    const comentarios = await Comentario.find({ idUsuarioOrigen_fk: req.params.id });
+    const comentarios = await Comentario.find({ idUsuarioDestino_fk: req.params.id });
     res.json(comentarios);
 };
 
