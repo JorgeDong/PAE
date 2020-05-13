@@ -25,9 +25,6 @@ export class BuscarSubastaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
-
   acomodarObjetos(){
     console.log('entro a acomodar')
     let objetosTotal = [];

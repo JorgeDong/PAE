@@ -58,7 +58,7 @@ creditoCtrl.editCredito = async (req, res, next) => {
         moneda: req.body.moneda,
         fechaAlta: new Date()
     };
-
+	console.log(credito)
     await Credito.findByIdAndUpdate(id, {$set: credito}, {new: true});
     res.json({status: 'Credito Updated'});
 };

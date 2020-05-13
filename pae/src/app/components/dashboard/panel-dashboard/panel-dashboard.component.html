@@ -11,7 +11,7 @@
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Créditos</p>
-                <p class="card-title">$ 1,345
+                <p class="card-title">${{creditos}}
                   <p>
               </div>
             </div>
@@ -19,8 +19,12 @@
         </div>
         <div class="card-footer ">
           <hr>
-          <div class="stats">
-            <i class="fa fa-credit-card"></i>Agregar crédito
+          <div class="stats" hidden=true>
+            <form #f="ngForm" (ngSubmit)="updateCredit(f)">
+              <i class="fa fa-credit-card"></i>Agregar crédito
+              <input ngModel [(ngModel)]="inputCreditos" name="inputCreditos">
+              <button type="submit">Update</button>
+            </form>
           </div>
         </div>
       </div>
@@ -33,7 +37,36 @@
           <h5 class="card-title">Actividad reciente</h5>
         </div>
         <div class="card-body ">
-          <canvas id=chartHours width="400" height="100"></canvas>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <label>Subastas Creadas</label>
+                <div *ngIf="subastasCreadasArr.length > 0">
+                  <li *ngFor="let item of subastasCreadasArr">
+                    <ul>{{item.Descripcion}}</ul>
+                  </li>
+                </div>
+                <div *ngIf="subastasCreadasArr.length == 0">
+                    <ul>Ninguno</ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <label>Productos Subastados</label>
+                <div *ngIf="productosVendidosArr.length > 0">
+                  <li *ngFor="let item of productosVendidosArr">
+                    <ul>{{item.Descripcion}}</ul>
+                  </li>
+                </div>
+                <div *ngIf="productosVendidosArr.length == 0">
+                    <ul>Ninguno</ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card-footer ">
           <hr>
