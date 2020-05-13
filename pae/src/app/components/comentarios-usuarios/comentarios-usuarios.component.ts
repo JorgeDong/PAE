@@ -34,7 +34,7 @@ export class ComentariosUsuariosComponent implements OnInit {
         console.log(err);
       }
     )
-    
+
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id)
     this.usuarioComentarios = this.userService.getUserbyID(id).subscribe((res:any)=>{
@@ -63,20 +63,20 @@ export class ComentariosUsuariosComponent implements OnInit {
   subirComentario(form: NgForm){
 
     console.log(form.value);
-    let newPuja = new Puja(
-      this.productoActual.idProducto,
-      this.user.id,
-      form.value.CantidadPuja,
-      this.user.name
-    );
+    // let newPuja = new Puja(
+    //   this.productoActual.idProducto,
+    //   this.user.id,
+    //   form.value.CantidadPuja,
+    //   this.user.name
+    // );
 
-    this.ultimaPuja = form.value.CantidadPuja;
+    // this.ultimaPuja = form.value.CantidadPuja;
 
-    this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
-      console.log(res.puja.idSubasta_fk);
-      console.log(res.puja.idSubasta_fk);
-      this.obtenerPujas(res.puja.idSubasta_fk);
-    });
+    // this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+    //   console.log(res.puja.idSubasta_fk);
+    //   console.log(res.puja.idSubasta_fk);
+    //   this.obtenerPujas(res.puja.idSubasta_fk);
+    // });
 
 
     // <input type="number" name="CantidadPuja" class=""  ngModel>
