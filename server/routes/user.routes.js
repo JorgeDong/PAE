@@ -8,7 +8,8 @@ const { ensureAuthenticated } = require('../config/auth');
 const User = require('../models/User');
 
 router.post('/registration', (req, res) => {
-    const { name, email, password, password2, direccion, city, country } = req.query;
+    const { name, email, password, password2, direccion, city, country } = req.body;
+	console.log(req.body);
     let errors = [];
     if(!name || !email || !password || !password2){
         errors.push({ message: 'Please fill all fields'});
@@ -131,16 +132,13 @@ router.put('/updateById/:id', ensureAuthenticated, (req, res) => {
 });
 
 router.put('/updateByEmail/:email', ensureAuthenticated, (req, res) => {
-    const { name, password } = req.query;
-    if(req.params.email == res.locals.email){
-        bcrypt.genSalt(10, (err, salt) => 
-            bcrypt.hash(password, salt, (err, hash) => {
-                if(err) throw err;
-                User.findOneAndUpdate({ email:req.params.email }, { $set:{ name:name, password:hash }}, (err, done)=> {
+    const { name, direccion, city, country } = req.body;
+	console.log(req.body);
+    if(req.body.email == res.locals.email){
+        User.findOneAndUpdate({ email:req.params.email }, { $set:{ name:name, direccion:direccion, city:city, country:country }}, (err, done)=> {
                     if(err) res.status(400).send(err);
                     res.status(200).send(done);
                 })
-        }))
     }
     else {
         res.status(401).send('You cannot edit a different user')

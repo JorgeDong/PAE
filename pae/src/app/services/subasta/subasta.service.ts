@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Subasta } from 'src/app/models/Subasta';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +92,23 @@ export class SubastaService {
     return this.http.post(this.URL_API  + 'subasta',subasta);
   }
 
+  countByUserId(ID):Observable<any>{
+    return this.http.get(`http://localhost:3000/api/subasta`).pipe(
+      map( (data:Subasta[]) => {
+        let filteredData = data.filter(data => data.idUsuario_fk == ID)
+        return filteredData.length;
+        }
+      )
+    )
+  }
+  getByUserId(ID):Observable<any>{
+    return this.http.get(`http://localhost:3000/api/subasta`).pipe(
+      map( (data:Subasta[]) => {
+        let filteredData = data.filter(data => data.idUsuario_fk == ID)
+        return filteredData;
+        }
+      )
+    )
+  }
 
 }

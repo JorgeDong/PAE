@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { map } from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -28,8 +28,18 @@ export class UserService {
     );
   }
 
-  getUserById(){
-
+  registration(name, email, password, password2, direccion, city, country):Observable<any>{
+    console.log(name, email, password, password2, direccion, city, country);
+    return this.http.post('http://localhost:3000/api/users/registration', {name: name, email: email, password: password, 
+      password2: password2, direccion: direccion, city: city, country: country}).pipe(
+      map( (data:any) => {
+        if(data)
+          return data;
+        else{
+          return null;
+        }
+      })
+    )
   }
 
   getUserByEmail(email):Observable<any>{
@@ -43,12 +53,16 @@ export class UserService {
     )
   }
 
-  editUserById(){
+  httpOptions = { headers: new HttpHeaders( { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }) };
 
-  }
-
-  editUserByEmail(){
-
+  updateUser(email, name, direccion, city, country, token):Observable<any>{
+    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email:email, name:name, direccion:direccion, city:city, country:country}, 
+      {headers: new HttpHeaders( {'Authorization': token} )}).pipe(
+      map( (data:any) => {
+        console.log(data);
+        return data;
+      })
+    )
   }
   
 }

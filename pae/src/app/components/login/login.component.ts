@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+  
   submitLogin(form: NgForm){
     this.authService.loginUser(this.loginEmail, this.loginPassword).subscribe(
       (data) => {
-        console.log("LOGIN: "+data);
         this.router.navigate(['/profile'])
       },
       (err) => {

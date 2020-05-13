@@ -17,3 +17,5 @@ idSubasta_fk: number;
 idUsuario_fk: number;
 CantidadPuja: string;
 fechaAlta: string;
+
+}
