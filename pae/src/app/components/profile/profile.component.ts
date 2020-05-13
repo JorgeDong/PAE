@@ -108,23 +108,7 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  obtenerImage(event,id){
-    if(id == 1){
-      this.image = event.target.files[0];
-      let reader = new FileReader();
-      reader.onloadend = ()=>{
-        this.src = reader.result;
-      }
-      reader.readAsDataURL(this.image);
-      let formData = new FormData();
-      formData.append("image",this.image);
-      formData.append("idProducto_fk",this.idActual);
-      formData.append("descripcion","Descripcion");
-
-    this.http.post('http://localhost:3000/api/imagen',formData)
-    .subscribe((res)=> console.log(res));
-
-    }else if(id == 2){
+  obtenerImage(event){
       this.image1 = event.target.files[0];
       let reader = new FileReader();
       reader.onloadend = ()=>{
@@ -133,27 +117,11 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(this.image1);
       let formData = new FormData();
       formData.append("image",this.image1);
-      formData.append("idProducto_fk",this.idActual);
-      formData.append("descripcion","Descripcion");
+      formData.append("idProducto_fk", ""+this.user.id);
+      formData.append("descripcion","profile");
 
     this.http.post('http://localhost:3000/api/imagen',formData)
     .subscribe((res)=> console.log(res));
-    }else{
-      this.image2 = event.target.files[0];
-      let reader = new FileReader();
-      reader.onloadend = ()=>{
-        this.src2 = reader.result;
-      }
-      reader.readAsDataURL(this.image2);
-      let formData = new FormData();
-      formData.append("image",this.image2);
-      formData.append("idProducto_fk",this.idActual);
-      formData.append("descripcion","Descripcion");
-
-    this.http.post('http://localhost:3000/api/imagen',formData)
-    .subscribe((res)=> console.log(res));
-    }
-
 
     // this.image = event.target.files[0];
     // console.log(event.target.files);
