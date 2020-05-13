@@ -29,12 +29,6 @@
               <p>Perfil</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./home.html">
-              <i class="nc-icon nc-spaceship"></i>
-              <p>Subastas Populares</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
@@ -130,7 +124,7 @@
                 <div class="button-container">
                   <div class="row">
                     <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                      <h5>4
+                      <h5>{{subastasCreadas}}
                         <br>
                         <small>Subastas Creadas</small>
                       </h5>
@@ -151,72 +145,7 @@
                 </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">Contactos Guardados</h4>
-              </div>
-              <div class="card-body">
-                <ul class="list-unstyled team-members">
-                  <li>
-                    <div class="row">
-                      <div class="col-md-2 col-2">
-                        <div class="avatar">
-                          <img src="./assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                        </div>
-                      </div>
-                      <div class="col-md-7 col-7">
-                        Ricardo
-                        <br />
-                        <span class="text-success">
-                          <small>Online</small>
-                        </span>
-                      </div>
-                      <div class="col-md-3 col-3 text-right">
-                        <a class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="row">
-                      <div class="col-md-2 col-2">
-                        <div class="avatar">
-                          <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                        </div>
-                      </div>
-                      <div class="col-md-7 col-7">
-                        Omar
-                        <br />
-                        <span class="text-success">
-                          <small>Online</small>
-                        </span>
-                      </div>
-                      <div class="col-md-3 col-3 text-right">
-                        <a class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></a>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="row">
-                      <div class="col-md-2 col-2">
-                        <div class="avatar">
-                          <img src="./assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                        </div>
-                      </div>
-                      <div class="col-ms-7 col-7">
-                        Jorge
-                        <br />
-                        <span class="text-danger">
-                          <small>Offline</small>
-                        </span>
-                      </div>
-                      <div class="col-md-3 col-3 text-right">
-                        <a class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></a>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+ 
           </div>
           <div class="col-md-8">
             <div class="card card-user">
@@ -237,7 +166,7 @@
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Direccion</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="---">
+                        <input type="text" class="form-control" placeholder="Home Address" value={{user.direccion}}>
                       </div>
                     </div>
                   </div>
@@ -245,13 +174,13 @@
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Ciudad</label>
-                        <input type="text" class="form-control" placeholder="Ciudad" value="Guadalajara">
+                        <input type="text" class="form-control" placeholder="Ciudad" value={{user.city}}>
                       </div>
                     </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>País</label>
-                        <input type="text" class="form-control" placeholder="País" value="Mexico">
+                        <input type="text" class="form-control" placeholder="País" value={{user.country}}>
                       </div>
                     </div>
                   </div>
