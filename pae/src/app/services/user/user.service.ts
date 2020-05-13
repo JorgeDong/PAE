@@ -28,8 +28,18 @@ export class UserService {
     );
   }
 
-  getUserById(){
-
+  registration(name, email, password, password2, direccion, city, country):Observable<any>{
+    console.log(name, email, password, password2, direccion, city, country);
+    return this.http.post('http://localhost:3000/api/users/registration', {name: name, email: email, password: password, 
+      password2: password2, direccion: direccion, city: city, country: country}).pipe(
+      map( (data:any) => {
+        if(data)
+          return data;
+        else{
+          return null;
+        }
+      })
+    )
   }
 
   getUserByEmail(email):Observable<any>{
@@ -41,14 +51,6 @@ export class UserService {
         }
       )
     )
-  }
-
-  editUserById(){
-
-  }
-
-  editUserByEmail(){
-
   }
   
 }

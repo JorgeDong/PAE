@@ -1,46 +1,37 @@
 <div class="main-container">
     <h1 class="h3 mb-3 font-weight-bold text-center">Registro</h1>
-    <form class="form-registro" action="/profile">
+    <form class="form-registro"  #f="ngForm" (ngSubmit)="submitReg(f)">
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre completo">
-        </div>
-        <div class="form-group">
-            <label for="apellidos">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" placeholder="Appelidos paterno y materno">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputName" name="inputName" placeholder="Nombre completo">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control"  ngModel [(ngModel)]="inputEmail" name="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword1" name="inputPassword1" placeholder="Password">
         </div>
         <div class="form-group">
-            <label for="example-date-input">Fecha de Nacimiento</label>
-            <input class="form-control" type="date" value="2020-01-01" id="example-date-input">
+            <label for="exampleInputPassword1">Confirmar Contraseña</label>
+            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword2" name="inputPassword2" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="nombre">Direccion</label>
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputDireccion" name="inputDireccion" placeholder="Direccion">
+        </div>
+        <div class="form-group">
+            <label for="nombre">Ciudad</label>
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCity" name="inputCity" placeholder="Ciudad">
+        </div>
+        <div class="form-group">
+            <label for="nombre">Pais</label>
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCountry" name="inputCountry" placeholder="Pais">
         </div>
         <hr>
-        <h3 class="h3 mb-3 font-weight-normal text-center">Preguntas de Seguridad</h3>
-        <div class="form-group">
-            <label for="preguntaUno">Pregunta 1</label>
-            <textarea class="form-control" id="preguntaUno" rows="1"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="respuestaUno">Respuesta</label>
-            <textarea class="form-control" id="respuestaUno" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="preguntaDos">Pregunta 2</label>
-            <textarea class="form-control" id="preguntaDos" rows="1"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="respuestaDos">Respuesta</label>
-            <textarea class="form-control" id="respuestaDos" rows="3"></textarea>
-        </div>
+        
         <br>
-        <hr>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Confirmar</button>
         <br>
     </form>
