@@ -28,8 +28,14 @@ export class LiveAuctionComponent implements OnInit, OnDestroy {
   }
 
   enviarMensaje() {
-    this.socketIOService.sendMessage(this.msg);
+    if (this.msg !== ''){
+      this.socketIOService.sendMessage( + this.msg);
+    }
     this.msg = '';
+  }
+
+  pujar(cantidad) {
+
   }
 
 
