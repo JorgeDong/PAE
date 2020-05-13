@@ -22,6 +22,9 @@ export class ProductoService {
   subirProducto(producto){
     return this.http.post(this.URL_API, producto);
   }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a801d4fe7e5758a577f0d4d7a9b7ea2531342909
 }

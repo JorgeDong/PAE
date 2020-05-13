@@ -8,7 +8,7 @@ const { ensureAuthenticated } = require('../config/auth');
 const User = require('../models/User');
 
 router.post('/registration', (req, res) => {
-    const { name, email, password, password2 } = req.query;
+    const { name, email, password, password2, direccion, city, country } = req.query;
     let errors = [];
     if(!name || !email || !password || !password2){
         errors.push({ message: 'Please fill all fields'});
@@ -36,6 +36,9 @@ router.post('/registration', (req, res) => {
                         name: name,
                         email: email,
                         password: password,
+                        direccion: direccion,
+                        city: city,
+                        country: country,
                         date: new Date,
                         token: ''
                     });

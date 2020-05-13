@@ -1,13 +1,33 @@
-<p>live-auction works!</p>
+<app-navbar-dashboard></app-navbar-dashboard>
 
-<div>
-    <p class="my-0" *ngFor="let item of listaMensajes"> {{msg}} </p>
+<div class="container-fluid" style="margin-top: 100px;">
+	<div class="row">
+		<div class="col-md-8">
+			<iframe width="100%" height="900" src="https://www.youtube.com/embed/NtYfjbLntWo?start=2883" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		<div class="col-md-4">
+			<ul>
+				<li class="list-item list-inline-item" *ngFor="let item of listaMensajes">
+					{{item}}
+        </li>
+        <br>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+      <button type="button" class="btn btn-info btn-circle btn-xl" style="font-size: large;"><i class="fa fa-plus"></i> 1</button>
+      <button type="button" class="btn btn-info btn-circle btn-xl" style="font-size: large;"><i class="fa fa-plus"></i> 10</button>
+      <button type="button" class="btn btn-info btn-circle btn-xl" style="font-size: large;"><i class="fa fa-plus"></i> 100</button>
+      <button type="button" class="btn btn-info btn-circle btn-xl" style="font-size: large;"><i class="fa fa-plus"></i> 500</button>
+      <button type="button" class="btn btn-info btn-circle btn-xl" style="font-size: large;"><i class="fa fa-plus"></i> 1,000</button>
+		</div>
+		<div class="col-md-4">
+      <div class="form-group">
+        <label for="">  </label>
+        <input type="text" class="form-control" [(ngModel)]="msg" (keydown.enter)="enviarMensaje()" aria-describedby="helpId" placeholder="">
+      </div>
+      <a name="Enviar" ref="" id="" class="btn btn-primary" (click)="enviarMensaje()"  role="button"> Enviar </a>
+		</div>
+	</div>
 </div>
-
-<div class="form-group">
-  <label for=""> Enviar </label>
-  <input type="text"
-    class="form-control" [(ngModel)]="msg" aria-describedby="helpId" placeholder="">
-</div>
-
-<a name="" id="" class="btn btn-primary" (click)="enviarMensaje()" role="button"> Enviar </a>

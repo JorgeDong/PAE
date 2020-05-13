@@ -4,12 +4,8 @@ const db = require('./config/mongodb.connection');
 const passport = require('passport');
 const cors = require('cors');
 
-
-
 const PORT = process.env.PORT || 3000;
 require('./config/passport')(passport);     // Passport config
-
-
 
 app.use(cors());
 

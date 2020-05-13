@@ -11,6 +11,8 @@ import { SubastaDetalleComponent } from './components/subasta-detalle/subasta-de
 import { BuscarSubastaComponent } from './components/buscar-subasta/buscar-subasta.component';
 import { EditarProductoDashboardComponent } from './components/dashboard/editar-producto-dashboard/editar-producto-dashboard.component';
 import { ComentariosUsuariosComponent } from './components/comentarios-usuarios/comentarios-usuarios.component';
+import { LiveAuctionComponent } from './components/liveAuction/live-auction.component';
+import { AuthGuardService } from './services/auth/auth-guard.service';
 
 const routes: Routes = [
   { path: 'home' , component: HomeComponent},
@@ -27,7 +29,9 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
-  { path: 'profile', component: ProfileComponent} 
+  //{ path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'live', component: LiveAuctionComponent}
 //{path: '**' , component: NotFoundComponent }
 ];
 

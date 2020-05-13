@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,15 @@ export class SocketIoService {
   constructor(private socket:Socket) { }
 
 
-  mandarMensaje(msg) {
+  sendMessage(msg) {
     this.socket.emit('chat', msg);
   }
 
-  leerChat() {
-    return Observable.create(observer => this.socket.on('chat', msg => observer.next(msg)));
+  getMessage() {
+    return new Observable((observer) => {
+      this.socket.on('chat', (msg) => {
+        observer.next(msg);
+      });
+    });
   }
 }

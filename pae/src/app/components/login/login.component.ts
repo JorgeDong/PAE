@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../../services/user/user.service';
+import { User } from 'src/app/models/User';
+import { TokenInfo } from 'src/app/models/TokenInfo';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +13,27 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  closeResult = '';
+  users: User[];
+  singleUser: User;
+  tokenInfo = '';
+  loginEmail = '';
+  loginPassword = '';
 
-  constructor(private modalService: NgbModal) { }
+  closeResult = '';
+  NotUserFoundAlert = true;
+
+  constructor(private modalService: NgbModal, private userService: UserService, private authService:AuthService, private router: Router) { 
+    
+    this.userService.usersSubject.subscribe( data => {
+      this.users = data;
+    });
+    this.userService.singleUserSubject.subscribe( data => {
+      this.singleUser = data;
+    })
+    this.userService.tokenSubject.subscribe( data => {
+      this.tokenInfo = data;
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -29,6 +53,23 @@ export class LoginComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  submitLogin(form: NgForm){
+    this.authService.loginUser(this.loginEmail, this.loginPassword).subscribe(
+      (data) => {
+        console.log("LOGIN: "+data);
+        this.router.navigate(['/profile'])
+      },
+      (err) => {
+        this.NotUserFoundAlert = false;
+        console.log(err)
+      }
+    )
+    form.reset();
+  }
+
+  close() {
+    this.NotUserFoundAlert = true;
   }
 
 }
