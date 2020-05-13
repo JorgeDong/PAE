@@ -46,6 +46,7 @@ export class AuthService {
       map( (data:any) => {
         if(data.token){
           this.saveToken(data.token);
+          localStorage.setItem('email', data.email);
           this.isLoggedIn();
         }
         return data.token;
@@ -56,6 +57,7 @@ export class AuthService {
   public logOut(){
     this.token = '';
     window.localStorage.removeItem('token');
+    window.localStorage.removeItem('email');
     this.logeado.next(false);
     this.router.navigateByUrl('/');
   }

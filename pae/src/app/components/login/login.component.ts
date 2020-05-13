@@ -6,7 +6,6 @@ import { User } from 'src/app/models/User';
 import { TokenInfo } from 'src/app/models/TokenInfo';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
