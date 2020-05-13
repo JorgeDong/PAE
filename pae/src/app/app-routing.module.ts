@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home' , component: HomeComponent},
   { path: 'subasta-detalle/:id' , component: SubastaDetalleComponent},
   { path: 'subasta-buscar' , component: BuscarSubastaComponent},
-  { path: 'comentarios' , component: ComentariosUsuariosComponent},
+  { path: 'comentarios/:id' , component: ComentariosUsuariosComponent},
   { path: '' , redirectTo: '/home', pathMatch: 'full'},
   { path: 'dashboard' , component: DashboardComponent,
     children: [

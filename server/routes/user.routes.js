@@ -99,6 +99,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/readById/:id', (req, res) => {
+    console.log(req.params)
     User.find({ id: req.params.id })
         .then( data => {
             res.status(200).send(data);

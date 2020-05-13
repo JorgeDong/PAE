@@ -10,4 +10,6 @@ router.get('/:id', comentarioCtrl.getComentario);
 router.put('/:id', comentarioCtrl.editComentario);
 router.delete('/:id', comentarioCtrl.deleteComentario);
 
+router.get('/usuario/:id', comentarioCtrl.getComentarioUsuario);
+
 module.exports = router;

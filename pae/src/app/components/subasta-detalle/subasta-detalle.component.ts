@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { Puja } from '../../models/Puja';
 import {PujaService } from '../../services/puja/puja.service';
 
+
 @Component({
   selector: 'app-subasta-detalle',
   templateUrl: './subasta-detalle.component.html',
@@ -126,6 +127,14 @@ export class SubastaDetalleComponent implements OnInit {
       //   console.log(element)
       //   this.pujas.push(element);
       // });
+    });
+  }
+
+
+  obtenerUsuario(){
+    console.log(this.productoActual.idUsuario_fk);
+    this.userService.getUserbyID(this.productoActual.idUsuario_fk).subscribe((res:any)=>{
+      console.log(res)
     });
   }
 
