@@ -10,11 +10,11 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
   users: User[];
   singleUser: User;
-  token: TokenInfo;
+  token = '';
 
   usersSubject = new BehaviorSubject<User[]>([]);
   singleUserSubject = new BehaviorSubject<User>(this.singleUser);
-  tokenSubject = new BehaviorSubject<TokenInfo>(this.token);
+  tokenSubject = new BehaviorSubject<string>(this.token);
   
   constructor(private	http: HttpClient) {
   }
@@ -47,9 +47,9 @@ export class UserService {
 
   }
   
-  loginUser(email, password): any{
+  loginUser(email, password){
     this.http.post('http://localhost:3000/api/users/login', {email: email, password: password}).subscribe(
-      (data: TokenInfo) => { this.token = data;
+      (data: TokenInfo) => { this.token = data.token;
                              this.tokenSubject.next(this.token) },
       err => console.log(err)
     )

@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
 import { User } from 'src/app/models/User';
 import { TokenInfo } from 'src/app/models/TokenInfo';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +16,15 @@ import { TokenInfo } from 'src/app/models/TokenInfo';
 export class LoginComponent implements OnInit {
   users: User[];
   singleUser: User;
-  tokenInfo: TokenInfo;
+  tokenInfo = '';
   loginEmail = '';
   loginPassword = '';
 
   closeResult = '';
   NotUserFoundAlert = true;
 
-  constructor(private modalService: NgbModal, private userService: UserService) { 
+  constructor(private modalService: NgbModal, private userService: UserService, private authService:AuthService, private router: Router) { 
+    
     this.userService.usersSubject.subscribe( data => {
       this.users = data;
     });
@@ -52,13 +56,16 @@ export class LoginComponent implements OnInit {
     }
   }
   submitLogin(form: NgForm){
-    this.userService.loginUser(this.loginEmail, this.loginPassword);
-    setTimeout(() => {
-      if(this.tokenInfo === undefined){
-        this.NotUserFoundAlert = !this.NotUserFoundAlert;
+    this.authService.loginUser(this.loginEmail, this.loginPassword).subscribe(
+      (data) => {
+        console.log("LOGIN: "+data);
+        this.router.navigate(['/profile'])
+      },
+      (err) => {
+        this.NotUserFoundAlert = false;
+        console.log(err)
       }
-      window.location.href = '/profile';
-    }, 1000);
+    )
     form.reset();
   }
 
