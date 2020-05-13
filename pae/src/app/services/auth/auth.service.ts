@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TokenInfo } from 'src/app/models/TokenInfo';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
