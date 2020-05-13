@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <app-header></app-header>      
+    <app-navbar-dashboard></app-navbar-dashboard>      
 <!-- 
 
     <button (click)='startTimer()'>Start Timer</button>
@@ -218,8 +218,9 @@
                             </div> -->
                         </div>
                         <div class="details-price">
-                            <strong *ngIf="ultimaPuja != ''" >Puja Actual: </strong><span>$ {{ultimaPuja}}</span>
-                            <strong *ngIf="ultimaPuja == ''" >Puja Actual: </strong><span>$ {{productoActual.PujaInicial}}</span>
+                            <!-- <strong *ngIf="ultimaPuja != ''" >Puja Actual: </strong><span>$ {{ultimaPuja}}</span>
+                            <strong *ngIf="ultimaPuja == ''" >Puja Actual: </strong><span>$ {{productoActual.PujaInicial}}</span> -->
+                            <strong>Puja Inicial: </strong><span>$ {{productoActual.PujaInicial}}</span>
                             <br>
                             <strong>Fecha de Cierre: </strong><span>{{productoActual.fechaFinal}}</span>
                         </div>
@@ -227,8 +228,8 @@
                         <p>Estado: {{productoActual.estadoDelProducto}}</p>
                         <div class="quick-view-select">
                             <div class="select-option-part">
-                                <label>Vendedor:</label>
-                                <a (click)="obtenerUsuario()" ><p>JoseAntonioB</p></a>
+                                <!-- <label>Vendedor:</label>
+                                <a (click)="obtenerUsuario()" ><p>JoseAntonioB</p></a> -->
                                 <label>Ubicación:</label>
                                 <p>Guadalajara, Jalisco</p>
                                 <!-- <select class="select">
@@ -251,9 +252,9 @@
                         </div>
                         <form #nuevaPuja="ngForm" (ngSubmit)="subirPuja(nuevaPuja)" >
                         <div class="quickview-plus-minus">
-                            <div class="cart-plus-minus">
+                            <!-- <div class="cart-plus-minus"> -->
                                 <!-- <input type="number" value="02" name="qtybutton" class="cart-plus-minus-box"> -->
-                            </div>
+                            <!-- </div> -->
                             <div class="quickview-btn-cart">
                                 <!-- <button type="submit" class="btn-hover-black">Pujar</button> -->
                                 <input type="number" name="CantidadPuja" class=""  ngModel>
