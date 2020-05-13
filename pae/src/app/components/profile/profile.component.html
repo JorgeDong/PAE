@@ -114,8 +114,9 @@
                     <!--<img class="avatar border-gray" src="./assets/img/profile.jpg" alt="...">-->
                     <h5 class="title">{{user.name}}</h5>
                   </a>
-                  <div class="image">
-                    <img src="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png" alt="...">
+                  <div>
+                    <br>
+                    <img width="200" height="200" src="https://randomuser.me/api/portraits/lego/{{user.id}}.jpg" alt="...">
                   </div>
                 </div>
               </div>
@@ -130,7 +131,7 @@
                       </h5>
                     </div>
                     <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-                      <h5>{{objetosVendidos}}
+                      <h5>{{productosVendidos}}
                         <br>
                         <small>Productos Subastados</small>
                       </h5>
@@ -181,24 +182,30 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Subastas Activas</label>
-                        <textarea class="form-control textarea" disabled></textarea>
+                        <label>Subastas Creadas</label>
+                        <div *ngIf="subastasCreadasArr.length > 0">
+                          <li *ngFor="let item of subastasCreadasArr">
+                            <ul>{{item.Descripcion}}</ul>
+                          </li>
+                        </div>
+                        <div *ngIf="subastasCreadasArr.length == 0">
+                            <ul>Ninguno</ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Subastas Guardadas</label>
-                        <textarea class="form-control textarea" disabled></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Objetos en Venta</label>
-                        <textarea class="form-control textarea" disabled></textarea>
+                        <label>Productos Subastados</label>
+                        <div *ngIf="productosVendidosArr.length > 0">
+                          <li *ngFor="let item of productosVendidosArr">
+                            <ul>{{item.Descripcion}}</ul>
+                          </li>
+                        </div>
+                        <div *ngIf="productosVendidosArr.length == 0">
+                            <ul>Ninguno</ul>
+                        </div>
                       </div>
                     </div>
                   </div>

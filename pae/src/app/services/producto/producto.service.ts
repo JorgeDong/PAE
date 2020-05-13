@@ -36,4 +36,15 @@ export class ProductoService {
     )
   }
 
+  SoldProductsByUserId(ID):Observable<any>{
+    return this.http.get(this.URL_API).pipe(
+      map( (data:Subasta[]) => {
+        let filteredData = data.filter(data => data.idUsuario_fk == ID)
+        console.log(filteredData)
+        return filteredData;
+        }
+      )
+    )
+  }
+
 }

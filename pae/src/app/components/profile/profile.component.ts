@@ -5,6 +5,8 @@ import { SubastaService } from '../../services/subasta/subasta.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Subasta } from 'src/app/models/Subasta';
+import { Producto } from 'src/app/models/Producto';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +16,9 @@ import { NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   user: User;
   subastasCreadas = 0;
-  objetosVendidos = 0;
+  subastasCreadasArr: Subasta[];
+  productosVendidos = 0;
+  productosVendidosArr: Producto[];
   algomas = 0;
 
   inputName = '';
@@ -62,7 +66,27 @@ export class ProfileComponent implements OnInit {
         )
         this.productsService.countSoldProductsByUserId(this.user.id).subscribe(
           (data) => {
-            this.objetosVendidos = data;
+            this.productosVendidos = data;
+            console.log(data);
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
+        this.productsService.SoldProductsByUserId(this.user.id).subscribe(
+          (data) => {
+            console.log(data);
+            this.productosVendidosArr = data;
+            console.log(data);
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
+        this.subastaService.getByUserId(this.user.id).subscribe(
+          (data) => {
+            console.log(data);
+            this.subastasCreadasArr = data;
             console.log(data);
           },
           (err) => {
