@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Subasta } from 'src/app/models/Subasta';
 import { Producto } from 'src/app/models/Producto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,12 +15,13 @@ import { Producto } from 'src/app/models/Producto';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  router: string;
   user: User;
   subastasCreadas = 0;
   subastasCreadasArr: Subasta[];
   productosVendidos = 0;
   productosVendidosArr: Producto[];
-  algomas = 0;
+  isEdit = false;
 
   inputName = '';
   inputDireccion = '';
@@ -35,8 +37,14 @@ export class ProfileComponent implements OnInit {
 
   idActual;
 
-  constructor(private userService: UserService, private subastaService: SubastaService, private productsService: ProductoService, private http: HttpClient) { 
+  constructor(private userService: UserService, private subastaService: SubastaService, private productsService: ProductoService, private http: HttpClient, private _router:Router) { 
     this.init()
+    this.router = _router.url;
+    if (this.router.includes('edit')) {
+      this.isEdit = true;
+    } else {
+      this.isEdit = false;
+    }
   }
 
   ngOnInit(): void {

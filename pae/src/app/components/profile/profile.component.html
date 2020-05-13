@@ -126,7 +126,7 @@
                     <div class="col-md-8 pr-1">
                       <div class="form-group">
                         <label>Nombres</label>
-                        <input type="text" ngModel [(ngModel)]="inputName" name="inputName" class="form-control">
+                        <input type="text" ngModel [(ngModel)]="inputName" name="inputName" class="form-control" [disabled]=!isEdit>
                       </div>
                     </div>
                   </div>
@@ -134,7 +134,7 @@
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Direccion</label>
-                        <input type="text" ngModel [(ngModel)]="inputDireccion" name="inputDireccion" class="form-control" value={{user.direccion}}>
+                        <input type="text" ngModel [(ngModel)]="inputDireccion" name="inputDireccion" class="form-control" [disabled]=!isEdit>
                       </div>
                     </div>
                   </div>
@@ -142,13 +142,13 @@
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Ciudad</label>
-                        <input type="text" ngModel [(ngModel)]="inputCity" name="inputCity" class="form-control" placeholder="Ciudad" value={{user.city}}>
+                        <input type="text" ngModel [(ngModel)]="inputCity" name="inputCity" class="form-control" placeholder="Ciudad" [disabled]=!isEdit>
                       </div>
                     </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>País</label>
-                        <input type="text" ngModel [(ngModel)]="inputCountry" name="inputCountry" class="form-control" placeholder="País" value={{user.country}}>
+                        <input type="text" ngModel [(ngModel)]="inputCountry" name="inputCountry" class="form-control" placeholder="País" [disabled]=!isEdit>
                       </div>
                     </div>
                   </div>
@@ -182,28 +182,31 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-4">
-                        
+                  <div *ngIf=isEdit>
+                    <div class="row">
+                      <div class="col-md-4">
+                          
+                        </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="btn btn-primary btn-round" style="background-color: white;" >Actualizar Imagen</label>
+                          <input ngModel (change)="obtenerImage($event,2)"  type="file" name="image1" id="">
+                        </div>
+                        <img src="{{src1}}" alt="" width="200" height="200">
                       </div>
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="btn btn-primary btn-round" style="background-color: white;" >Actualizar Imagen</label>
-                        <input ngModel (change)="obtenerImage($event,2)"  type="file" name="image1" id="">
+                      <div class="col-md-4">
                       </div>
-                      <img src="{{src1}}" alt="" width="200" height="200">
                     </div>
-                    <div class="col-md-4">
+                    <br><br>
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                          <button type="submit">Update</button>
+                        </div>
+                      <div class="col-md-4"></div>
                     </div>
                   </div>
-                  <br><br>
-                  <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                      <button type="submit">Update</button>
-                    </div>
-                    <div class="col-md-4"></div>
-                  </div>
+                
                 </form>
               </div>
             </div>

@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent},
   //{ path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
   { path: 'profile', component: ProfileComponent},
+  { path: 'profile/edit', component: ProfileComponent},
   { path: 'live', component: LiveAuctionComponent}
 //{path: '**' , component: NotFoundComponent }
 ];
