@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../../services/user/user.service';
+import { User } from 'src/app/models/User';
+import { TokenInfo } from 'src/app/models/TokenInfo';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,26 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  closeResult = '';
+  users: User[];
+  singleUser: User;
+  tokenInfo: TokenInfo;
+  loginEmail = '';
+  loginPassword = '';
 
-  constructor(private modalService: NgbModal) { }
+  closeResult = '';
+  NotUserFoundAlert = true;
+
+  constructor(private modalService: NgbModal, private userService: UserService) { 
+    this.userService.usersSubject.subscribe( data => {
+      this.users = data;
+    });
+    this.userService.singleUserSubject.subscribe( data => {
+      this.singleUser = data;
+    })
+    this.userService.tokenSubject.subscribe( data => {
+      this.tokenInfo = data;
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -29,6 +50,20 @@ export class LoginComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  submitLogin(form: NgForm){
+    this.userService.loginUser(this.loginEmail, this.loginPassword);
+    setTimeout(() => {
+      if(this.tokenInfo === undefined){
+        this.NotUserFoundAlert = !this.NotUserFoundAlert;
+      }
+      window.location.href = '/profile';
+    }, 1000);
+    form.reset();
+  }
+
+  close() {
+    this.NotUserFoundAlert = true;
   }
 
 }
