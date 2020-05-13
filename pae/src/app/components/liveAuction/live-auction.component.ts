@@ -51,8 +51,10 @@ export class LiveAuctionComponent implements OnInit, OnDestroy {
   }
 
   pujar(cantidad) {
-
+    if (this.user === undefined) {
+      alert("Inicia sesión para poder participar en la subasta");
+    } else {
+      this.socketIOService.sendMessage(this.user.name + ' pujó +' + cantidad);
+    }
   }
-
-
 }

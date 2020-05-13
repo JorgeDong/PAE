@@ -33,7 +33,7 @@ export class SubastaDetalleComponent implements OnInit {
     private productService: ProductoService,
     private userService: UserService,
     private pujaService: PujaService
-  ) { 
+  ) {
 
     this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(
       (data) => {

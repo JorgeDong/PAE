@@ -10,31 +10,12 @@
             <div class="banner-area pt-100 pb-70">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-lg-3 col-12">
+                        <div class="col-md-6 col-lg-3 col-12" *ngFor="let item of productos | slice:0:3; let i=index">
                             <div class="single-banner mb-30">
-                                <a href="shop-grid-view-sidebar.html"><img src="./assets/neha/assets/img/banner/1.jpg" alt=""></a>
+                                <a [routerLink]="['/subasta-detalle/', item.idProducto]"> <img src="{{ruta}}/download/{{item.Url}}" width="50%" alt=""> </a>
                                 <div class="banner-content banner-content-position1">
-                                    <h3>morden <span>sofa</span></h3>
-                                    <p>Sale up to <span>30% off</span> all product in the new collection</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-sm-none d-lg-block col-lg-6 col-12">
-                            <div class="single-banner mb-30">
-                                <a href="shop-grid-view-sidebar.html"><img src="./assets/neha/assets/img/banner/2.jpg" alt=""></a>
-                                <div class="banner-content banner-content-position2">
-                                    <span>Summer Sale</span>
-                                    <h3>morden <span>chair</span></h3>
-                                    <p>Sale up to <span>30% off</span> all product <br>in the new collection</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 col-12">
-                            <div class="single-banner mb-30">
-                                <a href="shop-grid-view-sidebar.html"><img src="./assets/neha/assets/img/banner/3.jpg" alt=""></a>
-                                <div class="banner-content banner-content-position3">
-                                    <h3>morden <span>chair</span></h3>
-                                    <p>Sale up to <span>30% off</span> all product in the new collection</p>
+                                    <h3 [routerLink]="['/subasta-detalle/', item.idProducto]">{{item.nombre}} </h3>
+                                    <p style="font-size: large;"><span>$</span> {{item.PujaInicial}} </p>
                                 </div>
                             </div>
                         </div>
@@ -42,127 +23,32 @@
                 </div>
             </div>
 
+            <div class="container">
+                <input type="text" class="form-control search-slt" placeholder="¿Qué estás buscando?">
+            </div>
+
             
             <div class="product-collection-area pt-100 pb-50">
                 <div class="container">
                     <div class="section-title text-center mb-55">
-                        <h2>New Collection</h2>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when look</p>
+                        <h2>Otros productos relevantes</h2>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:0:5; let i=index">
                             <div class="single-product mb-35">
                                 <div class="product-img">
-                                    <a href="#"><img src="./assets/neha/assets/img/product/5.jpg" alt=""></a>
-                                    <span>sale</span>
+                                    <a href="#"><img src="{{ruta}}/download/{{item.Url}}" alt=""></a>
                                     <div class="product-action">
-                                        <a title="Wishlist" class="animate-left" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
+                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" [routerLink]="['/subasta-detalle/', item.idProducto]"><i class="ion-ios-eye-outline"></i></a>
                                     </div>
                                 </div>
                                 <div class="product-content">
                                     <div class="product-title-price">
                                         <div class="product-title">
-                                            <h4><a href="product-details-6.html">WOODEN FURNITURE</a></h4>
+                                            <h4><a [routerLink]="['/subasta-detalle/', item.idProducto]">{{item.nombre}}</a></h4>
                                         </div>
                                         <div class="product-price">
-                                            <span>$110.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-cart-categori">
-                                        <div class="product-cart">
-                                            <span>Furniter</span>
-                                        </div>
-                                        <div class="product-categori">
-                                            <a href="#"><i class="ion-bag"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="single-product mb-35">
-                                <div class="product-img">
-                                    <a href="#"><img src="./assets/neha/assets/img/product/6.jpg" alt=""></a>
-                                    <div class="product-action">
-                                        <a title="Wishlist" class="animate-left" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-title-price">
-                                        <div class="product-title">
-                                            <h4><a href="product-details-6.html">WOODEN FURNITURE</a></h4>
-                                        </div>
-                                        <div class="product-price">
-                                            <span>$120.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-cart-categori">
-                                        <div class="product-cart">
-                                            <span>Furniter</span>
-                                        </div>
-                                        <div class="product-categori">
-                                            <a href="#"><i class="ion-bag"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="single-product mb-35">
-                                <div class="product-img">
-                                    <a href="#"><img src="./assets/neha/assets/img/product/7.jpg" alt=""></a>
-                                    <span>sale</span>
-                                    <div class="product-action">
-                                        <a title="Wishlist" class="animate-left" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-title-price">
-                                        <div class="product-title">
-                                            <h4><a href="product-details-6.html">HANDCRAFTED MUG</a></h4>
-                                        </div>
-                                        <div class="product-price">
-                                            <span>$130.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-cart-categori">
-                                        <div class="product-cart">
-                                            <span>Furniter</span>
-                                        </div>
-                                        <div class="product-categori">
-                                            <a href="#"><i class="ion-bag"></i> Add to cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="single-product mb-35">
-                                <div class="product-img">
-                                    <a href="#"><img src="./assets/neha/assets/img/product/8.jpg" alt=""></a>
-                                    <div class="product-action">
-                                        <a title="Wishlist" class="animate-left" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" href="#"><i class="ion-ios-eye-outline"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <div class="product-title-price">
-                                        <div class="product-title">
-                                            <h4><a href="product-details-6.html">HANDCRAFTED MUG</a></h4>
-                                        </div>
-                                        <div class="product-price">
-                                            <span>$140.00</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-cart-categori">
-                                        <div class="product-cart">
-                                            <span>Furniter</span>
-                                        </div>
-                                        <div class="product-categori">
-                                            <a href="#"><i class="ion-bag"></i> Add to cart</a>
+                                            <span>${{item.PujaInicial}}</span>
                                         </div>
                                     </div>
                                 </div>
