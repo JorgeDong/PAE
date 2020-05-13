@@ -221,7 +221,8 @@
                             </div> -->
                         </div>
                         <div class="details-price">
-                            <strong>Puja Actual: </strong><span>$120.00</span>
+                            <strong *ngIf="ultimaPuja != ''" >Puja Actual: </strong><span>$ {{ultimaPuja}}</span>
+                            <strong *ngIf="ultimaPuja == ''" >Puja Actual: </strong><span>$ {{productoActual.PujaInicial}}</span>
                             <br>
                             <strong>Fecha de Cierre: </strong><span>{{productoActual.fechaFinal}}</span>
                         </div>
@@ -251,18 +252,21 @@
                                 </select>
                             </div> -->
                         </div>
+                        <form #nuevaPuja="ngForm" (ngSubmit)="subirPuja(nuevaPuja)" >
                         <div class="quickview-plus-minus">
                             <div class="cart-plus-minus">
                                 <!-- <input type="number" value="02" name="qtybutton" class="cart-plus-minus-box"> -->
-                                <input type="number" value="02" name="qtybutton" class="">
                             </div>
                             <div class="quickview-btn-cart">
-                                <a class="btn-hover-black" data-toggle="modal" data-target="#myModal" href="#">Pujar</a>
+                                <!-- <button type="submit" class="btn-hover-black">Pujar</button> -->
+                                <input type="number" name="CantidadPuja" class=""  ngModel>
+                                <button type="submit">Pujar</button>
                             </div>
                             <!-- <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="ion-ios-heart-outline"></i></a>
                             </div> -->
                         </div>
+                    </form>
                         <!-- <div class="product-categories product-cat-tag">
                             <ul>
                                 <li class="categories-title">Categorias :</li>
@@ -348,11 +352,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let puja of pujas">
+                                <td class="product-name"><a href="#">{{puja.Usuario}}</a></td>
+                                <td class="product-price"><span class="amount">$ {{puja.CantidadPuja}}</span></td>
+                                <td class="product-subtotal">{{puja.fechaAlta}}</td>                                     
+                            </tr>
+
+                            <!-- <tr>
                                 <td class="product-name"><a href="#">WFur42 </a></td>
                                 <td class="product-price"><span class="amount">$165.00</span></td>
                                 <td class="product-subtotal">17-03-2020 17:31:48</td>                                     
-                            </tr>
+                            </tr> -->
                             <!-- <tr>
                                 <td class="product-remove"><a href="#"><i class="ion-android-close"></i></a></td>
                                 <td class="product-thumbnail">
