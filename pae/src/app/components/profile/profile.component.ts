@@ -4,6 +4,7 @@ import { UserService } from '../../services/user/user.service';
 import { SubastaService } from '../../services/subasta/subasta.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,11 @@ export class ProfileComponent implements OnInit {
   subastasCreadas = 0;
   objetosVendidos = 0;
   algomas = 0;
+
+  inputName = '';
+  inputDireccion = '';
+  inputCity = '';
+  inputCountry = '';
 
   image; 
   image1;
@@ -36,6 +42,15 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(
       (data) => {
         this.user = data;
+
+        this.inputName = this.user.name;
+        this.inputDireccion = this.user.direccion;
+        this.inputCity = this.user.city;
+        this.inputCountry = this.user.country;
+
+        localStorage.setItem('token', this.user.token);
+
+        console.log(data);
         this.subastaService.countByUserId(this.user.id).subscribe(
           (data) => {
             this.subastasCreadas = data;
@@ -123,6 +138,24 @@ export class ProfileComponent implements OnInit {
     //   }
     // }
     // reader.readAsDataURL(this.image);
+  }
+
+  submitChanges(form: NgForm){
+    console.log(this.user.token === localStorage.getItem('token'))
+    this.userService.updateUser(
+              this.user.email,
+              this.inputName,
+              this.inputDireccion,
+              this.inputCity,
+              this.inputCountry,
+              this.user.token).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (err) => {
+          console.log(err)
+      }
+    )
   }
 
 }

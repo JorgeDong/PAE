@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   inputCity = '';
   inputCountry = '';
 
-  constructor(private userService:UserService, private router:Router) { }
+  constructor(private userService:UserService, private router:Router, private authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -30,11 +31,14 @@ export class RegistrationComponent implements OnInit {
                                   this.inputCity,
                                   this.inputCountry).subscribe(
       (data) => {
-        this.router.navigate(['/profile'])
+            this.router.navigate(['/login'])
       },
       (err) => {
         console.log(err)
       }
     )
   }
+
+
+  
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { map } from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -50,6 +50,18 @@ export class UserService {
         return this.singleUser;
         }
       )
+    )
+  }
+
+  httpOptions = { headers: new HttpHeaders( { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }) };
+
+  updateUser(email, name, direccion, city, country, token):Observable<any>{
+    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email:email, name:name, direccion:direccion, city:city, country:country}, 
+      {headers: new HttpHeaders( {'Authorization': token} )}).pipe(
+      map( (data:any) => {
+        console.log(data);
+        return data;
+      })
     )
   }
   

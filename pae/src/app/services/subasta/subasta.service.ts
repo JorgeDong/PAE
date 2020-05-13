@@ -95,7 +95,7 @@ export class SubastaService {
   countByUserId(ID):Observable<any>{
     return this.http.get(`http://localhost:3000/api/subasta`).pipe(
       map( (data:Subasta[]) => {
-        let filteredData = data.filter(data => data.idUsuario_fk = ID)
+        let filteredData = data.filter(data => data.idUsuario_fk == ID)
         return filteredData.length;
         }
       )
