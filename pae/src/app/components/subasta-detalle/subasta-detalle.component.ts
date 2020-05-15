@@ -25,7 +25,7 @@ export class SubastaDetalleComponent implements OnInit {
   user: User;
   pujas = [];
 
-  ultimaPuja = "";
+  ultimaPuja;
 
   constructor(
     private imagenService: ImagenService,
@@ -68,10 +68,14 @@ export class SubastaDetalleComponent implements OnInit {
     // let pujaTemp = this.pujas.pop();
     // this.ultimaPuja = pujaTemp.CantidadPuja;
     // this.pujas.push(pujaTemp);
+
+    
+
   }
 
   ngOnInit(): void {
     //this.startTimer();
+
   }
 
   timeLeft: number = 60;
@@ -127,6 +131,23 @@ export class SubastaDetalleComponent implements OnInit {
       //   console.log(element)
       //   this.pujas.push(element);
       // });
+      
+      console.log('Verificaciónd e puja inicial')
+    if(this.pujas.length == 0){
+      this.ultimaPuja = this.productoActual.PujaInicial;
+      console.log(this.ultimaPuja)
+    }else{
+      console.log(this.pujas.length)
+      this.ultimaPuja = this.pujas[this.pujas.length -1];
+      console.log(this.ultimaPuja)
+    }
+
+    // Reordenar Pujas 
+    
+
+
+    
+
     });
   }
 

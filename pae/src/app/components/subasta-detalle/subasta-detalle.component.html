@@ -6,7 +6,6 @@
 <button (click)='pauseTimer()'>Pause</button>
 
 <p>{{timeLeft}} Seconds Left....</p> -->
-
     <div class="header-space"></div>
     <!-- header end -->
     <!-- sidebar-cart start -->
@@ -220,7 +219,12 @@
                         <div class="details-price">
                             <!-- <strong *ngIf="ultimaPuja != ''" >Puja Actual: </strong><span>$ {{ultimaPuja}}</span>
                             <strong *ngIf="ultimaPuja == ''" >Puja Actual: </strong><span>$ {{productoActual.PujaInicial}}</span> -->
-                            <strong>Puja Inicial: </strong><span>$ {{productoActual.PujaInicial}}</span>
+                            <!-- <div  *ngIf="ultimaPuja ==''">
+                                <strong >Puja Inicial: </strong><span>$ {{productoActual.PujaInicial}}</span>
+                            </div> -->
+                            <!-- <div> -->
+                                <strong >Ultima Puja: </strong><span>$ {{ ultimaPuja.CantidadPuja }}</span>
+                            <!-- </div> -->
                             <br>
                             <strong>Fecha de Cierre: </strong><span>{{productoActual.fechaFinal}}</span>
                         </div>
@@ -258,7 +262,7 @@
                             <div class="quickview-btn-cart">
                                 <!-- <button type="submit" class="btn-hover-black">Pujar</button> -->
                                 <input type="number" name="CantidadPuja" class=""  ngModel>
-                                <button type="submit">Pujar</button>
+                                <button class="btn btn-danger"  type="submit">Pujar</button>
                             </div>
                             <!-- <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="ion-ios-heart-outline"></i></a>
