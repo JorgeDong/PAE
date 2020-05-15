@@ -1,9 +1,11 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const googleConfig = require('./googleConfig');
-const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
+const Credito = require('../models/Credito')
 
 passport.use(new GoogleStrategy({
     clientID: googleConfig.clientID,
@@ -44,7 +46,21 @@ passport.use(new GoogleStrategy({
                             // Save user
                             newUser.save()
                                 .then(user => {
-                                    done(null, user);
+                                    Credito.count()
+                                    .then( cntCredito => {
+                                        const newCredito = new Credito({
+                                            idCredito: cntCredito+1,
+                                            idUsuario_fk: user.id,
+                                            CantidadCredito: 0,
+                                            moneda: 'MX',
+                                            fechaAlta: new Date
+                                        });
+                                        newCredito.save()
+                                        .then( credito => {
+                                            done(null, user);
+                                        })
+                                        .catch( err => console.log(err) );
+                                    })
                                 })
                                 .catch(err => console.log(err));
                     }))
