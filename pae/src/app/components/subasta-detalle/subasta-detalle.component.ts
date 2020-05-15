@@ -27,6 +27,8 @@ export class SubastaDetalleComponent implements OnInit {
 
   ultimaPuja;
 
+  noHayPujas;
+
   constructor(
     private imagenService: ImagenService,
     private router: Router,
@@ -98,20 +100,34 @@ export class SubastaDetalleComponent implements OnInit {
 
   subirPuja(form: NgForm){
     console.log(form.value);
-    let newPuja = new Puja(
-      this.productoActual.idProducto,
-      this.user.id,
-      form.value.CantidadPuja,
-      this.user.name
-    );
 
-    this.ultimaPuja = form.value.CantidadPuja;
 
-    this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
-      console.log(res.puja.idSubasta_fk);
-      console.log(res.puja.idSubasta_fk);
-      this.obtenerPujas(res.puja.idSubasta_fk);
-    });
+    if(this.user != undefined){
+
+      if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
+        alert("Has pujado una cantidad menor a la actual!!");
+      }else{
+        let newPuja = new Puja(
+          this.productoActual.idProducto,
+          this.user.id,
+          form.value.CantidadPuja,
+          this.user.name
+        );
+    
+        this.ultimaPuja = form.value.CantidadPuja;
+    
+        this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+          console.log(res.puja.idSubasta_fk);
+          console.log(res.puja.idSubasta_fk);
+          this.obtenerPujas(res.puja.idSubasta_fk);
+        });
+      }
+      
+    }else{
+      console.log('no estas registrado');
+      alert("Necesitas estar registrado pra poder pujar!!");
+    }
+
 
 
     // <input type="number" name="CantidadPuja" class=""  ngModel>
@@ -134,19 +150,25 @@ export class SubastaDetalleComponent implements OnInit {
       
       console.log('Verificaciónd e puja inicial')
     if(this.pujas.length == 0){
-      this.ultimaPuja = this.productoActual.PujaInicial;
+      this.ultimaPuja = [];
+      this.noHayPujas = true;
       console.log(this.ultimaPuja)
     }else{
+      this.noHayPujas = false;
       console.log(this.pujas.length)
       this.ultimaPuja = this.pujas[this.pujas.length -1];
       console.log(this.ultimaPuja)
     }
 
+    let pujasAux = [];
     // Reordenar Pujas 
-    
+    let i = this.pujas.length -1;
+    for (i; i >= 0; i--){
+      pujasAux.push(this.pujas[i]);
+    }
+    this.pujas = pujasAux;
+    pujasAux = [];
 
-
-    
 
     });
   }
@@ -157,6 +179,10 @@ export class SubastaDetalleComponent implements OnInit {
     this.userService.getUserbyID(this.productoActual.idUsuario_fk).subscribe((res:any)=>{
       console.log(res)
     });
+  }
+
+  cambiarFoto(imagen){
+    this.primeraImagen = imagen;
   }
 
 
