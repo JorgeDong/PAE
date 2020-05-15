@@ -28,14 +28,14 @@ export class UserService {
     );
   }
 
-  registration(name, email, password, password2, direccion, city, country):Observable<any>{
+  registration(name, email, password, password2, direccion, city, country): Observable<any>{
     console.log(name, email, password, password2, direccion, city, country);
-    return this.http.post('http://localhost:3000/api/users/registration', {name: name, email: email, password: password, 
-      password2: password2, direccion: direccion, city: city, country: country}).pipe(
-      map( (data:any) => {
-        if(data)
+    return this.http.post('http://localhost:3000/api/users/registration', {name, email, password, 
+      password2, direccion, city, country}).pipe(
+      map( (data: any) => {
+        if (data) {
           return data;
-        else{
+        } else {
           return null;
         }
       })
@@ -44,7 +44,7 @@ export class UserService {
 
   getUserByEmail(email):Observable<any>{
     return this.http.get(`http://localhost:3000/api/users/readByEmail/${email}`).pipe(
-      map( (data:any) => {
+      map( (data: any) => {
         this.singleUser = data[0];
         this.singleUserSubject.next(this.singleUser);
         return this.singleUser;
@@ -56,7 +56,7 @@ export class UserService {
   httpOptions = { headers: new HttpHeaders( { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }) };
 
   updateUser(email, name, direccion, city, country, token):Observable<any>{
-    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email:email, name:name, direccion:direccion, city:city, country:country}, 
+    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country}, 
       {headers: new HttpHeaders( {'Authorization': token} )}).pipe(
       map( (data:any) => {
         console.log(data);

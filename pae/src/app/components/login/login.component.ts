@@ -3,9 +3,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
 import { User } from 'src/app/models/User';
-import { TokenInfo } from 'src/app/models/TokenInfo';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
   closeResult = '';
   NotUserFoundAlert = true;
 
-  constructor(private modalService: NgbModal, private userService: UserService, private authService:AuthService, private router: Router) { 
+  constructor(private modalService: NgbModal, private userService: UserService, private authService:AuthService, private router: Router, private route: ActivatedRoute) { 
     
     this.userService.usersSubject.subscribe( data => {
       this.users = data;
@@ -36,6 +35,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params)=>{
+      if(params.code){
+        this.authService.loginGoogle(params).subscribe(
+          (data)=>{
+            if(this.authService.isLoggedIn()){
+              this.router.navigate(['/profile']);
+            }
+        })
+      }
+    })
   }
 
   open(content) {
