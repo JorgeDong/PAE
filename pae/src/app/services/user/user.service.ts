@@ -16,11 +16,11 @@ export class UserService {
   usersSubject = new BehaviorSubject<User[]>([]);
   singleUserSubject = new BehaviorSubject<User>(this.singleUser);
   tokenSubject = new BehaviorSubject<string>(this.token);
-  
+
   constructor(private	http: HttpClient, private router: Router) {
   }
 
-  getUsers(){
+  getUsers() {
     this.http.get('http://localhost:3000/api/users').subscribe(
       (data: User[]) => { this.users = data;
                           this.usersSubject.next(this.users) },
@@ -29,7 +29,6 @@ export class UserService {
   }
 
   registration(name, email, password, password2, direccion, city, country): Observable<any>{
-    console.log(name, email, password, password2, direccion, city, country);
     return this.http.post('http://localhost:3000/api/users/registration', {name, email, password, 
       password2, direccion, city, country}).pipe(
       map( (data: any) => {
@@ -59,6 +58,14 @@ export class UserService {
     return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country}, 
       {headers: new HttpHeaders( {'Authorization': token} )}).pipe(
       map( (data:any) => {
+        console.log(data);
+        return data;
+      })
+    )
+  }
+  createUserCreadit(ID, credit){
+    return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
+      map( (data: any) => {
         console.log(data);
         return data;
       })

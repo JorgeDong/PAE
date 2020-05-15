@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/models/User';
+import { Credito } from 'src/app/models/Credito';
 
 @Component({
   selector: 'app-registration',
@@ -17,6 +19,7 @@ export class RegistrationComponent implements OnInit {
   inputDireccion = '';
   inputCity = '';
   inputCountry = '';
+  inputCredito = 0;
 
   constructor(private userService:UserService, private router:Router, private authService:AuthService) { }
 
@@ -30,13 +33,19 @@ export class RegistrationComponent implements OnInit {
                                   this.inputDireccion,
                                   this.inputCity,
                                   this.inputCountry).subscribe(
-      (data) => {
-            this.router.navigate(['/login'])
+      (data: User) => {
+            console.log('Currentdata: '+data);
+            this.userService.createUserCreadit(data.id, this.inputCredito).subscribe(
+              (credito: Credito) => {
+                console.log('Credit done: ' + credito);
+                this.router.navigate(['/login']);
+              }
+            );
       },
       (err) => {
-        console.log(err)
+        console.log(err);
       }
-    )
+    );
   }
 
 
