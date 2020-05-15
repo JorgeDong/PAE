@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const passportGoogle = require('../config/passportGoogle');
 
 const { ensureAuthenticated } = require('../config/auth');
 const User = require('../models/User');
@@ -74,6 +75,9 @@ router.post('/login', (req, res, next) => {
         }
     })(req, res, next);
 });
+
+router.get('/google/login', passport.authenticate('google', {scope:['profile','email']}));
+router.get('/google/redirect',  passportGoogle.googleLogin);
 
 router.post('/logout', (req, res) => {
     passport.authenticate('local', (err, user, info) => {
