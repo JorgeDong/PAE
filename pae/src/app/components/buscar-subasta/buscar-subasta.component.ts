@@ -11,19 +11,38 @@ import { ImagenService } from '../../services/imagen/imagen.service';
 export class BuscarSubastaComponent implements OnInit {
 
   productos = [];
+  filtrados = [];
+
+  busqueda = '';
+
   ruta;
+  
 
   constructor(
     private subastaService: SubastaService,
     private  productoService: ProductoService,
     private imagenService: ImagenService
   ) {
+      this.filtrados = [];
       this.productos = this.productoService.productos;
+      
       this.ruta = this.imagenService.URL_API;
    }
 
   ngOnInit(): void {
+    this.filtrados = this.productos.slice();
+    this.search();
   }
+
+  search(){
+    console.log("ENTRE A BUSCAR");
+    this.filtrados = this.productos.filter((product) => {
+        return product.nombre.toUpperCase().includes(this.busqueda.toUpperCase()) ||
+               product.marca.toUpperCase().includes(this.busqueda.toUpperCase()) ||
+               product.descripcion.toUpperCase().includes(this.busqueda.toUpperCase())
+      });
+  }
+
 
   acomodarObjetos(){
     console.log('entro a acomodar')

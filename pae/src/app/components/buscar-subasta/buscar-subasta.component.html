@@ -1,18 +1,6 @@
 <div class="wrapper">
     <app-navbar-dashboard></app-navbar-dashboard>
-
-    <!-- header end 
-    <app-subasta></app-subasta>
-    <button (click)="acomodarObjetos()">boton</button>
-    <div class="header-space"></div>-->
-    
-    <!-- header end -->
-    
-    <!-- main-search start -->
-   
-    <!-- main-search start -->
-    
-    <div class="breadcrumb-area pt-205 pb-50 bg-img" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
+    <div class="breadcrumb-area pt-205 pb-50 bg-img" style="background-color: bisque;">
         <div class="container">
             <div class="breadcrumb-content">
                 <h2>Subastas Disponibles</h2>
@@ -29,10 +17,8 @@
                 <div class="shop-sidebar">
                     <div class="sidebar-widget mb-50">
                         <div class="sidebar-search">
-                            <form action="">
-                                <input placeholder="¿Qué estás buscando?" type="text">
-                                <button><i class="ion-ios-search-strong"></i></button>
-                            </form>
+                                <input placeholder="¿Qué estás buscando?" type="text" [(ngModel)]="busqueda" (keydown.enter)="search()">
+                                <button (click)="search()"><i class="ion-ios-search-strong"></i></button>
                         </div>
                     </div>
                     <div class="sidebar-widget mb-45">
@@ -47,28 +33,13 @@
                 </div>
             </div>
             <div class="shop-filters-right is-visible">
-                <div class="shop-bar-area pb-60">
-                    <div class="shop-bar">
-                        <!-- <div class="shop-found-selector">
-                            <div class="shop-found">
-                                <p><span>23</span> Product Found of <span>50</span></p>
-                            </div>
-                            <div class="shop-selector">
-                                <label>Sort By : </label>
-                                <select name="select">
-                                    <option value="">Default</option>
-                                    <option value="">A to Z</option>
-                                    <option value=""> Z to A</option>
-                                    <option value="">In stock</option>
-                                </select>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
                 <div class="shop-product-content tab-content">
                     <div id="grid-5-col2" class="tab-pane fade active show">
                         <div class="row">
-                            <div class="col-md-12 col-lg-12 col-xl-6" *ngFor="let producto of productos" >
+                            <div class="alert alert-danger" role="alert" *ngIf="filtrados.length === 0" >
+                                <strong>Ningún producto concuerda con la búsqueda</strong>
+                            </div>
+                            <div class="col-md-12 col-lg-12 col-xl-6" *ngFor="let producto of filtrados" >
                                 <div class="single-product single-product-list product-list-right-pr mb-40">
                                     <div class="product-img list-img-width">
                                         <a href="#"><img src="{{ruta}}/download/{{producto.Url}}" alt=""></a>
@@ -98,100 +69,6 @@
             </div>
         </div>
     </div>
-
-    
     <app-footer></app-footer>
-    <!-- modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span class="ion-android-close" aria-hidden="true"></span>
-        </button>
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="qwick-view-left">
-                        <div class="quick-view-learg-img">
-                            <div class="quick-view-tab-content tab-content">
-                                <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                    <img src="assets/img/quick-view/l1.jpg" alt="">
-                                </div>
-                                <div class="tab-pane fade" id="modal2" role="tabpanel">
-                                    <img src="assets/img/quick-view/l2.jpg" alt="">
-                                </div>
-                                <div class="tab-pane fade" id="modal3" role="tabpanel">
-                                    <img src="assets/img/quick-view/l3.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="quick-view-list nav" role=tablist>
-                            <a class="active" href="#modal1" data-toggle="tab" role="tab" aria-selected="true">
-                                <img src="assets/img/quick-view/s1.jpg" alt="">
-                            </a>
-                            <a href="#modal2" data-toggle="tab" role="tab" aria-selected="false">
-                                <img src="assets/img/quick-view/s2.jpg" alt="">
-                            </a>
-                            <a href="#modal3" data-toggle="tab" role="tab" aria-selected="false">
-                                <img src="assets/img/quick-view/s3.jpg" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="qwick-view-right">
-                        <div class="qwick-view-content">
-                            <h3>Handcrafted Supper Mug</h3>
-                            <div class="price">
-                                <span class="new">$90.00</span>
-                                <span class="old">$120.00  </span>
-                            </div>
-                            <div class="rating-number">
-                                <div class="quick-view-rating">
-                                    <i class="ion-ios-star red-star"></i>
-                                    <i class="ion-ios-star red-star"></i>
-                                    <i class="ion-android-star-outline"></i>
-                                    <i class="ion-android-star-outline"></i>
-                                    <i class="ion-android-star-outline"></i>
-                                </div>
-                                <div class="quick-view-number">
-                                    <span>2 Ratting (S)</span>
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .</p>
-                            <div class="quick-view-select">
-                                <div class="select-option-part">
-                                    <label>Size*</label>
-                                    <select class="select">
-                                        <option value="">- Please Select -</option>
-                                        <option value="">xl</option>
-                                        <option value="">ml</option>
-                                        <option value="">m</option>
-                                        <option value="">sl</option>
-                                    </select>
-                                </div>
-                                <div class="select-option-part">
-                                    <label>Color*</label>
-                                    <select class="select">
-                                        <option value="">- Please Select -</option>
-                                        <option value="">orange</option>
-                                        <option value="">pink</option>
-                                        <option value="">yellow</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="quickview-plus-minus">
-                                <div class="cart-plus-minus">
-                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                </div>
-                                <div class="quickview-btn-cart">
-                                    <a class="btn-hover-black" href="#">add to cart</a>
-                                </div>
-                                <div class="quickview-btn-wishlist">
-                                    <a class="btn-hover" href="#"><i class="ion-ios-heart-outline"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>
 
