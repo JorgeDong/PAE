@@ -10,12 +10,23 @@
             <div class="banner-area pt-100 pb-70">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-lg-3 col-12" *ngFor="let item of productos | slice:0:3; let i=index">
-                            <div class="single-banner mb-30">
-                                <a [routerLink]="['/subasta-detalle/', item.idProducto]"> <img src="{{ruta}}/download/{{item.Url}}" width="50%" alt=""> </a>
-                                <div class="banner-content banner-content-position1">
-                                    <h3 [routerLink]="['/subasta-detalle/', item.idProducto]">{{item.nombre}} </h3>
-                                    <p style="font-size: large;"><span>$</span> {{item.PujaInicial}} </p>
+                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:1:4; let i=index">
+                            <div class="single-product mb-35">
+                                <div class="product-img">
+                                    <a href="#"><img src="{{ruta}}/download/{{item.Url}}" alt=""></a>
+                                    <div class="product-action">
+                                        <a title="Quick View" data-toggle="modal" data-target="#exampleModal" class="animate-right" [routerLink]="['/subasta-detalle/', item.idProducto]"><i class="ion-ios-eye-outline"></i></a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-title-price">
+                                        <div class="product-title">
+                                            <h4><a [routerLink]="['/subasta-detalle/', item.idProducto]">{{item.nombre}}</a></h4>
+                                        </div>
+                                        <div class="product-price">
+                                            <span>${{item.PujaInicial}}</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +46,7 @@
                         <h2>Otros productos relevantes</h2>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:0:5; let i=index">
+                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:0:6; let i=index">
                             <div class="single-product mb-35">
                                 <div class="product-img">
                                     <a href="#"><img src="{{ruta}}/download/{{item.Url}}" alt=""></a>

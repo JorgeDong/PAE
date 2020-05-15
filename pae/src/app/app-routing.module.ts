@@ -22,15 +22,15 @@ const routes: Routes = [
   { path: '' , redirectTo: '/home', pathMatch: 'full'},
   { path: 'dashboard' , component: DashboardComponent,
     children: [
-      {path:'', component: PanelDashboardComponent},
+      {path:'', component: PanelDashboardComponent, canActivate:[AuthGuardService]},
       {path:'nuevo-producto', component: NuevoProductoDashboardComponent},
       {path:'editar-producto', component: EditarProductoDashboardComponent},
     ]
   },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent},
-  //{ path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate:[AuthGuardService]},
+  //{ path: 'profile', component: ProfileComponent},
   { path: 'profile/edit', component: ProfileComponent},
   { path: 'live', component: LiveAuctionComponent}
 //{path: '**' , component: NotFoundComponent }
