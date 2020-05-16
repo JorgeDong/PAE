@@ -19,9 +19,14 @@ export class RegistrationComponent implements OnInit {
   inputDireccion = '';
   inputCity = '';
   inputCountry = '';
+  inputPregunta1 = '';
+  inputRespuesta1 = '';
+  inputPregunta2 = '';
+  inputRespuesta2 = '';
+
   inputCredito = 0;
 
-  constructor(private userService:UserService, private router:Router, private authService:AuthService) { }
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
