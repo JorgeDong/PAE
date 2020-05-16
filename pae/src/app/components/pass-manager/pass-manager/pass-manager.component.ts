@@ -98,6 +98,7 @@ export class PassManagerComponent implements OnInit {
           this.userService.updatePassword(this.theUser.email, form.value.inputNewPass1).subscribe(
             (data: any) => {
               console.log(data);
+              this._ROUTER.navigate(['/login']);
             }
           );
         } else {

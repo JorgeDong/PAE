@@ -154,10 +154,10 @@ router.put('/updateByEmail/:email', ensureAuthenticated, (req, res) => {
     }
 });
 
-router.put('/updatePassword/:email', ensureAuthenticated, (req, res) => {
-    const { newPassword } = req.body;
+router.put('/updatePassword/:email', (req, res) => {
+    const { email, newPassword } = req.body;
 	console.log(req.body);
-    if(req.body.email == res.locals.email){
+    if(email){
         User.findOne({ email: email })
         .then( user => {
             if(user){
