@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { map } from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CreditoService } from '../../services/credito/credito.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,19 @@ export class UserService {
   users: User[];
   singleUser: User;
   token = '';
+  creditCurrentUser;
 
   usersSubject = new BehaviorSubject<User[]>([]);
   singleUserSubject = new BehaviorSubject<User>(this.singleUser);
   tokenSubject = new BehaviorSubject<string>(this.token);
-  
-  constructor(private	http: HttpClient, private router: Router) {
+
+  constructor(private	http: HttpClient, 
+              private router: Router,
+              private creditoService: CreditoService
+              ) {
   }
 
-  getUsers(){
+  getUsers() {
     this.http.get('http://localhost:3000/api/users').subscribe(
       (data: User[]) => { this.users = data;
                           this.usersSubject.next(this.users) },
@@ -29,7 +34,6 @@ export class UserService {
   }
 
   registration(name, email, password, password2, direccion, city, country): Observable<any>{
-    console.log(name, email, password, password2, direccion, city, country);
     return this.http.post('http://localhost:3000/api/users/registration', {name, email, password, 
       password2, direccion, city, country}).pipe(
       map( (data: any) => {
@@ -64,9 +68,18 @@ export class UserService {
       })
     )
   }
+  createUserCreadit(ID, credit){
+    return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
+      map( (data: any) => {
+        console.log(data);
+        return data;
+      })
+    )
+  }
 
   getUserbyID(id){
     return this.http.get('http://localhost:3000/api/users/readById/'+id);
   }
+
   
 }

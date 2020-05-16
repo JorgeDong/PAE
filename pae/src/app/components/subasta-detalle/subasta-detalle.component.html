@@ -165,35 +165,36 @@
                                         <!-- <a href="./assets/neha/assets/img/product-details/bl1.jpg">
                                             <img src="./assets/neha/assets/img/product-details/l1.jpg" alt="">
                                         </a> -->
-                                        <a href="./assets/paper/assets/img/tv1.jpg">
+                                        <a >
                                             <img src="{{ruta}}/download/{{primeraImagen.url}}" alt="">
                                         </a>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="pro-details2" role="tabpanel">
+                                <!-- <div class="tab-pane fade" id="pro-details2" role="tabpanel">
                                     <div class="easyzoom easyzoom--overlay">
                                         <a href="./assets/paper/assets/img/tv2.jfif">
                                             <img src="{{ruta}}/download/{{primeraImagen.url}}" alt="">
                                         </a>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="pro-details3" role="tabpanel">
+                                </div> -->
+                                <!-- <div class="tab-pane fade" id="pro-details3" role="tabpanel">
                                     <div class="easyzoom easyzoom--overlay">
                                         <a href="./assets/paper/assets/img/tv3.jpg">
                                             <img src="./assets/paper/assets/img/tv3.jpg" alt="">
                                         </a>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="pro-details4" role="tabpanel">
+                                </div> -->
+                                <!-- <div class="tab-pane fade" id="pro-details4" role="tabpanel">
                                     <div class="easyzoom easyzoom--overlay">
                                         <a href="./assets/paper/assets/img/tv4.jpg">
                                             <img src="./assets/paper/assets/img/tv4.jpg" alt="">
                                         </a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="product-details-small nav mt-12 main-product-details" role=tablist>
-                                <a *ngFor="let imagen of imagenes" class="active mr-12" href="#pro-details1" data-toggle="tab" role="tab" aria-selected="true">
+                                <a *ngFor="let imagen of imagenes" class="active mr-12"  
+                                    (click)="cambiarFoto(imagen)" data-toggle="tab" role="tab" aria-selected="true">
                                     <img src="{{ruta}}/download/{{imagen.url}}" alt="">
                                 </a>
 
@@ -204,7 +205,7 @@
                 <div class="col-md-12 col-lg-5 col-12">
                     <div class="product-details-content">
                         <h3>{{productoActual.nombre}}</h3>
-                        <div class="rating-number">
+                        <!-- <div class="rating-number">
                             <div class="quick-view-rating">
                                 <i class="ion-ios-star red-star"></i>
                                 <i class="ion-ios-star red-star"></i>
@@ -212,10 +213,10 @@
                                 <i class="ion-android-star-outline"></i>
                                 <i class="ion-android-star-outline"></i>
                             </div>
-                            <!-- <div class="quick-view-number">
+                            <div class="quick-view-number">
                                 <span>Calificación del Vendedor</span>
-                            </div> -->
-                        </div>
+                            </div>
+                        </div> -->
                         <div class="details-price">
                             <!-- <strong *ngIf="ultimaPuja != ''" >Puja Actual: </strong><span>$ {{ultimaPuja}}</span>
                             <strong *ngIf="ultimaPuja == ''" >Puja Actual: </strong><span>$ {{productoActual.PujaInicial}}</span> -->
@@ -223,18 +224,21 @@
                                 <strong >Puja Inicial: </strong><span>$ {{productoActual.PujaInicial}}</span>
                             </div> -->
                             <!-- <div> -->
-                                <strong >Ultima Puja: </strong><span>$ {{ ultimaPuja.CantidadPuja }}</span>
+                                <strong >Ultima Puja: </strong><span *ngIf="noHayPujas == false">$ {{ ultimaPuja.CantidadPuja }}</span>
+                                <span *ngIf="noHayPujas == true">$ {{ productoActual.PujaInicial }}</span>
                             <!-- </div> -->
                             <br>
                             <strong>Fecha de Cierre: </strong><span>{{productoActual.fechaFinal}}</span>
                         </div>
-                        <p>Accesorios: {{productoActual.accesorios}}</p>
-                        <p>Estado: {{productoActual.estadoDelProducto}}</p>
+                        <label><b>Accesorios:</b></label>
+                        <p>{{productoActual.accesorios}}</p>
+                        <label><b>Estado:</b></label>
+                        <p>{{productoActual.estadoDelProducto}}</p>
                         <div class="quick-view-select">
                             <div class="select-option-part">
                                 <!-- <label>Vendedor:</label>
                                 <a (click)="obtenerUsuario()" ><p>JoseAntonioB</p></a> -->
-                                <label>Ubicación:</label>
+                                <label><b>Ubicación:</b></label>
                                 <p>Guadalajara, Jalisco</p>
                                 <!-- <select class="select">
                                     <option value="">- Please Select -</option>
@@ -320,7 +324,7 @@
         <div class="container">
             <div class="product-description-review text-center">
                 <div class="description-review-title nav" role=tablist>
-                    <a class="active" href="#pro-dec" data-toggle="tab" role="tab" aria-selected="true">
+                    <a class="active" data-toggle="tab" role="tab" aria-selected="true">
                         Descripción
                     </a>
                     <!-- <a href="#pro-review" data-toggle="tab" role="tab" aria-selected="false">
