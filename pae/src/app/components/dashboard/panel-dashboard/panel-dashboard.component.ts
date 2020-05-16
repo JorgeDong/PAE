@@ -28,6 +28,9 @@ export class PanelDashboardComponent implements OnInit {
   constructor(private userService: UserService, private subastaService: SubastaService, 
     private productsService: ProductoService, private creditoService: CreditoService, private http: HttpClient) { 
     this.init()
+
+    console.log(this.user)
+
   }
 
   ngOnInit(): void {
@@ -105,6 +108,11 @@ export class PanelDashboardComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+
+  misSubastas(){
+
   }
 
 }
