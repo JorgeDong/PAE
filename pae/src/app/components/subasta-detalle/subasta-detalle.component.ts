@@ -117,7 +117,9 @@ export class SubastaDetalleComponent implements OnInit {
           let credito = res;
           if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
             alert("Has pujado una cantidad menor a la actual!!");
-          }else{
+          }else if(credito.CantidadCredito < form.value.CantidadPuja) {
+            alert("No tienes suficientes Fondos!!");
+          } else{
             let newPuja = new Puja(
               this.productoActual.idProducto,
               this.user.id,
