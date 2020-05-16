@@ -3,6 +3,7 @@ import { User } from 'src/app/models/User';
 import { UserService } from '../../services/user/user.service';
 import { SubastaService } from '../../services/subasta/subasta.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Subasta } from 'src/app/models/Subasta';
@@ -45,7 +46,8 @@ export class ProfileComponent implements OnInit {
               private productsService: ProductoService,
               private http: HttpClient,
               private route: ActivatedRoute,
-              private _ROUTER: Router) {
+              private _ROUTER: Router,
+              private authService: AuthService) {
     this.init();
     this.router = _ROUTER.url;
     if (this.router.includes('edit')) {
@@ -158,7 +160,7 @@ export class ProfileComponent implements OnInit {
     this._ROUTER.navigate(['profile/change-pass']);
   }
   redirectLogOut() {
-    
+    this.authService.logOut();
   }
 
   close() {
