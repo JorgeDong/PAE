@@ -37,6 +37,22 @@ const UserSchema = new mongoose.Schema({
     token: {
         type: String,
         required: false,
+    },
+    pregunta1: {
+        type: String,
+        required: false,
+    },
+    respuesta1: {
+        type: String,
+        required: false,
+    },
+    pregunta2: {
+        type: String,
+        required: false,
+    },
+    respuesta2: {
+        type: String,
+        required: false,
     }
 });
 

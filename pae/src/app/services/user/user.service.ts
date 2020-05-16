@@ -33,9 +33,9 @@ export class UserService {
     );
   }
 
-  registration(name, email, password, password2, direccion, city, country): Observable<any>{
-    return this.http.post('http://localhost:3000/api/users/registration', {name, email, password, 
-      password2, direccion, city, country}).pipe(
+  registration(name, email, password, password2, direccion, city, country, p1, r1, p2, r2): Observable<any> {
+    return this.http.post('http://localhost:3000/api/users/registration', {name, email, password,
+      password2, direccion, city, country, p1, r1, p2, r2}).pipe(
       map( (data: any) => {
         if (data) {
           return data;
@@ -43,10 +43,10 @@ export class UserService {
           return null;
         }
       })
-    )
+    );
   }
 
-  getUserByEmail(email):Observable<any>{
+  getUserByEmail(email): Observable<any> {
     return this.http.get(`http://localhost:3000/api/users/readByEmail/${email}`).pipe(
       map( (data: any) => {
         this.singleUser = data[0];
@@ -54,32 +54,27 @@ export class UserService {
         return this.singleUser;
         }
       )
-    )
+    );
   }
 
-  httpOptions = { headers: new HttpHeaders( { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') }) };
-
-  updateUser(email, name, direccion, city, country, token):Observable<any>{
-    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country}, 
-      {headers: new HttpHeaders( {'Authorization': token} )}).pipe(
-      map( (data:any) => {
-        console.log(data);
+  updateUser(email, name, direccion, city, country, token): Observable<any> {
+    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country},
+      {headers: new HttpHeaders( { Authorization: token} )}).pipe(
+      map( (data: any) => {
         return data;
       })
-    )
+    );
   }
   createUserCredito(ID, credit){
     return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
       map( (data: any) => {
-        console.log(data);
         return data;
       })
-    )
+    );
   }
 
   getUserbyID(id){
-    return this.http.get('http://localhost:3000/api/users/readById/'+id);
+    return this.http.get('http://localhost:3000/api/users/readById/' + id);
   }
 
-  
 }

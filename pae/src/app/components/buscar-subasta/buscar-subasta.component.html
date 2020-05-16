@@ -25,8 +25,9 @@
                         <h3 class="sidebar-title">Filtros</h3>
                         <div class="sidebar-categories">
                             <ul>
-                                <li><a routerLink="../subasta-buscar">Ordenar por precio </a></li>
-                                <li><a routerLink="../subasta-buscar">Ordenar alfabéticamente</a></li>
+                                <li><a href='javascript:void(0);' (click)="mayorAMenor()">Ordenar por precio (Mayor a menor) </a></li>
+                                <li><a href='javascript:void(0);' (click)="menorAMayor()">Ordenar por precio (Menor a mayor) </a></li>
+                                <li><a href='javascript:void(0);' (click)="alfabetico()">Ordenar alfabéticamente</a></li>
                             </ul>
                         </div>
                     </div>

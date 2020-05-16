@@ -15,8 +15,12 @@ export class BuscarSubastaComponent implements OnInit {
 
   busqueda = '';
 
+  mayormenores = false;
+  menormayores = false;
+  alfabetizados = false;
+
   ruta;
-  
+
 
   constructor(
     private subastaService: SubastaService,
@@ -25,7 +29,7 @@ export class BuscarSubastaComponent implements OnInit {
   ) {
       this.filtrados = [];
       this.productos = this.productoService.productos;
-      
+
       this.ruta = this.imagenService.URL_API;
    }
 
@@ -35,12 +39,24 @@ export class BuscarSubastaComponent implements OnInit {
   }
 
   search(){
-    console.log("ENTRE A BUSCAR");
     this.filtrados = this.productos.filter((product) => {
         return product.nombre.toUpperCase().includes(this.busqueda.toUpperCase()) ||
                product.marca.toUpperCase().includes(this.busqueda.toUpperCase()) ||
                product.descripcion.toUpperCase().includes(this.busqueda.toUpperCase())
       });
+  }
+
+  mayorAMenor() {
+    this.filtrados = this.filtrados.sort((a, b) => (b.PujaInicial - a.PujaInicial));
+  }
+
+
+  menorAMayor() {
+    this.filtrados = this.filtrados.sort((a, b) => (a.PujaInicial - b.PujaInicial));
+  }
+
+  alfabetico() {
+    this.filtrados = this.filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
 
 

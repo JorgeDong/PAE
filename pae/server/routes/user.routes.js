@@ -9,7 +9,7 @@ const { ensureAuthenticated } = require('../config/auth');
 const User = require('../models/User');
 
 router.post('/registration', (req, res) => {
-    const { name, email, password, password2, direccion, city, country } = req.body;
+    const { name, email, password, password2, direccion, city, country, p1, r1, p2, r2 } = req.body;
 	console.log(req.body);
     let errors = [];
     if(!name || !email || !password || !password2){
@@ -42,7 +42,11 @@ router.post('/registration', (req, res) => {
                         city: city,
                         country: country,
                         date: new Date,
-                        token: ''
+                        token: '',
+                        pregunta1: p1,
+                        respuesta1: r1,
+                        pregunta2: p2,
+                        respuesta2: r2
                     });
                     // Hash password
                     bcrypt.genSalt(10, (err, salt) => 

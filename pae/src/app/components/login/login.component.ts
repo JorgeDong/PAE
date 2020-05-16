@@ -21,8 +21,11 @@ export class LoginComponent implements OnInit {
   closeResult = '';
   NotUserFoundAlert = true;
 
-  constructor(private modalService: NgbModal, private userService: UserService, private authService:AuthService, private router: Router, private route: ActivatedRoute) { 
-    
+  constructor(private modalService: NgbModal,
+              private userService: UserService,
+              private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.userService.usersSubject.subscribe( data => {
       this.users = data;
     });
@@ -63,11 +66,11 @@ export class LoginComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
+
   submitLogin(form: NgForm){
     this.authService.loginUser(this.loginEmail, this.loginPassword).subscribe(
       (data) => {
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/profile']);
       },
       (err) => {
         this.NotUserFoundAlert = false;
