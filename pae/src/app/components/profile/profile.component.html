@@ -1,4 +1,4 @@
-  <div class="wrapper ">
+<div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
@@ -124,12 +124,13 @@
                 <h5 class="card-title">Mi Perfil</h5>
               </div>
               <div class="card-body">
+                <ngb-alert type='danger' [hidden]=alertEmptyValues (close)=close()>Please don't leave empty fields</ngb-alert>
                 <form #f="ngForm" (ngSubmit)="submitChanges(f)">
                   <div class="row">
                     <div class="col-md-8 pr-1">
                       <div class="form-group">
                         <label>Nombres</label>
-                        <input type="text" ngModel [(ngModel)]="inputName" name="inputName" class="form-control" [disabled]=!isEdit>
+                        <input type="text" ngModel [(ngModel)]="inputName" name="inputName" class="form-control" [disabled]=!isEdit required>
                       </div>
                     </div>
                   </div>
@@ -137,7 +138,7 @@
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Direccion</label>
-                        <input type="text" ngModel [(ngModel)]="inputDireccion" name="inputDireccion" class="form-control" [disabled]=!isEdit>
+                        <input type="text" ngModel [(ngModel)]="inputDireccion" name="inputDireccion" class="form-control" [disabled]=!isEdit required>
                       </div>
                     </div>
                   </div>
@@ -145,19 +146,22 @@
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
                         <label>Ciudad</label>
-                        <input type="text" ngModel [(ngModel)]="inputCity" name="inputCity" class="form-control" placeholder="Ciudad" [disabled]=!isEdit>
+                        <input type="text" ngModel [(ngModel)]="inputCity" name="inputCity" class="form-control" placeholder="Ciudad" [disabled]=!isEdit required>
                       </div>
                     </div>
                     <div class="col-md-4 px-1">
                       <div class="form-group">
                         <label>País</label>
-                        <input type="text" ngModel [(ngModel)]="inputCountry" name="inputCountry" class="form-control" placeholder="País" [disabled]=!isEdit>
+                        <input type="text" ngModel [(ngModel)]="inputCountry" name="inputCountry" class="form-control" placeholder="País" [disabled]=!isEdit required>
                       </div>
                     </div>
                   </div>
                   <div class="row" [hidden]=isEdit>
                     <div class="col-md-4">
                       <button (click)="redirectEditarPerfil()">Editar Perfil</button>
+                    </div>
+                    <div class="col-md-4">
+                      <button (click)="redirectChangePass()">Cambiar Contraseña</button>
                     </div>
                   </div>
                   <div class="row" hidden=true>

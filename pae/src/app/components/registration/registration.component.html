@@ -3,54 +3,60 @@
     <form class="form-registro"  #f="ngForm" (ngSubmit)="submitReg(f)">
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputName" name="inputName" placeholder="Nombre completo">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputName" name="inputName" placeholder="Nombre completo" required>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
-            <input type="email" class="form-control"  ngModel [(ngModel)]="inputEmail" name="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            <input type="email" class="form-control"  ngModel [(ngModel)]="inputEmail" name="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword1" name="inputPassword1" placeholder="Password">
+            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword1" name="inputPassword1" placeholder="Password" required>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Confirmar Contraseña</label>
-            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword2" name="inputPassword2" placeholder="Password">
+            <input type="password" class="form-control"  ngModel [(ngModel)]="inputPassword2" name="inputPassword2" placeholder="Password" required>
         </div>
         <div class="form-group">
             <label for="nombre">Direccion</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputDireccion" name="inputDireccion" placeholder="Direccion">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputDireccion" name="inputDireccion" placeholder="Direccion" required>
         </div>
         <div class="form-group">
             <label for="nombre">Ciudad</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCity" name="inputCity" placeholder="Ciudad">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCity" name="inputCity" placeholder="Ciudad" required>
         </div>
         <div class="form-group">
             <label for="nombre">Pais</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCountry" name="inputCountry" placeholder="Pais">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCountry" name="inputCountry" placeholder="Pais" required>
         </div>
         <div class="form-group">
             <label for="nombre">Credito</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputCredito" name="inputCredito" placeholder="Desde $0">
+            <input (keypress)="numberOnly($event)" type="number" class="form-control"  ngModel [(ngModel)]="inputCredito" name="inputCredito" placeholder="Desde $0" required>
         </div>
         <hr>
         <h2 class="h3 mb-3 font-weight-bold text-center">Preguntas de Seguridad</h2>
         <div class="form-group">
             <label for="nombre">Pregunta 1</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputPregunta1" name="inputPregunta1" placeholder="---">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputPregunta1" name="inputPregunta1" placeholder="---" required>
         </div>
         <div class="form-group">
             <label for="nombre">Respuesta 1</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta1" name="inputRespuesta1" placeholder="---">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta1" name="inputRespuesta1" placeholder="---" required>
         </div>
         <div class="form-group">
             <label for="nombre">Pregunta 2</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputPregunta2" name="inputPregunta2" placeholder="---">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputPregunta2" name="inputPregunta2" placeholder="---" required>
         </div>
         <div class="form-group">
             <label for="nombre">Respuesta 2</label>
-            <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta2" name="inputRespuesta2" placeholder="---">
+            <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta2" name="inputRespuesta2" placeholder="---" required>
         </div>
+        <hr>
+        <ngb-alert type='danger' [hidden]=alertEmptyValues (close)=closeEmptyValues()>Please don't leave empty fields</ngb-alert>
+        <ngb-alert type='danger' [hidden]=alertPassMismatch (close)=closePassMismatch()>Password don't match</ngb-alert>
+        <ngb-alert type='danger' [hidden]=alertPassLength (close)=closePassLength()>Password must be at least 6 char long</ngb-alert>
+        <ngb-alert type='danger' [hidden]=alertInvalidCredit (close)=closeInvalidCredit()>Invalid Credit</ngb-alert>
+        <ngb-alert type='danger' [hidden]=alertEmailExists (close)=closeEmailExists()>Email already exists</ngb-alert>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Confirmar</button>
         <br>
