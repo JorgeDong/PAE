@@ -154,4 +154,29 @@ router.put('/updateByEmail/:email', ensureAuthenticated, (req, res) => {
     }
 });
 
+router.put('/updatePassword/:email', ensureAuthenticated, (req, res) => {
+    const { newPassword } = req.body;
+	console.log(req.body);
+    if(req.body.email == res.locals.email){
+        User.findOne({ email: email })
+        .then( user => {
+            if(user){
+                bcrypt.genSalt(10, (err, salt) => 
+                    bcrypt.hash(newPassword, salt, (err, hash) => {
+                        if(err) throw err;
+                        User.findOneAndUpdate({ email:req.body.email }, { $set:{ password:hash }}, (err, done)=> {
+                            if(err) res.status(400).send(err);
+                            res.status(200).send(done);
+                        })
+                }))
+            } else{
+                res.status(408).send('User not found');
+            }
+        })
+    }
+    else {
+        res.status(401).send('You cannot edit a different user')
+    }
+});
+
 module.exports = router;

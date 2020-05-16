@@ -77,4 +77,13 @@ export class UserService {
     return this.http.get('http://localhost:3000/api/users/readById/' + id);
   }
 
+  updatePassword(email, newPassword){
+    return this.http.put(`http://localhost:3000/api/users/updatePassword/${email}`, { newPassword }).pipe(
+      map( (data: any) => {
+        console.log(data);
+        return data;
+      })
+    );
+  }
+
 }
