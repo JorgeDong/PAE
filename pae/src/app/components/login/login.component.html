@@ -1,15 +1,24 @@
-<ngb-alert type='danger' [hidden]=NotUserFoundAlert (close)=close()>User not found!</ngb-alert>
-
 <div class="main-container" >
     <form class="form-signin" #f="ngForm" (ngSubmit)="submitLogin(f)">
         <img class="mb-4" src="https://i.ya-webdesign.com/images/profile-image-png-14.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+        <ngb-alert type='danger' [hidden]=NotUserFoundAlert (close)=close()>Invalid Email and/or Password</ngb-alert>
         <label for="inputEmail" class="sr-only">Correo</label>
         <input type="email" ngModel [(ngModel)]="loginEmail" name="loginEmail" class="form-control" placeholder="correo@ejemplo.com" required autofocus>
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" ngModel [(ngModel)]="loginPassword" name="loginPassword" class="form-control" placeholder="*****" required>
         <hr>
-        <button type="submit">Sign in</button>
-        <a class="btn btn-primary" href="/api/users/google/login" role="button"><i class="fab fa-google    "></i></a>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" [disabled]=!f.valid>Sign in</button>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary" href="/api/users/google/login" role="button"><i class="fab fa-google    "></i></a>
+            </div>
+            <div class="col-md-3">
+                <button (click)="redirectChangePass()">Olvide Mi Contraseña</button>
+            </div>
+        </div>
+        
     </form>
 </div>

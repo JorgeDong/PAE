@@ -3248,7 +3248,11 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\Users\coque\Desktop\PAE\proyecto\PAE\pae\src\polyfills.ts */"./src/polyfills.ts");
+=======
+module.exports = __webpack_require__(/*! C:\Users\RFDesign 02\Documents\Github-ITESO\PAE\pae\src\polyfills.ts */"./src/polyfills.ts");
+>>>>>>> 7b1f1493f18bdbbc4e9bc5b29351a0ee6a7a2633
 
 
 /***/ })

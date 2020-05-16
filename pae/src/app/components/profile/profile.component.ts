@@ -28,6 +28,8 @@ export class ProfileComponent implements OnInit {
   inputCity = '';
   inputCountry = '';
 
+  alertEmptyValues = true;
+
   image;
   image1;
   image2;
@@ -124,21 +126,33 @@ export class ProfileComponent implements OnInit {
   }
 
   submitChanges(form: NgForm) {
-    console.log(this.user.token === localStorage.getItem('token'));
-    this.userService.updateUser(
-              this.user.email,
-              this.inputName,
-              this.inputDireccion,
-              this.inputCity,
-              this.inputCountry,
-              this.user.token).subscribe(
-        (data) => this._ROUTER.navigate(['profile']),
-        (err) => console.log(err)
-    );
+    if (form.valid) {
+      console.log(this.user.token === localStorage.getItem('token'));
+      this.userService.updateUser(
+                this.user.email,
+                this.inputName,
+                this.inputDireccion,
+                this.inputCity,
+                this.inputCountry,
+                this.user.token).subscribe(
+          (data) => this._ROUTER.navigate(['profile']),
+          (err) => console.log(err)
+      );
+    } else {
+      this.alertEmptyValues = false;
+    }
   }
 
   redirectEditarPerfil() {
     this._ROUTER.navigate(['profile/edit']);
+  }
+  redirectChangePass() {
+    localStorage.setItem('redirectFromLogin', 'false');
+    this._ROUTER.navigate(['profile/change-pass']);
+  }
+
+  close() {
+    this.alertEmptyValues = true;
   }
 
 }

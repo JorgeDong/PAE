@@ -28,6 +28,7 @@ import { ComentariosUsuariosComponent } from './components/comentarios-usuarios/
 import { EditarProductoDashboardComponent } from './components/dashboard/editar-producto-dashboard/editar-producto-dashboard.component';
 import { CreditosComponent } from './components/dashboard/creditos/creditos.component';
 import { SubastaComponent } from './components/subasta/subasta.component';
+import { PassManagerComponent } from './components/pass-manager/pass-manager/pass-manager.component';
 
 const config: SocketIoConfig = { url: environment.url, options: {}}
 
@@ -52,7 +53,8 @@ const config: SocketIoConfig = { url: environment.url, options: {}}
     ComentariosUsuariosComponent,
     EditarProductoDashboardComponent,
     CreditosComponent,
-    SubastaComponent
+    SubastaComponent,
+    PassManagerComponent
   ],
   imports: [
     BrowserModule,
