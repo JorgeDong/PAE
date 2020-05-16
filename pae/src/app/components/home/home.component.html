@@ -44,7 +44,7 @@
                         <h2>Otros productos relevantes</h2>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:0:6; let i=index">
+                        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of productos | slice:0:productos.length; let i=index">
                             <div class="single-product mb-35">
                                 <div class="product-img">
                                     <a href="#"><img src="{{ruta}}/download/{{item.Url}}" alt=""></a>
