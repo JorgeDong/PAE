@@ -10,5 +10,6 @@ router.get('/:id', pujaCtrl.getPuja);
 router.put('/:id', pujaCtrl.editPuja);
 router.delete('/:id', pujaCtrl.deletePuja);
 router.get('/producto/:id', pujaCtrl.getPujasPorIdProducto);
+router.get('/usuario/:id',pujaCtrl.getPujasPorIdUsuario);
 
 module.exports = router;

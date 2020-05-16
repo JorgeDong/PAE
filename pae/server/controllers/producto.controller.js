@@ -116,6 +116,12 @@ productoCtrl.findImagenesByID = async (req, res, next) => {
     res.json(imagenes);
 };
 
+productoCtrl.getProductosPorIdUsuario = async (req, res, next) => {
+    console.log(req.params.id)
+   const producto = await Producto.find({ idUsuario_fk: req.params.id });
+    res.json(producto);
+};
+
 
 function addDays(date, days) {
   const copy = new Date(Number(date))

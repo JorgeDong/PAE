@@ -119,9 +119,12 @@ export class SubastaDetalleComponent implements OnInit {
             this.productoActual.idProducto,
             this.user.id,
             form.value.CantidadPuja,
-            this.user.name
+            this.user.name,
+            this.productoActual.PujaInicial,
+            this.productoActual.nombre
           );
-      
+            
+          console.log(newPuja)
           this.ultimaPuja = form.value.CantidadPuja;
       
           this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
@@ -130,7 +133,7 @@ export class SubastaDetalleComponent implements OnInit {
             this.obtenerPujas(res.puja.idSubasta_fk);
           });
 
-
+          
           let nuevoCredito = credito.CantidadCredito;
           nuevoCredito = nuevoCredito - form.value.CantidadPuja;
           credito.CantidadCredito = nuevoCredito;
