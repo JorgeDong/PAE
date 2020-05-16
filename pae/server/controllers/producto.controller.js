@@ -76,7 +76,10 @@ productoCtrl.getProducto = async (req, res, next) => {
 productoCtrl.editProducto = async (req, res, next) => {
     const { id } = req.params;
 
+    console.log(id)
 
+    console.log(req.body)
+    const date = new Date();
 
     const producto = {
         idProducto: req.body.idProducto,
@@ -93,8 +96,10 @@ productoCtrl.editProducto = async (req, res, next) => {
         Tiempo: req.body.Tiempo,
         Envio: req.body.Envio,
         Url: req.body.Url,
-        fechaFinal: result.setDate(result.getDate() + Number(req.body.Tiempo))
+        fechaFinal: addDays(date, Number(req.body.Tiempo))
     };
+
+
 
     await Producto.findByIdAndUpdate(id, {$set: producto}, {new: true});
     res.json({status: 'Producto Updated'});

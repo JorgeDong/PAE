@@ -150,9 +150,9 @@
                 <th>
                   Fecha Cierre
                 </th>
-                <th>
+                <!-- <th>
                   Cantidad de Pujadores
-                </th>
+                </th> -->
                 <!-- <th class="text-right"> -->
                 <th>
                   Puja Inicial
@@ -170,14 +170,14 @@
                   <td>
                     {{producto.fechaFinal}}
                   </td>
-                  <td>
+                  <!-- <td>
                     {{arrProductos.length}}
-                  </td>
+                  </td> -->
                   <td>
                     {{producto.PujaInicial}}
                   </td>
                   <td>
-                    <a routerLink="/subasta-detalle/{{producto.idProducto}}" href="./subasta-detalle.html" class="btn btn-primary btn-round">Detalle Producto</a>
+                    <a routerLink="/subasta-detalle/{{producto.idProducto}}"  class="btn btn-primary btn-round">Detalle Producto</a>
                     <a routerLink="/dashboard/editar-producto/{{producto.idProducto}}" class="btn btn-success btn-round">Editar Producto</a>
                     <a (click)="eliminarProducto(producto._id)" class="btn btn-danger btn-round">Eliminar Producto</a>
                   </td>

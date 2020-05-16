@@ -108,47 +108,92 @@ export class SubastaDetalleComponent implements OnInit {
     console.log(form.value);
 
     if(this.user != undefined){
-      
-      this.creditoService.getCreditoByID(this.user.id).subscribe((res)=>{
-        console.log(res)
-        let credito = res;
-        if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
-          alert("Has pujado una cantidad menor a la actual!!");
-        }else{
-          let newPuja = new Puja(
-            this.productoActual.idProducto,
-            this.user.id,
-            form.value.CantidadPuja,
-            this.user.name,
-            this.productoActual.PujaInicial,
-            this.productoActual.nombre
-          );
-            
-          console.log(newPuja)
-          this.ultimaPuja = form.value.CantidadPuja;
-      
-          this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
-            console.log(res.puja.idSubasta_fk);
-            console.log(res.puja.idSubasta_fk);
-            this.obtenerPujas(res.puja.idSubasta_fk);
-          });
 
-          
-          let nuevoCredito = credito.CantidadCredito;
-          nuevoCredito = nuevoCredito - form.value.CantidadPuja;
-          credito.CantidadCredito = nuevoCredito;
-          
-          this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
-
-          })
-
-
-          // this.creditoService.updateCredito(this.user.id,credito.idCredito,credito.idUsuario_fk,nuevoCredito,credito.moneda).subscribe(res=>{
-
-          // })
-        }
+      if(this.user.id == this.productoActual.idUsuario_fk){
+        alert("No puedes pujar a un producto propio.!!");
+      }else{
+        this.creditoService.getCreditoByID(this.user.id).subscribe((res)=>{
+          console.log(res)
+          let credito = res;
+          if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
+            alert("Has pujado una cantidad menor a la actual!!");
+          }else{
+            let newPuja = new Puja(
+              this.productoActual.idProducto,
+              this.user.id,
+              form.value.CantidadPuja,
+              this.user.name,
+              this.productoActual.PujaInicial,
+              this.productoActual.nombre
+            );
+              
+            console.log(newPuja)
+            this.ultimaPuja = form.value.CantidadPuja;
         
-      })
+            this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+              console.log(res.puja.idSubasta_fk);
+              console.log(res.puja.idSubasta_fk);
+              this.obtenerPujas(res.puja.idSubasta_fk);
+            });
+  
+            
+            let nuevoCredito = credito.CantidadCredito;
+            nuevoCredito = nuevoCredito - form.value.CantidadPuja;
+            credito.CantidadCredito = nuevoCredito;
+            
+            this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
+  
+            })
+  
+  
+            // this.creditoService.updateCredito(this.user.id,credito.idCredito,credito.idUsuario_fk,nuevoCredito,credito.moneda).subscribe(res=>{
+  
+            // })
+          }
+          
+        })
+      }
+      
+      // this.creditoService.getCreditoByID(this.user.id).subscribe((res)=>{
+      //   console.log(res)
+      //   let credito = res;
+      //   if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
+      //     alert("Has pujado una cantidad menor a la actual!!");
+      //   }else{
+      //     let newPuja = new Puja(
+      //       this.productoActual.idProducto,
+      //       this.user.id,
+      //       form.value.CantidadPuja,
+      //       this.user.name,
+      //       this.productoActual.PujaInicial,
+      //       this.productoActual.nombre
+      //     );
+            
+      //     console.log(newPuja)
+      //     this.ultimaPuja = form.value.CantidadPuja;
+      
+      //     this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+      //       console.log(res.puja.idSubasta_fk);
+      //       console.log(res.puja.idSubasta_fk);
+      //       this.obtenerPujas(res.puja.idSubasta_fk);
+      //     });
+
+          
+      //     let nuevoCredito = credito.CantidadCredito;
+      //     nuevoCredito = nuevoCredito - form.value.CantidadPuja;
+      //     credito.CantidadCredito = nuevoCredito;
+          
+      //     this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
+
+      //     })
+
+
+      //     // this.creditoService.updateCredito(this.user.id,credito.idCredito,credito.idUsuario_fk,nuevoCredito,credito.moneda).subscribe(res=>{
+
+      //     // })
+      //   }
+        
+      // })
 
       
       

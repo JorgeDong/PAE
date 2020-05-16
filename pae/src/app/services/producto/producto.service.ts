@@ -34,6 +34,16 @@ export class ProductoService {
     return this.http.post(this.URL_API, producto);
   }
 
+  actualizarProducto(_id,producto){
+    console.log('dentro de producto service')
+    console.log(_id)
+    console.log(producto)
+    let url = this.URL_API+'/'+_id;
+    console.log(url)
+
+    return this.http.put(url, producto);
+  }
+
   obtenerProductoId(id){
     console.log('dentro de service produto'+id)
    return this.http.get(this.URL_API+'/search/'+id);

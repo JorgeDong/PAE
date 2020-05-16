@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card card-user">
                   <div class="card-header">
-                    <h5 class="card-title">Producto #{{idActual}}</h5>
+                    <h5 class="card-title">Producto #{{productoActual.idProducto}}</h5>
                   </div>
                   <div class="card-body">
                     <form #nuevoProducto="ngForm" (ngSubmit)="uploadImage(nuevoProducto)" >
@@ -12,19 +12,19 @@
                         <div class="col-md-5 pr-1">
                           <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="form-control"  ngModel name="nombre" placeholder="" value="">
+                            <input type="text" class="form-control"  ngModel name="nombre" placeholder="" [(ngModel)]="productoActual.nombre">
                           </div>
                         </div>
                         <div class="col-md-3 px-1">
                           <div class="form-group">
                             <label>Marca</label>
-                            <input type="text" ngModel name="marca" class="form-control" placeholder="" value="">
+                            <input type="text" ngModel name="marca" class="form-control" placeholder="" [(ngModel)]="productoActual.marca">
                           </div>
                         </div>
                         <div class="col-md-4 pl-1">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Categoria</label>
-                            <input ngModel name="categoria" type="email" class="form-control" >
+                            <input ngModel name="categoria" type="email" class="form-control" [(ngModel)]="productoActual.marca">
                           </div>
                         </div>
                       </div>
@@ -32,13 +32,13 @@
                         <div class="col-md-6 pr-1">
                           <div class="form-group">
                             <label>Accesorios</label>
-                            <input ngModel name="accesorios" type="text" class="form-control" placeholder="" value="">
+                            <input ngModel name="accesorios" type="text" class="form-control" placeholder="" [(ngModel)]="productoActual.accesorios">
                           </div>
                         </div>
                         <div class="col-md-6 pl-1">
                           <div class="form-group">
                             <label>Estado del Producto</label>
-                            <input ngModel name="estado" type="text" class="form-control" placeholder="" value="">
+                            <input ngModel name="estado" type="text" class="form-control" placeholder="" [(ngModel)]="productoActual.estadoDelProducto">
                           </div>
                         </div>
                       </div>
@@ -46,30 +46,48 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Puja Inicial</label>
-                            <input ngModel name="puja" type="number" class="form-control"  value="0.0">
+                            <input ngModel name="puja" type="number" class="form-control"  [(ngModel)]="productoActual.PujaInicial">
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4 pr-1">
                           <div class="form-group">
-                            <label>Duración de la Subasta</label>
+                            <label>Duración de la Subasta (Días)</label>
                             <!-- <input ngModel name="tiempo" type="datetime-local" class="form-control" > -->
-                            <select id="tiempo" ngModel name="tiempo">
-                              <option value="5">5 días</option>
-                              <option value="10">10 días</option>
-                              <option value="20">20 días</option>
-                              <option value="30">30 días</option>
-                            </select>
+                            <input *ngIf="hiddenTiempo == false" type="text" class="form-control"  name="tiempot" [(ngModel)]="productoActual.Tiempo" disabled>
+                            <div *ngIf="hiddenTiempo == true" id="tiempo_select">
+                              <select ngModel name="tiempo">
+                                <option value="5">5 días</option>
+                                <option value="10">10 días</option>
+                                <option value="20">20 días</option>
+                                <option value="30">30 días</option>
+                              </select>
+                            </div>
+                            <button type="button" class="btn btn-info" (click)="editarTiempoSubasta()">Editar Duración</button>
+                            
                           </div>
                         </div>
                          <div class="col-md-4">
                           <div class="form-group">
                             <label>Envio</label>
-                            <select id="cars" ngModel name="envio">
-                              <option value="incluido">inluido</option>
-                              <option value="no incluido">no incluido</option>
-                            </select>
+                            <input *ngIf="hiddenEnvio == false" type="text" class="form-control"  name="enviot" [(ngModel)]="productoActual.Envio" disabled>
+                            <div *ngIf="hiddenEnvio == true" id="tiempo_select">
+                              <select ngModel name="envio" >
+                                <option value="incluido">incluido</option>
+                                <option value="no incluido">no incluido</option>
+                              </select>
+                            </div>
+                            <button type="button" class="btn btn-info" (click)="editarEnvioSubasta()">Editar Envio</button>
+                            <!-- <select id="cars" ngModel name="envio"> -->
+                              
+
+                              <!-- <option *ngIf="productoActual.Envio != 'incluido'"value="incluido">inluido</option> --> 
+                              <!-- <option value="incluido" [selected]="productoActual.Envio == 'incluido'">inluido</option>
+                              <!-- <option [selected]="productoActual.Envio == 'no incluido'" value="no incluido">no incluido</option> -->
+                              <!-- <option *ngIf="productoActual.Envio != 'no incluido'" value="no incluido">no incluido</option>
+                              <option *ngIf="productoActual.Envio == 'no incluido'" value="no incluido" selected>no incluido</option> -->
+                            <!-- </select> -->
                           </div>
                         </div>
 
@@ -79,7 +97,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Descripción Producto</label>
-                            <textarea ngModel name="descripcionP" class="form-control textarea">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, sed sequi perspiciatis ullam inventore deserunt magni asperiores officia architecto quis? Necessitatibus commodi sint ratione deleniti quisquam vel eum obcaecati vero!</textarea>
+                            <textarea ngModel name="descripcionP" class="form-control textarea" [(ngModel)]="productoActual.descripcion"></textarea>
                           </div>
                         </div>
                       </div>
@@ -97,21 +115,24 @@
                               <label class="btn btn-primary btn-round" style="background-color: white;">Subir Imagen 1</label>
                               <input ngModel (change)="obtenerImage($event,1)" type="file" name="image" id="">
                             </div>
-                            <img src="{{src}}" alt="" width="200" height="200">
+                            <img *ngIf="banderaImagen1 == true" src="{{src}}" alt="" width="200" height="200">
+                            <img src="{{ruta}}/download/{{src}}" alt="" width="200" height="200">
                           </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label class="btn btn-primary btn-round" style="background-color: white;" >Subir Imagen 2</label>
                             <input ngModel (change)="obtenerImage($event,2)"  type="file" name="image1" id="">
                           </div>
-                          <img src="{{src1}}" alt="" width="200" height="200">
+                          <img *ngIf="banderaImagen2 == true" src="{{src1}}" alt="" width="200" height="200">
+                          <img src="{{ruta}}/download/{{src1}}" alt="" width="200" height="200">
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                               <label class="btn btn-primary btn-round" style="background-color: white;" >Subir Imagen 3</label>
                               <input ngModel (change)="obtenerImage($event,3)" type="file" name="image2" id="">
                             </div>
-                            <img src="{{src2}}" alt="" width="200" height="200">
+                            <img *ngIf="banderaImagen3 == true" src="{{src2}}" alt="" width="200" height="200">
+                            <img src="{{ruta}}/download/{{src2}}" alt="" width="200" height="200">
                           </div>
                       </div>
 

@@ -80,6 +80,7 @@ export class NuevoProductoDashboardComponent implements OnInit {
       console.log(res.imagen.url);
       this.urlImg = res.imagen.url;
       console.log(this.urlImg)
+      console.log(res)
     });
 
     }else if(id == 2){
