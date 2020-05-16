@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Subasta } from 'src/app/models/Subasta';
 import { Producto } from 'src/app/models/Producto';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-profile',
@@ -37,7 +38,12 @@ export class ProfileComponent implements OnInit {
 
   idActual;
 
-  constructor(private userService: UserService, private subastaService: SubastaService, private productsService: ProductoService, private http: HttpClient, private _router:Router) { 
+  constructor(private userService: UserService,
+              private subastaService: SubastaService,
+              private productsService: ProductoService,
+              private http: HttpClient,
+              private route: ActivatedRoute,
+              private _router: Router) {
     this.init()
     this.router = _router.url;
     if (this.router.includes('edit')) {
@@ -140,7 +146,7 @@ export class ProfileComponent implements OnInit {
     // reader.readAsDataURL(this.image);
   }
 
-  submitChanges(form: NgForm){
+  submitChanges(form: NgForm) {
     console.log(this.user.token === localStorage.getItem('token'))
     this.userService.updateUser(
               this.user.email,
@@ -149,13 +155,13 @@ export class ProfileComponent implements OnInit {
               this.inputCity,
               this.inputCountry,
               this.user.token).subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (err) => {
-          console.log(err)
-      }
-    )
+        (data) => this._router.navigate(['profile']),
+        (err) => console.log(err)
+    );
+  }
+
+  redirectEditarPerfil() {
+    this._router.navigate(['profile/edit']);
   }
 
 }
