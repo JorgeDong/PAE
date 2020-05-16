@@ -3,12 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subasta } from 'src/app/models/Subasta';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubastaService {
-  readonly URL_API = 'http://localhost:3000/api/';
+  //readonly URL_API = 'http://localhost:3000/api/';
+  URL_API = environment.apiUrl;
+
 
   subastas = [];
   prodcutos = [];
@@ -93,7 +96,8 @@ export class SubastaService {
   }
 
   countByUserId(ID):Observable<any>{
-    return this.http.get(`http://localhost:3000/api/subasta`).pipe(
+    //return this.http.get(`http://localhost:3000/api/subasta`).pipe(
+      return this.http.get(this.URL_API  + `subasta`).pipe(
       map( (data:Subasta[]) => {
         let filteredData = data.filter(data => data.idUsuario_fk == ID)
         return filteredData.length;
@@ -102,7 +106,7 @@ export class SubastaService {
     )
   }
   getByUserId(ID):Observable<any>{
-    return this.http.get(`http://localhost:3000/api/subasta`).pipe(
+    return this.http.get(this.URL_API  + `subasta`).pipe(
       map( (data:Subasta[]) => {
         let filteredData = data.filter(data => data.idUsuario_fk == ID)
         return filteredData;

@@ -3,15 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Subasta } from 'src/app/models/Subasta';
-
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  filteredData: Subasta[];
-  readonly URL_API = 'http://localhost:3000/api/producto';
+    //readonly URL_API = 'http://localhost:3000/api/producto';
+    URL_API = environment.apiUrl + 'producto';
 
+  filteredData: Subasta[];
   productos = [];
   
   constructor(private http: HttpClient) { 

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: '' // Aqui lo de heroku
+  apiUrl: 'https://mexsubastas.herokuapp.com/api/'
 };

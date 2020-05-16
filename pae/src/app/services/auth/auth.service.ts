@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AuthService {
   token = "";
   logeado = new BehaviorSubject<boolean>(false);
+
+  
 
   constructor(private	http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -40,7 +43,7 @@ export class AuthService {
   }
 
   loginUser(email, password):Observable<any>{
-    return this.http.post('http://localhost:3000/api/users/login', {email: email, password: password}).pipe(
+    return this.http.post(environment.apiUrl + 'users/login', {email: email, password: password}).pipe(
       map( (data:any) => {
         if(data.token){
           this.saveToken(data.token);
@@ -54,7 +57,7 @@ export class AuthService {
 
   loginGoogle(params): Observable<any>{
     console.log('HERE');
-    return this.http.get('http://localhost:3000/api/users/api/google/redirect', {params}).pipe(
+    return this.http.get(environment.apiUrl + 'users/api/google/redirect', {params}).pipe(
       map( (data: any) => {
         console.log('LOGIN BY GOOGLE')
         if(data.token){

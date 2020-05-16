@@ -30,7 +30,7 @@ import { CreditosComponent } from './components/dashboard/creditos/creditos.comp
 import { SubastaComponent } from './components/subasta/subasta.component';
 import { PassManagerComponent } from './components/pass-manager/pass-manager/pass-manager.component';
 
-const config: SocketIoConfig = { url: environment.url, options: {}}
+const config: SocketIoConfig = { url: environment.apiUrl, options: {}}
 
 @NgModule({
   declarations: [

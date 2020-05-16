@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { CreditoService } from '../../services/credito/credito.service'
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +28,8 @@ export class UserService {
   }
 
   getUsers() {
-    this.http.get('http://localhost:3000/api/users').subscribe(
+    //this.http.get('http://localhost:3000/api/users').subscribe(
+    this.http.get(environment.apiUrl + 'users').subscribe(
       (data: User[]) => { this.users = data;
                           this.usersSubject.next(this.users) },
       err => console.log(err)
@@ -34,7 +37,8 @@ export class UserService {
   }
 
   registration(name, email, password, password2, direccion, city, country, p1, r1, p2, r2): Observable<any> {
-    return this.http.post('http://localhost:3000/api/users/registration', {name, email, password,
+    return this.http.post(environment.apiUrl + 'users/registration', {name, email, password,
+    //return this.http.post('http://localhost:3000/api/users/registration', {name, email, password,
       password2, direccion, city, country, p1, r1, p2, r2}).pipe(
       map( (data: any) => {
         if (data) {
@@ -47,7 +51,8 @@ export class UserService {
   }
 
   getUserByEmail(email): Observable<any> {
-    return this.http.get(`http://localhost:3000/api/users/readByEmail/${email}`).pipe(
+    //return this.http.get(`http://localhost:3000/api/users/readByEmail/${email}`).pipe(
+    return this.http.get(environment.apiUrl +`users/readByEmail/${email}`).pipe(
       map( (data: any) => {
         this.singleUser = data[0];
         this.singleUserSubject.next(this.singleUser);
@@ -58,7 +63,8 @@ export class UserService {
   }
 
   updateUser(email, name, direccion, city, country, token): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country},
+    //return this.http.put(`http://localhost:3000/api/users/updateByEmail/${email}`, { email, name, direccion, city, country},
+    return this.http.put(environment.apiUrl +`users/updateByEmail/${email}`, { email, name, direccion, city, country},
       {headers: new HttpHeaders( { Authorization: token} )}).pipe(
       map( (data: any) => {
         return data;
@@ -66,7 +72,8 @@ export class UserService {
     );
   }
   createUserCredito(ID, credit){
-    return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
+    //return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
+    return this.http.post(environment.apiUrl +'credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
       map( (data: any) => {
         return data;
       })
@@ -74,7 +81,7 @@ export class UserService {
   }
 
   getUserbyID(id){
-    return this.http.get('http://localhost:3000/api/users/readById/' + id);
+    return this.http.get(environment.apiUrl +'users/readById/' + id);
   }
 
   updatePassword(email, newPassword) {
