@@ -44,6 +44,7 @@ export class PanelDashboardComponent implements OnInit {
           (data:Credito) => {
             this.userCreditInfo = data;
             this.creditos = data.CantidadCredito;
+
           },
           (err) => {
             console.log(err);

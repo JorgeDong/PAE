@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { map } from 'rxjs/operators'
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CreditoService } from '../../services/credito/credito.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,16 @@ export class UserService {
   users: User[];
   singleUser: User;
   token = '';
+  creditCurrentUser;
 
   usersSubject = new BehaviorSubject<User[]>([]);
   singleUserSubject = new BehaviorSubject<User>(this.singleUser);
   tokenSubject = new BehaviorSubject<string>(this.token);
 
-  constructor(private	http: HttpClient, private router: Router) {
+  constructor(private	http: HttpClient, 
+              private router: Router,
+              private creditoService: CreditoService
+              ) {
   }
 
   getUsers() {
@@ -75,5 +80,6 @@ export class UserService {
   getUserbyID(id){
     return this.http.get('http://localhost:3000/api/users/readById/'+id);
   }
+
   
 }

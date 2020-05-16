@@ -7,6 +7,8 @@ import { UserService } from '../../services/user/user.service'
 import { NgForm } from '@angular/forms';
 import { Puja } from '../../models/Puja';
 import {PujaService } from '../../services/puja/puja.service';
+import { CreditoService } from '../../services/credito/credito.service'
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -35,13 +37,17 @@ export class SubastaDetalleComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductoService,
     private userService: UserService,
-    private pujaService: PujaService
+    private pujaService: PujaService,
+    private creditoService: CreditoService,
+    private http: HttpClient
   ) {
 
     this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(
       (data) => {
         this.user = data;
         console.log(this.user)
+        console.log('Credito')
+    console.log(this.userService.creditCurrentUser)
       },
       (err) => {
         console.log(err);
@@ -72,7 +78,7 @@ export class SubastaDetalleComponent implements OnInit {
     // this.pujas.push(pujaTemp);
 
     
-
+    
   }
 
   ngOnInit(): void {
@@ -101,32 +107,81 @@ export class SubastaDetalleComponent implements OnInit {
   subirPuja(form: NgForm){
     console.log(form.value);
 
-
     if(this.user != undefined){
+      
+      this.creditoService.getCreditoByID(this.user.id).subscribe((res)=>{
+        console.log(res)
+        let credito = res;
+        if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
+          alert("Has pujado una cantidad menor a la actual!!");
+        }else{
+          let newPuja = new Puja(
+            this.productoActual.idProducto,
+            this.user.id,
+            form.value.CantidadPuja,
+            this.user.name
+          );
+      
+          this.ultimaPuja = form.value.CantidadPuja;
+      
+          this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+            console.log(res.puja.idSubasta_fk);
+            console.log(res.puja.idSubasta_fk);
+            this.obtenerPujas(res.puja.idSubasta_fk);
+          });
 
-      if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
-        alert("Has pujado una cantidad menor a la actual!!");
-      }else{
-        let newPuja = new Puja(
-          this.productoActual.idProducto,
-          this.user.id,
-          form.value.CantidadPuja,
-          this.user.name
-        );
-    
-        this.ultimaPuja = form.value.CantidadPuja;
-    
-        this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
-          console.log(res.puja.idSubasta_fk);
-          console.log(res.puja.idSubasta_fk);
-          this.obtenerPujas(res.puja.idSubasta_fk);
-        });
-      }
+
+          let nuevoCredito = credito.CantidadCredito;
+          nuevoCredito = nuevoCredito - form.value.CantidadPuja;
+          credito.CantidadCredito = nuevoCredito;
+          
+          this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
+
+          })
+
+
+          // this.creditoService.updateCredito(this.user.id,credito.idCredito,credito.idUsuario_fk,nuevoCredito,credito.moneda).subscribe(res=>{
+
+          // })
+        }
+        
+      })
+
+      
       
     }else{
       console.log('no estas registrado');
       alert("Necesitas estar registrado pra poder pujar!!");
     }
+
+
+
+
+    // if(this.user != undefined){
+
+    //   if(form.value.CantidadPuja <= this.ultimaPuja.CantidadPuja){
+    //     alert("Has pujado una cantidad menor a la actual!!");
+    //   }else{
+    //     let newPuja = new Puja(
+    //       this.productoActual.idProducto,
+    //       this.user.id,
+    //       form.value.CantidadPuja,
+    //       this.user.name
+    //     );
+    
+    //     this.ultimaPuja = form.value.CantidadPuja;
+    
+    //     this.pujaService.subirPuja(newPuja).subscribe((res:any)=>{
+    //       console.log(res.puja.idSubasta_fk);
+    //       console.log(res.puja.idSubasta_fk);
+    //       this.obtenerPujas(res.puja.idSubasta_fk);
+    //     });
+    //   }
+      
+    // }else{
+    //   console.log('no estas registrado');
+    //   alert("Necesitas estar registrado pra poder pujar!!");
+    // }
 
 
 
