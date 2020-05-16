@@ -8,7 +8,6 @@ import { NgForm } from '@angular/forms';
 import { Subasta } from 'src/app/models/Subasta';
 import { Producto } from 'src/app/models/Producto';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-profile',
@@ -29,9 +28,9 @@ export class ProfileComponent implements OnInit {
   inputCity = '';
   inputCountry = '';
 
-  image; 
+  image;
   image1;
-  image2;  
+  image2;
   src;
   src1;
   src2;
@@ -43,9 +42,9 @@ export class ProfileComponent implements OnInit {
               private productsService: ProductoService,
               private http: HttpClient,
               private route: ActivatedRoute,
-              private _router: Router) {
-    this.init()
-    this.router = _router.url;
+              private _ROUTER: Router) {
+    this.init();
+    this.router = _ROUTER.url;
     if (this.router.includes('edit')) {
       this.isEdit = true;
     } else {
@@ -56,7 +55,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  init(){
+  init() {
     this.userService.getUserByEmail(localStorage.getItem('email')).subscribe(
       (data) => {
         this.user = data;
@@ -68,66 +67,44 @@ export class ProfileComponent implements OnInit {
 
         localStorage.setItem('token', this.user.token);
 
-        console.log(data);
         this.subastaService.countByUserId(this.user.id).subscribe(
-          (data) => {
-            this.subastasCreadas = data;
-            console.log(data);
-          },
-          (err) => {
-            console.log(err);
-          }
-        )
+          dataCreadas => this.subastasCreadas = dataCreadas,
+          err => console.log(err)
+        );
         this.productsService.countSoldProductsByUserId(this.user.id).subscribe(
-          (data) => {
-            this.productosVendidos = data;
-            console.log(data);
-          },
-          (err) => {
-            console.log(err);
-          }
-        )
+          dataVendidos => this.productosVendidos = dataVendidos,
+          err => console.log(err)
+        );
         this.productsService.SoldProductsByUserId(this.user.id).subscribe(
-          (data) => {
-            console.log(data);
-            this.productosVendidosArr = data;
-            console.log(data);
-          },
-          (err) => {
-            console.log(err);
-          }
-        )
+          dataProductos => this.productosVendidosArr = dataProductos,
+          err => console.log(err)
+        );
         this.subastaService.getByUserId(this.user.id).subscribe(
-          (data) => {
-            console.log(data);
-            this.subastasCreadasArr = data;
-            console.log(data);
-          },
-          (err) => {
-            console.log(err);
-          }
-        )
+          dataSubastas => this.subastasCreadasArr = dataSubastas,
+          err => console.log(err)
+        );
       },
       (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
-  obtenerImage(event){
+  obtenerImage(event) {
       this.image1 = event.target.files[0];
-      let reader = new FileReader();
-      reader.onloadend = ()=>{
+      const reader = new FileReader();
+      reader.onloadend = () => {
         this.src1 = reader.result;
-      }
+      };
       reader.readAsDataURL(this.image1);
-      let formData = new FormData();
-      formData.append("image",this.image1);
-      formData.append("idProducto_fk", ""+this.user.id);
-      formData.append("descripcion","profile");
+      const formData = new FormData();
+      formData.append('image', this.image1);
+      formData.append('idProducto_fk', '' + this.user.id);
+      formData.append('descripcion', 'profile');
 
-    this.http.post('http://localhost:3000/api/imagen',formData)
-    .subscribe((res)=> console.log(res));
+      this.http.post('http://localhost:3000/api/imagen', formData).subscribe(
+        (res) => console.log(res)
+      );
 
     // this.image = event.target.files[0];
     // console.log(event.target.files);
@@ -147,7 +124,7 @@ export class ProfileComponent implements OnInit {
   }
 
   submitChanges(form: NgForm) {
-    console.log(this.user.token === localStorage.getItem('token'))
+    console.log(this.user.token === localStorage.getItem('token'));
     this.userService.updateUser(
               this.user.email,
               this.inputName,
@@ -155,13 +132,13 @@ export class ProfileComponent implements OnInit {
               this.inputCity,
               this.inputCountry,
               this.user.token).subscribe(
-        (data) => this._router.navigate(['profile']),
+        (data) => this._ROUTER.navigate(['profile']),
         (err) => console.log(err)
     );
   }
 
   redirectEditarPerfil() {
-    this._router.navigate(['profile/edit']);
+    this._ROUTER.navigate(['profile/edit']);
   }
 
 }
