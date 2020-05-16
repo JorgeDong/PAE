@@ -12,4 +12,6 @@ router.delete('/:id', productoCtrl.deleteProducto);
 router.get('/search/:id', productoCtrl.findByID);
 router.get('/imagenes/:id', productoCtrl.findImagenesByID);
 
+router.get('/usuario/:id',productoCtrl.getProductosPorIdUsuario);
+
 module.exports = router;

@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       {path:'', component: PanelDashboardComponent, canActivate:[AuthGuardService]},
       {path:'nuevo-producto', component: NuevoProductoDashboardComponent},
-      {path:'editar-producto', component: EditarProductoDashboardComponent},
+      {path:'editar-producto/:id', component: EditarProductoDashboardComponent},
     ]
   },
   { path: 'login', component: LoginComponent},

@@ -22,7 +22,9 @@ pujaCtrl.createPuja = async (req, res, next) => {
                 idUsuario_fk: req.body.idUsuario_fk,
                 CantidadPuja: req.body.CantidadPuja,
                 Usuario: req.body.Usuario,
-                fechaAlta: new Date()
+                fechaAlta: new Date(),
+                PujaInicial: req.body.PujaInicial,
+                NombreProducto: req.body.NombreProducto,
             });
             await puja.save();
             res.json({status: 'Puja created',puja: puja});
@@ -35,7 +37,9 @@ pujaCtrl.createPuja = async (req, res, next) => {
                 idUsuario_fk: req.body.idUsuario_fk,
                 Usuario: req.body.Usuario,
                 CantidadPuja: req.body.CantidadPuja,
-                fechaAlta: new Date()
+                fechaAlta: new Date(),
+                PujaInicial: req.body.PujaInicial,
+                NombreProducto: req.body.NombreProducto,
             });
             await puja.save();
             res.json({status: 'Puja created',puja: puja});
@@ -59,7 +63,9 @@ pujaCtrl.editPuja = async (req, res, next) => {
         idUsuario_fk: req.body.idUsuario_fk,
         Usuario: req.body.Usuario,
         CantidadPuja: req.body.CantidadPuja,
-        fechaAlta: new Date()
+        fechaAlta: new Date(),
+        PujaInicial: req.body.PujaInicial,
+        NombreProducto: req.body.NombreProducto,
     };
 
     await Puja.findByIdAndUpdate(id, {$set: puja}, {new: true});
@@ -75,4 +81,11 @@ pujaCtrl.getPujasPorIdProducto = async (req, res, next) => {
     const pujas = await Puja.find({ idSubasta_fk: req.params.id });
     res.json(pujas);
 };
+
+pujaCtrl.getPujasPorIdUsuario = async (req, res, next) => {
+    const pujas = await Puja.find({ idUsuario_fk: req.params.id });
+    res.json(pujas);
+};
+
+
 module.exports = pujaCtrl;

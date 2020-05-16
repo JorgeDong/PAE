@@ -24,10 +24,16 @@ export class PanelDashboardComponent implements OnInit {
   productosVendidosArr: Producto[];
   creditos = 0;
   inputCreditos = 0;
+
+  arrProductos = [];
+  arrPujas = [];
   
   constructor(private userService: UserService, private subastaService: SubastaService,
     private productsService: ProductoService, private creditoService: CreditoService, private http: HttpClient) {
     this.init();
+    // this.misSubastas();
+    // this.misPujas();
+
   }
 
   ngOnInit(): void {
@@ -81,6 +87,12 @@ export class PanelDashboardComponent implements OnInit {
             console.log(err);
           }
         )
+
+
+          this.misSubastas(data.id);
+          this.misPujas(data.id);
+
+
       },
       (err) => {
         console.log(err);
@@ -100,6 +112,36 @@ export class PanelDashboardComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+
+  misSubastas(id){
+    this.http.get('http://localhost:3000/api/producto/usuario/'+ id).subscribe((res:any)=>{
+      console.log('mis subastas')
+      console.log(res);
+      this.arrProductos = res;
+    });
+  }
+
+  misPujas(id){
+    this.http.get('http://localhost:3000/api/puja/usuario/'+ id).subscribe((res:any)=>{
+      console.log('mis Pujas')
+      console.log(res);
+      this.arrPujas = res;
+    });
+  }
+
+  eliminarProducto(id){
+    var txt;
+    if (confirm("Esta a punto de eliminar una subasta!")) {
+      txt = "You pressed OK!";
+      this.http.delete('http://localhost:3000/api/producto/'+ id).subscribe((res:any)=>{
+        this.misSubastas(this.user.id);
+      });
+    } else {
+      txt = "You pressed Cancel!";
+    }
+
   }
 
 }
