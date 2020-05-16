@@ -157,6 +157,9 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem('redirectFromLogin', 'false');
     this._ROUTER.navigate(['profile/change-pass']);
   }
+  redirectLogOut() {
+    
+  }
 
   close() {
     this.alertEmptyValues = true;

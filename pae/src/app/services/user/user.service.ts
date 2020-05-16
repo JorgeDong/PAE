@@ -19,7 +19,7 @@ export class UserService {
   singleUserSubject = new BehaviorSubject<User>(this.singleUser);
   tokenSubject = new BehaviorSubject<string>(this.token);
 
-  constructor(private	http: HttpClient, 
+  constructor(private	http: HttpClient,
               private router: Router,
               private creditoService: CreditoService
               ) {

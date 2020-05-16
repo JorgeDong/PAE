@@ -71,6 +71,7 @@ export class AuthService {
     this.token = '';
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('email');
+    window.localStorage.removeItem('redirectFromLogin');
     this.logeado.next(false);
     this.router.navigateByUrl('/');
   }

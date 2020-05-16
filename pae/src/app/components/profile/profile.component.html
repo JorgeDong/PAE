@@ -167,6 +167,9 @@
                     <div class="col-md-4" [hidden]=isGoogleAccount>
                       <button (click)="redirectChangePass()">Cambiar Contraseña</button>
                     </div>
+                    <div class="col-md-4" [hidden]=isEdit>
+                      <button (click)="redirectLogOut()">Cerrar Sesion</button>
+                    </div>
                   </div>
                   <div class="row" hidden=true>
                     <div class="col-md-12">
