@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { CreditoService } from 'src/app/services/credito/credito.service';
 import { Credito } from 'src/app/models/Credito';
 import { NgForm } from '@angular/forms';
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-panel-dashboard',
@@ -116,7 +117,8 @@ export class PanelDashboardComponent implements OnInit {
 
 
   misSubastas(id){
-    this.http.get('http://localhost:3000/api/producto/usuario/'+ id).subscribe((res:any)=>{
+    //this.http.get('http://localhost:3000/api/producto/usuario/'+ id).subscribe((res:any)=>{
+    this.http.get(environment.apiUrl +'producto/usuario/'+ id).subscribe((res:any)=>{
       console.log('mis subastas')
       console.log(res);
       this.arrProductos = res;
@@ -124,7 +126,8 @@ export class PanelDashboardComponent implements OnInit {
   }
 
   misPujas(id){
-    this.http.get('http://localhost:3000/api/puja/usuario/'+ id).subscribe((res:any)=>{
+    //this.http.get('http://localhost:3000/api/puja/usuario/'+ id).subscribe((res:any)=>{
+    this.http.get(environment.apiUrl +'puja/usuario/'+ id).subscribe((res:any)=>{
       console.log('mis Pujas')
       console.log(res);
       this.arrPujas = res;
@@ -135,7 +138,8 @@ export class PanelDashboardComponent implements OnInit {
     var txt;
     if (confirm("Esta a punto de eliminar una subasta!")) {
       txt = "You pressed OK!";
-      this.http.delete('http://localhost:3000/api/producto/'+ id).subscribe((res:any)=>{
+      //this.http.delete('http://localhost:3000/api/producto/'+ id).subscribe((res:any)=>{
+      this.http.delete(environment.apiUrl +'producto/'+ id).subscribe((res:any)=>{
         this.misSubastas(this.user.id);
       });
     } else {

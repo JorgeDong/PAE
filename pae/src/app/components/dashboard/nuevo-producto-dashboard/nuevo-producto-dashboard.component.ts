@@ -8,7 +8,7 @@ import { Subasta } from '../../../models/Subasta';
 import { User } from '../../../models/User';
 import { CanActivate, Router } from '@angular/router';
 import { UserService } from '../../../services/user/user.service'
-
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-nuevo-producto-dashboard',
@@ -74,7 +74,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
       formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
-    this.http.post('http://localhost:3000/api/imagen',formData)
+    //this.http.post('http://localhost:3000/api/imagen',formData)
+    this.http.post(environment.apiUrl + 'imagen',formData)
     .subscribe((res:any)=>{
       console.log('primera imagen')
       console.log(res.imagen.url);
@@ -95,7 +96,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
       formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
-    this.http.post('http://localhost:3000/api/imagen',formData)
+    //this.http.post('http://localhost:3000/api/imagen',formData)  
+    this.http.post(environment.apiUrl +'imagen',formData)
     .subscribe((res)=> console.log(res));
     }else{
       this.image2 = event.target.files[0];
@@ -109,7 +111,8 @@ export class NuevoProductoDashboardComponent implements OnInit {
       formData.append("idProducto_fk",this.idActual);
       formData.append("descripcion","Descripcion");
 
-    this.http.post('http://localhost:3000/api/imagen',formData)
+    //this.http.post('http://localhost:3000/api/imagen',formData)
+    this.http.post(environment.apiUrl +'imagen',formData)
     .subscribe((res)=> console.log(res));
     }
 

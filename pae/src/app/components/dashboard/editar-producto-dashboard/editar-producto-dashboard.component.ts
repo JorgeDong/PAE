@@ -9,6 +9,7 @@ import { User } from '../../../models/User';
 import { ActivatedRoute,Router } from '@angular/router';
 import { UserService } from '../../../services/user/user.service'
 import { ImagenService } from '../../../services/imagen/imagen.service'
+import { environment } from '../../../../environments/environment'
 
 
 
@@ -116,7 +117,8 @@ export class EditarProductoDashboardComponent implements OnInit {
   obtenerImage(event,id){
     if(id == 1){
 
-      this.http.delete('http://localhost:3000/api/imagen/'+this.imagenPasada0._id).subscribe(res=>{
+      //this.http.delete('http://localhost:3000/api/imagen/'+this.imagenPasada0._id).subscribe(res=>{
+      this.http.delete(environment.apiUrl+'imagen/'+this.imagenPasada0._id).subscribe(res=>{
               this.banderaImagen1 = true;
             this.image = event.target.files[0];
             let reader = new FileReader();
@@ -129,7 +131,8 @@ export class EditarProductoDashboardComponent implements OnInit {
             formData.append("idProducto_fk",this.idActual);
             formData.append("descripcion","Descripcion");
 
-          this.http.post('http://localhost:3000/api/imagen',formData)
+          //this.http.post('http://localhost:3000/api/imagen',formData)
+          this.http.post(environment.apiUrl+'imagen',formData)
           .subscribe((res:any)=>{
             console.log('primera imagen')
             console.log(res.imagen.url);
@@ -159,7 +162,8 @@ export class EditarProductoDashboardComponent implements OnInit {
     // });
 
     }else if(id == 2){
-      this.http.delete('http://localhost:3000/api/imagen/'+this.imagenPasada1._id).subscribe(res=>{
+      //this.http.delete('http://localhost:3000/api/imagen/'+this.imagenPasada1._id).subscribe(res=>{
+      this.http.delete(environment.apiUrl + 'imagen/'+this.imagenPasada1._id).subscribe(res=>{
         
         this.banderaImagen2 = true;
         this.image1 = event.target.files[0];
@@ -173,14 +177,14 @@ export class EditarProductoDashboardComponent implements OnInit {
         formData.append("idProducto_fk",this.idActual);
         formData.append("descripcion","Descripcion");
 
-      this.http.post('http://localhost:3000/api/imagen',formData)
+      this.http.post(environment.apiUrl + 'imagen',formData)
       .subscribe((res)=> console.log(res));
 
       })
 
     }else{
 
-      this.http.delete('http://localhost:3000/api/imagen/'+this.imagenPasada2._id).subscribe(res=>{
+      this.http.delete(environment.apiUrl +'imagen/'+this.imagenPasada2._id).subscribe(res=>{
         this.banderaImagen3 = true;
         this.image2 = event.target.files[0];
         let reader = new FileReader();
@@ -193,7 +197,7 @@ export class EditarProductoDashboardComponent implements OnInit {
         formData.append("idProducto_fk",this.idActual);
         formData.append("descripcion","Descripcion");
   
-      this.http.post('http://localhost:3000/api/imagen',formData)
+      this.http.post(environment.apiUrl + 'imagen',formData)
       .subscribe((res)=> console.log(res));
       })
     }

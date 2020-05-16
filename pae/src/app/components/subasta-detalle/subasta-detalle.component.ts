@@ -9,6 +9,7 @@ import { Puja } from '../../models/Puja';
 import {PujaService } from '../../services/puja/puja.service';
 import { CreditoService } from '../../services/credito/credito.service'
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -143,7 +144,10 @@ export class SubastaDetalleComponent implements OnInit {
             nuevoCredito = nuevoCredito - form.value.CantidadPuja;
             credito.CantidadCredito = nuevoCredito;
             
-            this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
+            // this.http.put('http://localhost:3000/api/credito/'+ credito._id,credito).subscribe(res=>{
+  
+            // })
+            this.http.put(environment.apiUrl + 'credito/'+ credito._id,credito).subscribe(res=>{
   
             })
   
