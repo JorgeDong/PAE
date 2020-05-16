@@ -16,7 +16,6 @@ passport.use(new GoogleStrategy({
         done(null, false, {error: "Autentificación por Google Fallo"})
         return;
     }
-    console.log(profile._json);
     
     User.findOne({ email: profile._json.email })
         .then( user => {

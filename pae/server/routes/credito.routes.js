@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
+const { ensureAuthenticated } = require('../config/auth');
+
 const creditoCtrl = require('../controllers/credito.controller');
 const Credito = require('../models/Credito')
 
 router.get('/', creditoCtrl.getCreditos);
 router.get('/last', creditoCtrl.getLastCredito);
-router.post('/', creditoCtrl.createCredito);
 router.get('/:id', creditoCtrl.getCredito);
 router.put('/:id', creditoCtrl.editCredito);
 router.delete('/:id', creditoCtrl.deleteCredito);
@@ -38,6 +39,20 @@ router.post('/new', (req, res) => {
             })
         }
     })
+})
+
+router.put('/edit/:id', ensureAuthenticated, (req, res) => {
+    const { idCredito, CantidadCredito } = req.body;
+    console.log("CREDITO: "+req.body);
+    if(req.body){
+        Credito.findOneAndUpdate({ idCredito: idCredito }, { $set:{ CantidadCredito: CantidadCredito }}, (err, done)=> {
+                    if(err) res.status(400).send(err);
+                    res.status(200).send(done);
+                })
+    }
+    else {
+        res.status(401).send(`Cannot edit this item (Credito ID: ${req.params.id}`)
+    }
 })
 
 module.exports = router;

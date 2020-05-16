@@ -68,7 +68,7 @@ export class UserService {
       })
     )
   }
-  createUserCreadit(ID, credit){
+  createUserCredito(ID, credit){
     return this.http.post('http://localhost:3000/api/credito/new', {idUsuario_fk: ID, CantidadCredito: credit}).pipe(
       map( (data: any) => {
         console.log(data);

@@ -16,7 +16,7 @@ export class Credito {
 
 idCredito: number;
 idUsuario_fk: number;
-CantidadCredito: string;
+CantidadCredito: number;
 moneda: string;
 fechaAlta: string;
 
