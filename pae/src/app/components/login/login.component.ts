@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(private modalService: NgbModal,
               private userService: UserService,
               private authService: AuthService,
-              private router: Router,
+              private _ROUTER: Router,
               private route: ActivatedRoute) {
     this.userService.usersSubject.subscribe( data => {
       this.users = data;
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.authService.loginGoogle(params).subscribe(
           (data)=>{
             if(this.authService.isLoggedIn()){
-              this.router.navigate(['/profile']);
+              this._ROUTER.navigate(['/profile']);
             }
         })
       }
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
   submitLogin(form: NgForm){
     this.authService.loginUser(this.loginEmail, this.loginPassword).subscribe(
       (data) => {
-        this.router.navigate(['/profile']);
+        this._ROUTER.navigate(['/profile']);
       },
       (err) => {
         this.NotUserFoundAlert = false;
@@ -78,6 +78,11 @@ export class LoginComponent implements OnInit {
       }
     )
     form.reset();
+  }
+
+  redirectChangePass() {
+    localStorage.setItem('redirectFromLogin', 'true');
+    this._ROUTER.navigate(['profile/change-pass']);
   }
 
   close() {

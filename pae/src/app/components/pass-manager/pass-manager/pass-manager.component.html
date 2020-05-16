@@ -1,0 +1,59 @@
+<div class="main-container">
+    <br><br>
+    <h1 class="h3 mb-3 font-weight-bold text-center">Preguntas de Seguridad</h1>
+    <div>
+        <form class="form-registro"  #f="ngForm" (ngSubmit)="submitEmail(f)">
+            <ngb-alert type='danger' [hidden]=alertInvalidForm1 (close)=closeInvalidForm1()>Please don't leave empty fields</ngb-alert>
+            <p>Correo</p>
+            <div class="form-group">
+                <input type="email" ngModel [(ngModel)]="inputEmail" name="inputEmail" class="form-control" placeholder="correo@ejemplo.com" required autofocus [disabled]=!isFromLogin>
+            </div>
+            <div [hidden]=!isFromLogin>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Email</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button (click)="returnToProfile()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="form-registro"  #f2="ngForm" (ngSubmit)="submitAnswers(f2)">
+            <p>Pregunta 1: </p>
+            <div class="form-group">
+                <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta1" name="inputRespuesta1" placeholder="---" required>
+            </div>
+            <p>Pregunta 2: </p>
+            <div class="form-group">
+                <input type="text" class="form-control"  ngModel [(ngModel)]="inputRespuesta2" name="inputRespuesta2" placeholder="---" required>
+            </div>
+            <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Respuestas</button>
+            <br>
+        </form>
+    </div>
+
+        <br>
+        <hr>
+        <br>
+    
+    <div [hidden]=!validationPassed>
+        <form class="form-registro"  #f3="ngForm" (ngSubmit)="submitNewPass(f3)">
+            <h3 class="h3 mb-3 font-weight-bold text-center">Cambiar Contraseña</h3>
+            <ngb-alert type='danger' [hidden]=alertInvalidForm2 (close)=closeInvalidForm2()>Please don't leave empty fields</ngb-alert>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control"  ngModel [(ngModel)]="inputNewPass1" name="inputNewPass1" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirmar Contraseña</label>
+                <input type="password" class="form-control"  ngModel [(ngModel)]="inputNewPass2" name="inputNewPass2" placeholder="Password" required>
+            </div>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Confirmar</button>
+            <br>
+        </form>
+    </div>
+
+</div>

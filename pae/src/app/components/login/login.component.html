@@ -8,7 +8,17 @@
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" ngModel [(ngModel)]="loginPassword" name="loginPassword" class="form-control" placeholder="*****" required>
         <hr>
-        <button type="submit">Sign in</button>
-        <a class="btn btn-primary" href="/api/users/google/login" role="button"><i class="fab fa-google    "></i></a>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" [disabled]=!f.valid>Sign in</button>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary" href="/api/users/google/login" role="button"><i class="fab fa-google    "></i></a>
+            </div>
+            <div class="col-md-3">
+                <button (click)="redirectChangePass()">Olvide Mi Contraseña</button>
+            </div>
+        </div>
+        
     </form>
 </div>
