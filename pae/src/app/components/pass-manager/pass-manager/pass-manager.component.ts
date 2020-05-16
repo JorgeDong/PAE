@@ -10,18 +10,27 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./pass-manager.component.css']
 })
 export class PassManagerComponent implements OnInit {
+  theUser: User;
 
   inputEmail = '';
+  Pregunta1 = '';
+  Pregunta2 = '';
   inputRespuesta1 = '';
   inputRespuesta2 = '';
   inputNewPass1 = '';
   inputNewPass2 = '';
 
   isFromLogin: boolean;
-  validationPassed = false;
+  f1ValidationPassed = false;
+  f2ValidationPassed = false;
 
+  alertInvalidEmail = true;
+  alertInvalidAnswers = true;
+  alertInvalidPass = true;
+  alertInvalidPassLength = true;
   alertInvalidForm1 = true;
   alertInvalidForm2 = true;
+  alertInvalidForm3 = true;
 
   constructor(private userService: UserService, private _ROUTER: Router) {
     if (localStorage.getItem('redirectFromLogin') === 'true') {
@@ -29,6 +38,19 @@ export class PassManagerComponent implements OnInit {
     } else {
       this.isFromLogin = false;
       this.inputEmail = localStorage.getItem('email');
+      this.userService.getUserByEmail(this.inputEmail).subscribe(
+        (data: User) => {
+          if (data) {
+            this.theUser = data;
+            this.Pregunta1 = data.pregunta1;
+            this.Pregunta2 = data.pregunta2;
+            this.f1ValidationPassed = true;
+          } else {
+            console.log('User not found');
+          }
+        }
+      );
+      this.f1ValidationPassed = true;
     }
   }
 
@@ -39,11 +61,18 @@ export class PassManagerComponent implements OnInit {
     if (form.valid) {
       this.userService.getUserByEmail(this.inputEmail).subscribe(
         (data: User) => {
-          console.log(data);
-          if (data.respuesta1 === form.value.inputRespuesta1 && data.respuesta2 === form.value.inputRespuesta2 ) {
-            this.validationPassed = true;
+          if (data) {
+            if (data.email === this.inputEmail) {
+              this.Pregunta1 = data.pregunta1;
+              this.Pregunta2 = data.pregunta2;
+              this.theUser = data;
+              this.f1ValidationPassed = true;
+            }
+          } else {
+            this.alertInvalidEmail = false;
           }
-        }
+        },
+        err => console.log(err)
       );
     } else {
       this.alertInvalidForm1 = false;
@@ -51,16 +80,35 @@ export class PassManagerComponent implements OnInit {
   }
 
   submitAnswers(form: NgForm) {
-    
+    if (form.valid) {
+      if (form.value.inputRespuesta1 === this.theUser.respuesta1 && form.value.inputRespuesta2 === this.theUser.respuesta2) {
+        this.f2ValidationPassed = true;
+      } else {
+        this.alertInvalidAnswers = false;
+      }
+    } else {
+      this.alertInvalidForm2 = false;
+    }
   }
 
   submitNewPass(form: NgForm) {
     if (form.valid) {
       if (form.value.inputNewPass1 === form.value.inputNewPass2) {
-        console.log(form.value);
+        if (form.value.inputNewPass1.length >= 6) {
+          this.userService.updatePassword(this.theUser.email, form.value.inputNewPass1).subscribe(
+            (data: any) => {
+              console.log(data);
+              this._ROUTER.navigate(['/login']);
+            }
+          );
+        } else {
+          this.alertInvalidPassLength = false;
+        }
+      } else {
+        this.alertInvalidPass = false;
       }
     } else {
-      this.alertInvalidForm2 = false;
+      this.alertInvalidForm3 = false;
     }
   }
 
@@ -69,11 +117,26 @@ export class PassManagerComponent implements OnInit {
     this._ROUTER.navigate(['/login']);
   }
 
+  closeInvalidEmail() {
+    this.alertInvalidEmail = true;
+  }
+  closeInvalidAnswers() {
+    this.alertInvalidAnswers = true;
+  }
+  closeInvalidPass() {
+    this.alertInvalidPass = true;
+  }
+  closeInvalidPassLength() {
+    this.alertInvalidPassLength = true;
+  }
   closeInvalidForm1() {
     this.alertInvalidForm1 = true;
   }
   closeInvalidForm2() {
     this.alertInvalidForm2 = true;
+  }
+  closeInvalidForm3() {
+    this.alertInvalidForm3 = true;
   }
 
 }

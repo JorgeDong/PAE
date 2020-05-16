@@ -87,7 +87,11 @@
                     <!--<img class="avatar border-gray" src="./assets/img/profile.jpg" alt="...">-->
                     <h5 class="title">{{user.name}}</h5>
                   </a>
-                  <div>
+                  <div *ngIf="isGoogleAccount">
+                    <br>
+                    <img width="200" height="200" src="{{this.user.imageUrl}}" alt="...">
+                  </div>
+                  <div *ngIf="!isGoogleAccount">
                     <br>
                     <img width="200" height="200" src="https://picsum.photos/id/{{user.id}}/200/200" alt="...">
                   </div>
@@ -160,7 +164,7 @@
                     <div class="col-md-4">
                       <button (click)="redirectEditarPerfil()">Editar Perfil</button>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" [hidden]=isGoogleAccount>
                       <button (click)="redirectChangePass()">Cambiar Contraseña</button>
                     </div>
                   </div>
