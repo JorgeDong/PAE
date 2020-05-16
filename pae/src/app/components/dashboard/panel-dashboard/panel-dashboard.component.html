@@ -19,7 +19,7 @@
         </div>
         <div class="card-footer ">
           <hr>
-          <div class="stats" hidden=true>
+          <div class="stats">
             <form #f="ngForm" (ngSubmit)="updateCredit(f)">
               <i class="fa fa-credit-card"></i>Agregar crédito
               <input ngModel [(ngModel)]="inputCreditos" name="inputCreditos">
@@ -58,7 +58,7 @@
                 <label>Productos Subastados</label>
                 <div *ngIf="productosVendidosArr.length > 0">
                   <li *ngFor="let item of productosVendidosArr">
-                    <ul>{{item.Descripcion}}</ul>
+                    <ul>{{item.descripcion}}</ul>
                   </li>
                 </div>
                 <div *ngIf="productosVendidosArr.length == 0">

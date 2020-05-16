@@ -34,8 +34,8 @@ export class RegistrationComponent implements OnInit {
                                   this.inputCity,
                                   this.inputCountry).subscribe(
       (data: User) => {
-            console.log('Currentdata: '+data);
-            this.userService.createUserCreadit(data.id, this.inputCredito).subscribe(
+            console.log('Currentdata: ' + data);
+            this.userService.createUserCredito(data.id, this.inputCredito).subscribe(
               (credito: Credito) => {
                 console.log('Credit done: ' + credito);
                 this.router.navigate(['/login']);
