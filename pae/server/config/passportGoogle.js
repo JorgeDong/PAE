@@ -16,7 +16,7 @@ passport.use(new GoogleStrategy({
         done(null, false, {error: "Autentificación por Google Fallo"})
         return;
     }
-    
+    console.log(profile._json);
     User.findOne({ email: profile._json.email })
         .then( user => {
             if(user){
@@ -35,7 +35,12 @@ passport.use(new GoogleStrategy({
                         city: 'No City Specified',
                         country: 'No Country Specified',
                         date: new Date,
-                        token: ''
+                        token: '',
+                        pregunta1: '',
+                        respuesta1: '',
+                        pregunta2: '',
+                        respuesta2: '',
+                        imageUrl: profile._json.picture
                     });
                     // Hash password
                     bcrypt.genSalt(10, (err, salt) => 

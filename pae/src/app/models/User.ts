@@ -12,6 +12,7 @@ export class User {
     respuesta1: string;
     pregunta2: string;
     respuesta2: string;
+    imageUrl: string;
 
     constructor(id: number,
                 name: string,
@@ -25,7 +26,8 @@ export class User {
                 pregunta1: string,
                 respuesta1: string,
                 pregunta2: string,
-                respuesta2: string) {
+                respuesta2: string,
+                imageUrl: string) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -39,5 +41,6 @@ export class User {
     this.respuesta1 = respuesta1;
     this.pregunta2 = pregunta2;
     this.respuesta2 = respuesta2;
+    this.imageUrl = imageUrl;
     }
 }

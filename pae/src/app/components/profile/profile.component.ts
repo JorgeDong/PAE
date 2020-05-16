@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   inputCity = '';
   inputCountry = '';
 
+  isGoogleAccount: boolean;
   alertEmptyValues = true;
 
   image;
@@ -66,6 +67,12 @@ export class ProfileComponent implements OnInit {
         this.inputDireccion = this.user.direccion;
         this.inputCity = this.user.city;
         this.inputCountry = this.user.country;
+
+        if (this.user.imageUrl === '') {
+          this.isGoogleAccount = false;
+        } else {
+          this.isGoogleAccount = true;
+        }
 
         localStorage.setItem('token', this.user.token);
 

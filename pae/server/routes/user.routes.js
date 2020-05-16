@@ -46,7 +46,8 @@ router.post('/registration', (req, res) => {
                         pregunta1: p1,
                         respuesta1: r1,
                         pregunta2: p2,
-                        respuesta2: r2
+                        respuesta2: r2,
+                        imageUrl: ''
                     });
                     // Hash password
                     bcrypt.genSalt(10, (err, salt) => 

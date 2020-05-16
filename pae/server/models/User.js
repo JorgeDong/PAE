@@ -53,6 +53,10 @@ const UserSchema = new mongoose.Schema({
     respuesta2: {
         type: String,
         required: false,
+    },
+    imageUrl: {
+        type: String,
+        required: false,
     }
 });
 
